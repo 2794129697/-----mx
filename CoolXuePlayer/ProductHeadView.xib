@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProductHeadView" customModule="CoolXuePlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xKS-FK-EnI">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+                </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="MYI-yw-hud">
+                    <rect key="frame" x="112" y="100" width="200" height="37"/>
+                    <color key="pageIndicatorTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="currentPageIndicatorTintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </pageControl>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dTV-Ky-oR0">
+                    <rect key="frame" x="0.0" y="128" width="320" height="44"/>
+                    <items>
+                        <barButtonItem title="播放历史" width="88" id="4Kv-Vs-Dc2">
+                            <connections>
+                                <action selector="bnHistoryClicked:" destination="iN0-l3-epB" id="d6P-EY-b3w"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="我的离线" width="86" id="e70-B1-wzZ">
+                            <connections>
+                                <action selector="bnOfflineClicked:" destination="iN0-l3-epB" id="KSC-qM-GUT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="我的收藏" width="84" id="U4a-DY-e8Y">
+                            <connections>
+                                <action selector="bnFavClicked:" destination="iN0-l3-epB" id="cp4-T4-3RO"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bnFav" destination="U4a-DY-e8Y" id="7Gc-Cx-DgV"/>
+                <outlet property="bnHistory" destination="4Kv-Vs-Dc2" id="eS1-i0-jcd"/>
+                <outlet property="bnOffline" destination="e70-B1-wzZ" id="v5i-sE-Kqf"/>
+                <outlet property="pageControl" destination="MYI-yw-hud" id="xa9-6P-Nqq"/>
+                <outlet property="scrollView" destination="xKS-FK-EnI" id="P4I-vA-yhe"/>
+            </connections>
+            <point key="canvasLocation" x="-84" y="402"/>
+        </view>
+        <view contentMode="scaleToFill" id="AVi-Ez-24P" customClass="ScrollContentView" customModule="CoolXuePlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view alpha="0.59999999999999964" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2V4-sm-4g6">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hpc-D9-MNH">
+                    <rect key="frame" x="2" y="2" width="124" height="124"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="124" id="LSU-HD-Iwl"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yve-NG-2Yh">
+                    <rect key="frame" x="128" y="29" width="184" height="72"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Yve-NG-2Yh" firstAttribute="top" secondItem="AVi-Ez-24P" secondAttribute="top" constant="29" id="1Mt-yl-LMD"/>
+                <constraint firstItem="2V4-sm-4g6" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" id="1jy-wn-iWN"/>
+                <constraint firstAttribute="bottom" secondItem="Yve-NG-2Yh" secondAttribute="bottom" constant="27" id="4Z7-3j-Iac"/>
+                <constraint firstItem="Yve-NG-2Yh" firstAttribute="leading" secondItem="hpc-D9-MNH" secondAttribute="trailing" constant="2" id="7b4-Ff-leG"/>
+                <constraint firstItem="hpc-D9-MNH" firstAttribute="top" secondItem="AVi-Ez-24P" secondAttribute="top" constant="2" id="GTI-v9-5Jf"/>
+                <constraint firstAttribute="trailing" secondItem="2V4-sm-4g6" secondAttribute="trailing" id="Ger-15-0eI"/>
+                <constraint firstAttribute="bottom" secondItem="hpc-D9-MNH" secondAttribute="bottom" constant="2" id="JSL-yu-vkB"/>
+                <constraint firstItem="Yve-NG-2Yh" firstAttribute="leading" secondItem="hpc-D9-MNH" secondAttribute="trailing" constant="2" id="Uft-zK-Aem"/>
+                <constraint firstItem="hpc-D9-MNH" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" constant="2" id="eOY-5g-VXK"/>
+                <constraint firstAttribute="bottom" secondItem="2V4-sm-4g6" secondAttribute="bottom" id="rEX-ce-Ed2"/>
+                <constraint firstItem="2V4-sm-4g6" firstAttribute="top" secondItem="AVi-Ez-24P" secondAttribute="top" id="yrI-Vs-cZi"/>
+                <constraint firstAttribute="trailing" secondItem="Yve-NG-2Yh" secondAttribute="trailing" constant="8" id="zAc-9r-oOJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="hpc-D9-MNH" id="5gh-fe-pRH"/>
+                <outlet property="nameLabel" destination="Yve-NG-2Yh" id="TlA-Pf-EkV"/>
+            </connections>
+            <point key="canvasLocation" x="-89" y="606"/>
+        </view>
+    </objects>
+</document>
