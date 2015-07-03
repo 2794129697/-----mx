@@ -218,7 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z3b-g7-kjl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3474" y="680"/>
+            <point key="canvasLocation" x="-3828" y="1122"/>
         </scene>
         <!--专辑详情-->
         <scene sceneID="b3o-te-gwZ">
@@ -1067,7 +1067,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="MPV-jz-stX"/>
-        <segue reference="pOQ-kQ-qf9"/>
+        <segue reference="gUl-5v-Cw9"/>
         <segue reference="gpC-0F-nDT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -5,14 +5,14 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "PPStream_LaunchImage@2x.png",
+      "filename" : "PPStream_LaunchImage-700@2x.png",
       "scale" : "2x"
     },
     {
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "retina4",
-      "filename" : "PPStream_LaunchImage-700-568h@2x.png",
+      "filename" : "PPStream_LaunchImage-568h@2x.png",
       "minimum-system-version" : "7.0",
       "orientation" : "portrait",
       "scale" : "2x"
@@ -22,7 +22,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "PPStream_LaunchImage-800-667h@2x.png",
+      "filename" : "PPStream_LaunchImage-Portrait~ipad.png",
       "scale" : "1x"
     },
     {
@@ -38,7 +38,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "PPStream_LaunchImage-800-Portrait-736h@3x.png",
+      "filename" : "PPStream_LaunchImage-700-Portrait@2x~ipad.png",
       "scale" : "2x"
     },
     {

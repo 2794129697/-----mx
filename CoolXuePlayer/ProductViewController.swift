@@ -27,15 +27,18 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
     var channelList:Array<Channel> = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        //self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        //self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "searchresult_bg.png"), forBarMetrics: UIBarMetrics.Default)
+
+//        self.navigationController?.navigationBar.setBackgroundImage(NSString.imageWithColor(UIColor.clearColor(),andSize:CGSize(width: self.view.frame.width, height: 64)), forBarMetrics: UIBarMetrics.Default)
+        
 //        var muinib:UINib = UINib(nibName: "ProductTableCell", bundle:nil)
 //        self.productTableView.registerNib(muinib, forCellReuseIdentifier: "ProductCellID")
         self.productTableView.delegate = self
         self.productTableView.dataSource = self
         //self.navItem.title = "视频"
         
-        //self.navigationController?.navigationBar.barTintColor = UIColor.clearColor()
-        //self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        //self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "searchresult_bg.png"), forBarMetrics: UIBarMetrics.Default)
 //        var headView:ProductHeadView = ProductHeadView.productHeadView
 //        headView.delegate = self
 //        self.productTableView.tableHeaderView = headView
@@ -86,7 +89,7 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
             imgurl = NSURL(string:channel.cover)!
         }
         //println("imgurl=\(imgurl)")
-        cell.pImage?.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "def.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
+        cell.pImage?.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "defx.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
             //println("image pross=\(a/b)")
             }, completed: { (image:UIImage!, error:NSError!, cacheType:SDImageCacheType, imgurl:NSURL!) -> Void in
                 //println("cached finished")
@@ -107,7 +110,7 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
             imgurl = NSURL(string:channel.cover)!
         }
         //println("imgurl=\(imgurl)")
-        cell.imageView?.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "def.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
+        cell.imageView?.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "defx.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
             //println("image pross=\(a/b)")
             }, completed: { (image:UIImage!, error:NSError!, cacheType:SDImageCacheType, imgurl:NSURL!) -> Void in
                 //println("cached finished")

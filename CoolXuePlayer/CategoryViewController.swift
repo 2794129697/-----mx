@@ -91,7 +91,7 @@ class CategoryViewController: UIViewController,UITableViewDataSource,UITableView
         var data = self.currACategoryList[indexPath.row]
         cell.categoryLabel.text = data.name
         var imgurl = NSURL(string: data.cover!)
-        cell.imageView?.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "def.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
+        cell.imageView?.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "defx.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
             //println("image pross=\(a/b)")
             }, completed: { (image:UIImage!, error:NSError!, cacheType:SDImageCacheType, imgurl:NSURL!) -> Void in
                 //println("cached finished")

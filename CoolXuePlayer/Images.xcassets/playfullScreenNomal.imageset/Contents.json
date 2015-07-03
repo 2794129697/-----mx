@@ -14,12 +14,6 @@
       "idiom" : "universal",
       "scale" : "3x",
       "filename" : "play_full_p@3x.png"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "play_full_p.png",
-      "unassigned" : true,
-      "scale" : "1x"
     }
   ],
   "info" : {
