@@ -33,6 +33,7 @@ class VedioPlayerViewController: UIViewController {
     var start_frame:CGRect!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.bnPlay.enabled = false
         //self.navigationController?.hidesBarsOnTap = true
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "fnNavBackClicked")
@@ -42,6 +43,8 @@ class VedioPlayerViewController: UIViewController {
         
         
         playerLayer.frame = viewForPlayerLayer.bounds
+        println(viewForPlayerLayer.frame)
+        println(viewForPlayerLayer.bounds)
         viewForPlayerLayer.layer.addSublayer(playerLayer);
         //self.playByItem(self.channel!.vedioUrl)
         self.playByItem("http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4")
@@ -98,26 +101,6 @@ class VedioPlayerViewController: UIViewController {
         }
     }
     
-    @IBAction func touchDragUpInside(sender: UISlider) {
-        println("touchDragUpInside")
-    }
- 
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        println("viewDidDisappear")
-        if playerLayer.player != nil {
-            if playerLayer.player.status == AVPlayerStatus.ReadyToPlay {
-                playerLayer.player.pause()
-            }
-            playerLayer.player.currentItem.removeObserver(self, forKeyPath: "status")
-            playerLayer.player.currentItem.removeObserver(self, forKeyPath: "loadedTimeRanges")
-            //NSNotificationCenter.defaultCenter().removeObserver(self, forKeyPath: "AVPlayerItemDidPlayToEndTimeNotification")
-        }
-    }
-    
     func playByItem(url:String){
         println("vedio_url=ln\(url)")
         //url = NSBundle.mainBundle().URLForResource("story", withExtension: "mp4")
@@ -166,6 +149,7 @@ class VedioPlayerViewController: UIViewController {
             if tempplayerItem.status == AVPlayerItemStatus.ReadyToPlay {
                 println("play")
                 playerLayer.player.play()
+                self.bnPlay.enabled = true
                 bnPlay.setImage(UIImage(named: "videoPauseNomal"), forState: UIControlState.Normal)
                 //播放结束
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "playbackFinished", name: "AVPlayerItemDidPlayToEndTimeNotification", object: self.playerLayer.player.currentItem)
@@ -245,11 +229,32 @@ class VedioPlayerViewController: UIViewController {
 //            viewForPlayerLayer.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width,UIScreen.mainScreen().bounds.height)
 //            playerLayer.frame = viewForPlayerLayer.bounds
 //        }
+        if (toInterfaceOrientation == UIInterfaceOrientation.Portrait || toInterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown){
+            self.bnFullScreen.setImage(UIImage(named: "videoFullScreenNomal"), forState: UIControlState.Normal)
+        }else{
+            self.bnFullScreen.setImage(UIImage(named: "videoUnFullScreenNomal"), forState: UIControlState.Normal)
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         println("didReceiveMemoryWarning")
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        println("viewDidDisappear")
+        if playerLayer.player != nil {
+            if playerLayer.player.status == AVPlayerStatus.ReadyToPlay {
+                playerLayer.player.pause()
+            }
+            playerLayer.player.currentItem.removeObserver(self, forKeyPath: "status")
+            playerLayer.player.currentItem.removeObserver(self, forKeyPath: "loadedTimeRanges")
+            //NSNotificationCenter.defaultCenter().removeObserver(self, forKeyPath: "AVPlayerItemDidPlayToEndTimeNotification")
+        }
     }
 }

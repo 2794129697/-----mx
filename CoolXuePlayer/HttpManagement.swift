@@ -42,7 +42,7 @@ class HttpManagement {
 
         
         NSURLConnection.sendAsynchronousRequest(request, queue:  NSOperationQueue.mainQueue()) { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
-            println("http response-----------------------")
+            println("http response:\(response != nil ? response.URL : nil)")
             if response != nil {
                 var httpResponse:NSHTTPURLResponse = response! as! NSHTTPURLResponse
                 if httpResponse.statusCode != 200 {

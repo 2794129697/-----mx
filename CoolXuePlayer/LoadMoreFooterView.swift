@@ -72,6 +72,6 @@ class LoadMoreFooterView:UIView{
         }
     }
     override func awakeFromNib() {
-        //self.moreView.hidden = true
+        self.moreView.hidden = true
     }
 }

@@ -12,7 +12,8 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
     LoadMoreFooterViewDelegate,ProductHeadViewDelegate {
     
     func productHeadViewShowItem(channel: Channel) {
-        self.performSegueWithIdentifier("AlbumDetailSegueId", sender: channel)
+        //self.performSegueWithIdentifier("AlbumDetailSegueId", sender: channel)
+        self.performSegueWithIdentifier("ListOfAlbumSegueId", sender: channel)
     }
     func footerRefreshTableData(newChannel: Channel) {
         self.channelList.append(newChannel)
@@ -44,9 +45,10 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
 //        self.productTableView.tableHeaderView = headView
         (self.productTableView.tableHeaderView as! ProductHeadView).delegate = self
         
-        var footerView:LoadMoreFooterView = LoadMoreFooterView.loadMoreFooterView
-        footerView.delegate = self
-        self.productTableView.tableFooterView = footerView
+//        var footerView:LoadMoreFooterView = LoadMoreFooterView.loadMoreFooterView
+//        footerView.delegate = self
+//        self.productTableView.tableFooterView = footerView
+        (self.productTableView.tableFooterView as! LoadMoreFooterView).delegate = self
         
         self.getChannelData()
     }
@@ -123,8 +125,8 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //println("ssss")
         var channel:Channel = self.channelList[indexPath.row]
-        //performSegueWithIdentifier(identifier: String?, sender: AnyObject?)
-        self.performSegueWithIdentifier("AlbumDetailSegueId", sender: channel)
+        //self.performSegueWithIdentifier("AlbumDetailSegueId", sender: channel)
+        self.performSegueWithIdentifier("ListOfAlbumSegueId", sender: channel)
     }
     
     func getChannelData(){
@@ -191,8 +193,10 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if sender?.isKindOfClass(Channel) == true {
-            var adController:AlbumDetailViewController = segue.destinationViewController as! AlbumDetailViewController
-            adController.channel = sender as? Channel
+            if segue.identifier! == "ListOfAlbumSegueId" {
+                var adController:ListOfAlbumViewController = segue.destinationViewController as! ListOfAlbumViewController
+                adController.channel = sender as? Channel
+            }
         }
     }
 }
