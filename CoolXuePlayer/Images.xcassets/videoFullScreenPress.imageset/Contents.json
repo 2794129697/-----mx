@@ -3,7 +3,7 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "play_full_f_p.png"
+      "filename" : "play_mini_f_p@2x.png"
     },
     {
       "idiom" : "universal",
@@ -13,7 +13,7 @@
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "play_full_f_p@3x.png"
+      "filename" : "play_mini_f_p@3x.png"
     }
   ],
   "info" : {
