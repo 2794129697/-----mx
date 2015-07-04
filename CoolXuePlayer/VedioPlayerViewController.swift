@@ -28,9 +28,11 @@ class VedioPlayerViewController: UIViewController {
     //缓冲进度
     var currDownPross:Float?
     @IBOutlet weak var viewForPlayerLayer: UIView!
+    @IBOutlet weak var progressView: UIView!
     var timer:NSTimer?
-    
-    var start_frame:CGRect!
+    @IBOutlet weak var bnOp: UIButton!
+    var is_bar_show:Bool = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.bnPlay.enabled = false
@@ -39,17 +41,32 @@ class VedioPlayerViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "fnNavBackClicked")
         IS_AUTOROTATE = true
         viewForPlayerLayer.clipsToBounds = true
-        start_frame = viewForPlayerLayer.frame
-        
-        
-        playerLayer.frame = viewForPlayerLayer.bounds
-        println(viewForPlayerLayer.frame)
-        println(viewForPlayerLayer.bounds)
         viewForPlayerLayer.layer.addSublayer(playerLayer);
-        //self.playByItem(self.channel!.vedioUrl)
-        self.playByItem("http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4")
+        self.playByItem(self.channel!.vedioUrl)
+        //self.playByItem("http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4")
     }
     
+    //页面上的元件重新布局后，会调用(目前还没有找到对某个元件的frame/bounds发生变化时的通知)
+    override func viewDidLayoutSubviews() {
+        playerLayer.frame = viewForPlayerLayer.bounds
+        //println(viewForPlayerLayer.frame)
+        //println(viewForPlayerLayer.bounds)
+    }
+    
+    @IBAction func bnShowOrHideBar(sender: UIButton) {
+        var orientation = UIDevice.currentDevice().orientation
+        if (orientation == UIDeviceOrientation.LandscapeLeft || orientation == UIDeviceOrientation.LandscapeRight){
+            if self.is_bar_show {
+                self.is_bar_show = false
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                self.progressView.hidden = true
+            }else{
+                self.is_bar_show = true
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.progressView.hidden = false
+            }
+        }
+    }
     func fnNavBackClicked(){
         println("xx")
         if UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft {
@@ -107,6 +124,7 @@ class VedioPlayerViewController: UIViewController {
         currplayeritem = AVPlayerItem(URL: NSURL(string:url))
         myplayer = AVPlayer(playerItem: currplayeritem)
         playerLayer.player = myplayer
+        //myplayer?.volume = 0
         
         currplayeritem!.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.Old, context: nil)
         currplayeritem!.addObserver(self, forKeyPath: "loadedTimeRanges", options: NSKeyValueObservingOptions.New, context: nil)
@@ -221,18 +239,14 @@ class VedioPlayerViewController: UIViewController {
     
     override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         println("willAnimateRotationToInterfaceOrientation")
-        //self.playerLayer.frame = self.viewForPlayerLayer.bounds
-//        if (toInterfaceOrientation == UIInterfaceOrientation.Portrait || toInterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown){
-//            viewForPlayerLayer.frame = start_frame
-//            playerLayer.frame = viewForPlayerLayer.bounds
-//        }else{
-//            viewForPlayerLayer.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width,UIScreen.mainScreen().bounds.height)
-//            playerLayer.frame = viewForPlayerLayer.bounds
-//        }
         if (toInterfaceOrientation == UIInterfaceOrientation.Portrait || toInterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown){
             self.bnFullScreen.setImage(UIImage(named: "videoFullScreenNomal"), forState: UIControlState.Normal)
+            self.is_bar_show = true
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.progressView.hidden = false
         }else{
             self.bnFullScreen.setImage(UIImage(named: "videoUnFullScreenNomal"), forState: UIControlState.Normal)
+            self.bnShowOrHideBar(self.bnOp)
         }
     }
     

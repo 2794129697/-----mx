@@ -380,6 +380,15 @@
                                         <rect key="frame" x="0.0" y="0.0" width="590" height="332"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLJ-4Z-Cmn">
+                                        <rect key="frame" x="0.0" y="0.0" width="590" height="332"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="bnShowOrHideBar:" destination="Bxz-Hj-u5G" eventType="touchUpInside" id="1OC-nU-xAw"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gy0-HH-NIJ" userLabel="progressView">
                                         <rect key="frame" x="0.0" y="301" width="590" height="31"/>
                                         <subviews>
@@ -413,7 +422,6 @@
                                                 <rect key="frame" x="86" y="0.0" width="416" height="31"/>
                                                 <connections>
                                                     <action selector="playSliderValueChange:" destination="Bxz-Hj-u5G" eventType="valueChanged" id="ZGj-TV-yTX"/>
-                                                    <action selector="touchDragUpInside:" destination="Bxz-Hj-u5G" eventType="touchUpInside" id="0n5-Rd-YJg"/>
                                                 </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FA2-qT-Tso">
@@ -466,15 +474,25 @@
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="dLJ-4Z-Cmn" firstAttribute="bottom" secondItem="gy0-HH-NIJ" secondAttribute="top" id="ZBv-j6-72Q"/>
                                     <constraint firstAttribute="width" secondItem="rcp-bW-3fH" secondAttribute="height" multiplier="16:9" id="ZFN-gZ-Wjx"/>
                                     <constraint firstItem="gy0-HH-NIJ" firstAttribute="leading" secondItem="rcp-bW-3fH" secondAttribute="leading" id="aJq-dT-MTX"/>
                                     <constraint firstAttribute="bottom" secondItem="alV-RC-sqD" secondAttribute="bottom" id="beC-gx-EbH"/>
                                     <constraint firstItem="alV-RC-sqD" firstAttribute="leading" secondItem="rcp-bW-3fH" secondAttribute="leading" id="dqG-yG-mc9"/>
+                                    <constraint firstAttribute="trailing" secondItem="dLJ-4Z-Cmn" secondAttribute="trailing" id="il5-Ga-7Mt"/>
+                                    <constraint firstItem="dLJ-4Z-Cmn" firstAttribute="top" secondItem="rcp-bW-3fH" secondAttribute="top" id="jjR-0V-Jp4"/>
                                     <constraint firstItem="alV-RC-sqD" firstAttribute="top" secondItem="rcp-bW-3fH" secondAttribute="top" id="klv-tg-tuf"/>
+                                    <constraint firstItem="dLJ-4Z-Cmn" firstAttribute="leading" secondItem="rcp-bW-3fH" secondAttribute="leading" id="lt8-u7-yDh"/>
                                     <constraint firstAttribute="trailing" secondItem="alV-RC-sqD" secondAttribute="trailing" id="pJe-DN-blg"/>
+                                    <constraint firstAttribute="bottom" secondItem="dLJ-4Z-Cmn" secondAttribute="bottom" id="rxi-cJ-3er"/>
                                     <constraint firstAttribute="trailing" secondItem="gy0-HH-NIJ" secondAttribute="trailing" id="xYL-c4-Vb3"/>
                                     <constraint firstAttribute="bottom" secondItem="gy0-HH-NIJ" secondAttribute="bottom" id="y0W-ue-9C6"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ZBv-j6-72Q"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="ZFN-gZ-Wjx"/>
@@ -483,7 +501,6 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="rcp-bW-3fH" firstAttribute="top" secondItem="aJk-nx-I63" secondAttribute="bottom" id="1LV-tr-UsH"/>
                             <constraint firstItem="rcp-bW-3fH" firstAttribute="leading" secondItem="27Q-uc-XS5" secondAttribute="leading" constant="5" id="Efk-SC-4NM">
@@ -524,17 +541,19 @@
                     <navigationItem key="navigationItem" title="正在学习" id="0JX-13-ABw"/>
                     <connections>
                         <outlet property="bnFullScreen" destination="bMM-cX-pG4" id="lMM-uL-LE1"/>
+                        <outlet property="bnOp" destination="dLJ-4Z-Cmn" id="T2K-sp-A3J"/>
                         <outlet property="bnPlay" destination="LsL-xL-xua" id="152-1i-oaT"/>
                         <outlet property="currplayTimeLabel" destination="FA2-qT-Tso" id="Vf6-Ys-NkY"/>
                         <outlet property="downprogressView" destination="0wA-pp-rSd" id="dlp-tz-oht"/>
                         <outlet property="playSlider" destination="gce-NT-Gr3" id="UUo-zl-9Mn"/>
+                        <outlet property="progressView" destination="gy0-HH-NIJ" id="CZ5-LL-KhX"/>
                         <outlet property="totalTimeLabel" destination="zm7-m7-6l5" id="RZm-ik-ozX"/>
                         <outlet property="viewForPlayerLayer" destination="alV-RC-sqD" id="coQ-tY-lNT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZzQ-eu-iRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3360" y="3362"/>
+            <point key="canvasLocation" x="-3299" y="3362"/>
         </scene>
         <!--播放历史-->
         <scene sceneID="L6X-di-ln2">

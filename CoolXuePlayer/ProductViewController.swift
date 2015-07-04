@@ -9,7 +9,7 @@
 import UIKit
 
 class ProductViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,
-    LoadMoreFooterViewDelegate,ProductHeadViewDelegate {
+    LoadMoreFooterViewDelegate,ProductHeadViewDelegate{
     
     func productHeadViewShowItem(channel: Channel) {
         //self.performSegueWithIdentifier("AlbumDetailSegueId", sender: channel)
