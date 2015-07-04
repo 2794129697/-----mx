@@ -59,31 +59,32 @@
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hpc-D9-MNH">
-                    <rect key="frame" x="2" y="2" width="124" height="124"/>
+                    <rect key="frame" x="5" y="14" width="100" height="100"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="124" id="LSU-HD-Iwl"/>
+                        <constraint firstAttribute="width" constant="100" id="kCH-yp-mde"/>
+                        <constraint firstAttribute="height" constant="100" id="nwz-y6-BPY"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yve-NG-2Yh">
-                    <rect key="frame" x="128" y="29" width="184" height="72"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="115" y="24" width="195" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="nR7-om-MJu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="Yve-NG-2Yh" firstAttribute="top" secondItem="AVi-Ez-24P" secondAttribute="top" constant="29" id="1Mt-yl-LMD"/>
-                <constraint firstItem="2V4-sm-4g6" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" id="1jy-wn-iWN"/>
-                <constraint firstAttribute="bottom" secondItem="Yve-NG-2Yh" secondAttribute="bottom" constant="27" id="4Z7-3j-Iac"/>
-                <constraint firstItem="Yve-NG-2Yh" firstAttribute="leading" secondItem="hpc-D9-MNH" secondAttribute="trailing" constant="2" id="7b4-Ff-leG"/>
-                <constraint firstItem="hpc-D9-MNH" firstAttribute="top" secondItem="AVi-Ez-24P" secondAttribute="top" constant="2" id="GTI-v9-5Jf"/>
-                <constraint firstAttribute="trailing" secondItem="2V4-sm-4g6" secondAttribute="trailing" id="Ger-15-0eI"/>
-                <constraint firstAttribute="bottom" secondItem="hpc-D9-MNH" secondAttribute="bottom" constant="2" id="JSL-yu-vkB"/>
-                <constraint firstItem="Yve-NG-2Yh" firstAttribute="leading" secondItem="hpc-D9-MNH" secondAttribute="trailing" constant="2" id="Uft-zK-Aem"/>
-                <constraint firstItem="hpc-D9-MNH" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" constant="2" id="eOY-5g-VXK"/>
-                <constraint firstAttribute="bottom" secondItem="2V4-sm-4g6" secondAttribute="bottom" id="rEX-ce-Ed2"/>
-                <constraint firstItem="2V4-sm-4g6" firstAttribute="top" secondItem="AVi-Ez-24P" secondAttribute="top" id="yrI-Vs-cZi"/>
-                <constraint firstAttribute="trailing" secondItem="Yve-NG-2Yh" secondAttribute="trailing" constant="8" id="zAc-9r-oOJ"/>
+                <constraint firstItem="Yve-NG-2Yh" firstAttribute="leading" secondItem="hpc-D9-MNH" secondAttribute="trailing" constant="10" id="BKO-7x-Ba1"/>
+                <constraint firstAttribute="centerY" secondItem="hpc-D9-MNH" secondAttribute="centerY" id="K6K-cs-FRB"/>
+                <constraint firstItem="2V4-sm-4g6" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" id="OmW-dt-9hM"/>
+                <constraint firstItem="2V4-sm-4g6" firstAttribute="top" secondItem="AVi-Ez-24P" secondAttribute="top" id="QFY-XF-orR"/>
+                <constraint firstItem="hpc-D9-MNH" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" constant="5" id="Ypb-iO-Lin"/>
+                <constraint firstAttribute="bottom" secondItem="2V4-sm-4g6" secondAttribute="bottom" id="dez-Ij-HG0"/>
+                <constraint firstAttribute="trailing" secondItem="Yve-NG-2Yh" secondAttribute="trailing" constant="10" id="hhy-jM-opX"/>
+                <constraint firstAttribute="trailing" secondItem="2V4-sm-4g6" secondAttribute="trailing" id="tiJ-3g-QZo"/>
+                <constraint firstAttribute="centerY" secondItem="Yve-NG-2Yh" secondAttribute="centerY" id="ygM-Wy-zQa"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

@@ -15,6 +15,13 @@ class ListOfAlbumViewController: UIViewController,UITableViewDelegate,UITableVie
     var channelList:Array<Channel> = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        var nib = UINib(nibName: "VedioListTabVCell", bundle: nil)
+        self.productTableView.registerNib(nib, forCellReuseIdentifier: "VedioListTabVCellID")
+        
+        // 经过测试，实际表现及运行效率均相似，大👍
+        self.productTableView.estimatedRowHeight = 100
+        self.productTableView.rowHeight = UITableViewAutomaticDimension
+
         self.productTableView.delegate = self
         self.productTableView.dataSource = self
         self.getChannelData()
@@ -38,39 +45,35 @@ class ListOfAlbumViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("CellId", forIndexPath: indexPath) as! UITableViewCell
-        var channel = self.channelList[indexPath.row]
-        if channel.name == nil {
-            return cell
-        }
-        cell.textLabel?.text = channel.name
+        var cell = tableView.dequeueReusableCellWithIdentifier("VedioListTabVCellID", forIndexPath: indexPath) as? VedioListTabVCell
+        var vedio = self.channelList[indexPath.row] as Channel
+        cell!.nameLabel.text = vedio.name
+        cell!.authorLabel.text = "作者："+vedio.author
+        cell!.palyTimesLabel.text = "播放次数：7878"
         var imgurl:NSURL = NSURL(string: "")!
-        if channel.defaultCover != nil {
-            imgurl = NSURL(string:channel.defaultCover)!
-        }else if channel.cover != nil {
-            imgurl = NSURL(string:channel.cover)!
+        if vedio.defaultCover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
+            imgurl = NSURL(string:vedio.defaultCover)!
+        }else if vedio.cover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
+            imgurl = NSURL(string:vedio.cover)!
         }
         //println("imgurl=\(imgurl)")
-        cell.imageView?.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "defx.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
+        cell!.vedioImage.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "defx.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
             //println("image pross=\(a/b)")
             }, completed: { (image:UIImage!, error:NSError!, cacheType:SDImageCacheType, imgurl:NSURL!) -> Void in
                 //println("cached finished")
         })
-        return cell
+        return cell!
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //println("xxxxxx222")
         self.currChannel = self.channelList[indexPath.row]
-        //performSegueWithIdentifier(identifier: String?, sender: AnyObject?)
         //self.performSegueWithIdentifier("VedioPlaySegueId", sender: self.currChannel)
         var channel_url = "http://www.icoolxue.com/video/play/url/"+String(self.currChannel!.id)
         getVedioPlayUrl(channel_url)
     }
     
     func getVedioPlayUrl(path:String){
-        println("request url = \n\(path)")
+        //println("request url = \(path)")
         var headerParam:Dictionary<String,String> = ["referer":"http://www.icoolxue.com"]
         HttpManagement.requestttt(path, method: "GET",bodyParam: nil,headParam:headerParam) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
             var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
@@ -127,8 +130,9 @@ class ListOfAlbumViewController: UIViewController,UITableViewDelegate,UITableVie
                 var c_array = bdict["data"] as! NSArray
                 if c_array.count > 0 {
                     for dict in c_array{
-                        var channel = Channel(dictChannel: dict as! NSDictionary)
-                        self.channelList.append(channel)
+                        var vedio = Channel(dictChannel: dict as! NSDictionary)
+                        vedio.createTime = self.channel?.createTime
+                        self.channelList.append(vedio)
                     }
                     self.productTableView.reloadData()
                 }
@@ -159,9 +163,11 @@ class ListOfAlbumViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if sender?.isKindOfClass(Channel) == true {
-            var adController:VedioPlayerViewController = segue.destinationViewController as! VedioPlayerViewController
-            adController.channel = sender! as? Channel
+        if segue.identifier == "VedioPlaySegueId" {
+            if sender?.isKindOfClass(Channel) == true {
+                var adController:VedioPlayerViewController = segue.destinationViewController as! VedioPlayerViewController
+                adController.channel = sender! as? Channel
+            }
         }
     }
 }

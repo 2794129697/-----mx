@@ -56,13 +56,13 @@ class HttpManagement {
                     callBack(httpResponse,data)
                 }
             }else{
-                var httpResponse:NSHTTPURLResponse = response! as! NSHTTPURLResponse
                 var alert:UIAlertView = UIAlertView(title: "提示", message: "获取数据失败！", delegate: self, cancelButtonTitle: "确定")
                 alert.show()
-                println("error=\(error)\nhttpResponse.statusCode=\(httpResponse.statusCode)")
-                println("response=\(response)")
-                var str = NSString(data: data, encoding:NSUTF8StringEncoding)
-                println("data =\(data)")
+                println("error = \(error)")
+                if data != nil {
+                    var str = NSString(data: data, encoding:NSUTF8StringEncoding)
+                    println("data =\(data)")
+                }
             }
         }
         
@@ -82,7 +82,7 @@ class HttpManagement {
     }
 
 
-    class func HttpResponseCodeCheck(code:Int,viewController:UIViewController)->Bool{
+    class func HttpResponseCodeCheck(code:Int,viewController:UIViewController?)->Bool{
         
         
 //        100：表明用户需要充值才能继续使用。
@@ -107,7 +107,9 @@ class HttpManagement {
             case 600:
                 var alert:UIAlertView = UIAlertView(title: "提示", message: "亲，请登录！", delegate: self, cancelButtonTitle: "确定")
                 alert.show()
-                viewController.performSegueWithIdentifier("VedioViewToLogin", sender: nil)
+                if viewController != nil {
+                    viewController!.performSegueWithIdentifier("VedioViewToLogin", sender: nil)
+                }
                 return false
             case 700:
                 return false

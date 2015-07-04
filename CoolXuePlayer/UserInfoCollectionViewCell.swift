@@ -9,7 +9,6 @@
 import UIKit
 
 class UserInfoCollectionViewCell: UICollectionViewCell {
-    
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var itemImageView: UIImageView!

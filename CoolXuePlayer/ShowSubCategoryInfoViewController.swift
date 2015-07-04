@@ -56,16 +56,13 @@ class ShowSubCategoryInfoViewController: UIViewController,UITableViewDelegate,UI
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("channelCell", forIndexPath: indexPath) as! UITableViewCell
-        var channel = self.channelList[indexPath.row]
-        if channel.name == nil {
-            return cell
-        }
-        cell.textLabel?.text = channel.name
+        var vedio = self.channelList[indexPath.row]
+        cell.textLabel?.text = vedio.name
         var imgurl:NSURL = NSURL(string: "")!
-        if channel.defaultCover != nil {
-            imgurl = NSURL(string:channel.defaultCover)!
-        }else if channel.cover != nil {
-            imgurl = NSURL(string:channel.cover)!
+        if vedio.defaultCover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
+            imgurl = NSURL(string:vedio.defaultCover)!
+        }else if vedio.cover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
+            imgurl = NSURL(string:vedio.cover)!
         }
         //println("imgurl=\(imgurl)")
         cell.imageView?.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "defx.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in

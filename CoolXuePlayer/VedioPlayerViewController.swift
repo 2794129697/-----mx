@@ -31,10 +31,17 @@ class VedioPlayerViewController: UIViewController {
     @IBOutlet weak var progressView: UIView!
     var timer:NSTimer?
     @IBOutlet weak var bnOp: UIButton!
+    @IBOutlet weak var descTBView: VedioDescTV!
     var is_bar_show:Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.descTBView.cuobj = self.channel!
+        //获取推荐专辑
+        self.descTBView.getRecommendAlbumData()
+        //获取相关视频
+        self.descTBView.getTheAlbumData()
+        
         self.bnPlay.enabled = false
         //self.navigationController?.hidesBarsOnTap = true
         
@@ -44,13 +51,12 @@ class VedioPlayerViewController: UIViewController {
         viewForPlayerLayer.layer.addSublayer(playerLayer);
         self.playByItem(self.channel!.vedioUrl)
         //self.playByItem("http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4")
+
     }
     
     //页面上的元件重新布局后，会调用(目前还没有找到对某个元件的frame/bounds发生变化时的通知)
     override func viewDidLayoutSubviews() {
         playerLayer.frame = viewForPlayerLayer.bounds
-        //println(viewForPlayerLayer.frame)
-        //println(viewForPlayerLayer.bounds)
     }
     
     @IBAction func bnShowOrHideBar(sender: UIButton) {
@@ -238,7 +244,7 @@ class VedioPlayerViewController: UIViewController {
     }
     
     override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        println("willAnimateRotationToInterfaceOrientation")
+        //println("willAnimateRotationToInterfaceOrientation")
         if (toInterfaceOrientation == UIInterfaceOrientation.Portrait || toInterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown){
             self.bnFullScreen.setImage(UIImage(named: "videoFullScreenNomal"), forState: UIControlState.Normal)
             self.is_bar_show = true

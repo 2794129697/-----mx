@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D0279651B199CE2008A3977 /* DiyTableCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0279641B199CE2008A3977 /* DiyTableCellViewController.swift */; };
 		4D02796B1B1A1968008A3977 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D02796A1B1A1968008A3977 /* SearchViewController.swift */; };
 		4D12DE241B31A06100EDB42D /* UserInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12DE231B31A06100EDB42D /* UserInfoCollectionReusableView.swift */; };
 		4D12DE261B31A3E400EDB42D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D12DE251B31A3E400EDB42D /* User.swift */; };
@@ -54,8 +53,6 @@
 		4D4178691B439EC9000895FD /* bg_paipian_tv.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4178651B439EC9000895FD /* bg_paipian_tv.png */; };
 		4D41786A1B439EC9000895FD /* bg_paipian_varieties.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4178661B439EC9000895FD /* bg_paipian_varieties.png */; };
 		4D41786C1B43E7A5000895FD /* albumCell_ugc_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D41786B1B43E7A5000895FD /* albumCell_ugc_icon.png */; };
-		4D44C92C1B42DE3400A42A6A /* ProductTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D44C92B1B42DE3400A42A6A /* ProductTableCell.xib */; };
-		4D44C9301B42DEF300A42A6A /* ProductTabCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44C92F1B42DEF300A42A6A /* ProductTabCellView.swift */; };
 		4D4EB09C1B1FE81200AB1C60 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EB09B1B1FE81200AB1C60 /* LoginViewController.swift */; };
 		4D4EB09E1B1FEE4200AB1C60 /* LoginUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EB09D1B1FEE4200AB1C60 /* LoginUITabBarController.swift */; };
 		4D4EB0A01B1FF41900AB1C60 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EB09F1B1FF41900AB1C60 /* RegisterViewController.swift */; };
@@ -69,13 +66,19 @@
 		4D5EC6641B42879900EC70C2 /* searchresult_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D5EC6631B42879900EC70C2 /* searchresult_bg.png */; };
 		4D64B39F1B457B6C004A125F /* DailyNews_Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D64B39E1B457B6C004A125F /* DailyNews_Default.png */; };
 		4D64B3A51B457FE8004A125F /* defx.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D64B3A41B457FE8004A125F /* defx.png */; };
-		4D65055B1B18C28F00E0B5D3 /* tttViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65055A1B18C28F00E0B5D3 /* tttViewController.swift */; };
 		4D7C4C971B32689B0030FD2E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C4C961B32689B0030FD2E /* CategoryViewController.swift */; };
 		4D7C4C9D1B3283DF0030FD2E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C4C9C1B3283DF0030FD2E /* Category.swift */; };
 		4D7C4CA11B3288F70030FD2E /* CategorySub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C4CA01B3288F70030FD2E /* CategorySub.swift */; };
 		4D7C4CA31B329EC00030FD2E /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C4CA21B329EC00030FD2E /* CategoryCollectionViewCell.swift */; };
 		4D7C4CA51B32C2100030FD2E /* ShowSubCategoryInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C4CA41B32C2100030FD2E /* ShowSubCategoryInfoViewController.swift */; };
 		4D7C4CA71B32C7D60030FD2E /* subCategoryAlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C4CA61B32C7D60030FD2E /* subCategoryAlbumListViewController.swift */; };
+		4D9EF2F01B47C2CA0089DF29 /* VedioDescTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EF2EF1B47C2CA0089DF29 /* VedioDescTV.swift */; };
+		4D9EF2F21B47CAFD0089DF29 /* VedioDescTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EF2F11B47CAFD0089DF29 /* VedioDescTVCell.swift */; };
+		4D9EF2FC1B47E8400089DF29 /* VedioDescTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9EF2FB1B47E8400089DF29 /* VedioDescTVCell.xib */; };
+		4D9EF3071B4828330089DF29 /* VedioListTabVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EF3051B4828330089DF29 /* VedioListTabVCell.swift */; };
+		4D9EF3081B4828330089DF29 /* VedioListTabVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9EF3061B4828330089DF29 /* VedioListTabVCell.xib */; };
+		4D9EF30B1B4828550089DF29 /* VedioDescTheAlbumTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EF3091B4828550089DF29 /* VedioDescTheAlbumTVCell.swift */; };
+		4D9EF30C1B4828550089DF29 /* VedioDescTheAlbumTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9EF30A1B4828550089DF29 /* VedioDescTheAlbumTVCell.xib */; };
 		4DD7C1661B29C26800620A65 /* LoadMoreFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DD7C1651B29C26800620A65 /* LoadMoreFooterView.xib */; };
 		4DD7C1681B29C3C200620A65 /* LoadMoreFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD7C1671B29C3C200620A65 /* LoadMoreFooterView.swift */; };
 /* End PBXBuildFile section */
@@ -91,7 +94,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4D0279641B199CE2008A3977 /* DiyTableCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiyTableCellViewController.swift; sourceTree = "<group>"; };
 		4D02796A1B1A1968008A3977 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4D12DE231B31A06100EDB42D /* UserInfoCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInfoCollectionReusableView.swift; path = ../UserInfoCollectionReusableView.swift; sourceTree = "<group>"; };
 		4D12DE251B31A3E400EDB42D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -156,8 +158,6 @@
 		4D4178651B439EC9000895FD /* bg_paipian_tv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_paipian_tv.png; sourceTree = "<group>"; };
 		4D4178661B439EC9000895FD /* bg_paipian_varieties.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_paipian_varieties.png; sourceTree = "<group>"; };
 		4D41786B1B43E7A5000895FD /* albumCell_ugc_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albumCell_ugc_icon.png; sourceTree = "<group>"; };
-		4D44C92B1B42DE3400A42A6A /* ProductTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductTableCell.xib; sourceTree = "<group>"; };
-		4D44C92F1B42DEF300A42A6A /* ProductTabCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTabCellView.swift; sourceTree = "<group>"; };
 		4D4EB09B1B1FE81200AB1C60 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4D4EB09D1B1FEE4200AB1C60 /* LoginUITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUITabBarController.swift; sourceTree = "<group>"; };
 		4D4EB09F1B1FF41900AB1C60 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -175,13 +175,19 @@
 		4D5EC6631B42879900EC70C2 /* searchresult_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchresult_bg.png; sourceTree = "<group>"; };
 		4D64B39E1B457B6C004A125F /* DailyNews_Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DailyNews_Default.png; sourceTree = "<group>"; };
 		4D64B3A41B457FE8004A125F /* defx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defx.png; sourceTree = "<group>"; };
-		4D65055A1B18C28F00E0B5D3 /* tttViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tttViewController.swift; sourceTree = "<group>"; };
 		4D7C4C961B32689B0030FD2E /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		4D7C4C9C1B3283DF0030FD2E /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		4D7C4CA01B3288F70030FD2E /* CategorySub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySub.swift; sourceTree = "<group>"; };
 		4D7C4CA21B329EC00030FD2E /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4D7C4CA41B32C2100030FD2E /* ShowSubCategoryInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowSubCategoryInfoViewController.swift; sourceTree = "<group>"; };
 		4D7C4CA61B32C7D60030FD2E /* subCategoryAlbumListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = subCategoryAlbumListViewController.swift; sourceTree = "<group>"; };
+		4D9EF2EF1B47C2CA0089DF29 /* VedioDescTV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VedioDescTV.swift; sourceTree = "<group>"; };
+		4D9EF2F11B47CAFD0089DF29 /* VedioDescTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VedioDescTVCell.swift; sourceTree = "<group>"; };
+		4D9EF2FB1B47E8400089DF29 /* VedioDescTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VedioDescTVCell.xib; sourceTree = "<group>"; };
+		4D9EF3051B4828330089DF29 /* VedioListTabVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VedioListTabVCell.swift; sourceTree = "<group>"; };
+		4D9EF3061B4828330089DF29 /* VedioListTabVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VedioListTabVCell.xib; sourceTree = "<group>"; };
+		4D9EF3091B4828550089DF29 /* VedioDescTheAlbumTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VedioDescTheAlbumTVCell.swift; sourceTree = "<group>"; };
+		4D9EF30A1B4828550089DF29 /* VedioDescTheAlbumTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VedioDescTheAlbumTVCell.xib; sourceTree = "<group>"; };
 		4DD7C1651B29C26800620A65 /* LoadMoreFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreFooterView.xib; sourceTree = "<group>"; };
 		4DD7C1671B29C3C200620A65 /* LoadMoreFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -311,21 +317,18 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
-		4D3CDF4D1B1C808E005494A6 /* product */ = {
+		4D3CDF4D1B1C808E005494A6 /* vedioList */ = {
 			isa = PBXGroup;
 			children = (
 				4D3CDF501B1C80BB005494A6 /* controllor */,
-				4D3CDF4F1B1C80AE005494A6 /* model */,
 				4D3CDF4E1B1C80A1005494A6 /* view */,
 			);
-			name = product;
+			name = vedioList;
 			sourceTree = "<group>";
 		};
 		4D3CDF4E1B1C80A1005494A6 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				4D44C92B1B42DE3400A42A6A /* ProductTableCell.xib */,
-				4D44C92F1B42DEF300A42A6A /* ProductTabCellView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -333,7 +336,6 @@
 		4D3CDF4F1B1C80AE005494A6 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				4D12DE251B31A3E400EDB42D /* User.swift */,
 				4D3CCDF51B184CFB009323F0 /* Channel.swift */,
 			);
 			name = model;
@@ -342,14 +344,7 @@
 		4D3CDF501B1C80BB005494A6 /* controllor */ = {
 			isa = PBXGroup;
 			children = (
-				4D413C191B1F256700828C56 /* UserInfoViewController.swift */,
-				4D12DE231B31A06100EDB42D /* UserInfoCollectionReusableView.swift */,
-				4D02796A1B1A1968008A3977 /* SearchViewController.swift */,
-				4D3CDF531B1C8BC5005494A6 /* ProductViewController.swift */,
-				4D3A48FF1B1F007E00BB1BF4 /* AlbumDetailViewController.swift */,
 				4D413C1B1B1F2C4300828C56 /* ListOfAlbumViewController.swift */,
-				4D413C171B1F24FF00828C56 /* HistoryViewController.swift */,
-				4D12DE271B31AED600EDB42D /* UserInfoCollectionViewCell.swift */,
 			);
 			name = controllor;
 			sourceTree = "<group>";
@@ -357,7 +352,14 @@
 		4D413C1D1B1F386500828C56 /* vedioPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				4D413C1E1B1F389100828C56 /* VedioPlayerViewController.swift */,
+				4D9EF3111B48587F0089DF29 /* controller */,
+				4D9EF3051B4828330089DF29 /* VedioListTabVCell.swift */,
+				4D9EF3061B4828330089DF29 /* VedioListTabVCell.xib */,
+				4D9EF2FB1B47E8400089DF29 /* VedioDescTVCell.xib */,
+				4D9EF2EF1B47C2CA0089DF29 /* VedioDescTV.swift */,
+				4D9EF2F11B47CAFD0089DF29 /* VedioDescTVCell.swift */,
+				4D9EF3091B4828550089DF29 /* VedioDescTheAlbumTVCell.swift */,
+				4D9EF30A1B4828550089DF29 /* VedioDescTheAlbumTVCell.xib */,
 			);
 			name = vedioPlayer;
 			sourceTree = "<group>";
@@ -409,19 +411,22 @@
 		4D4EF5691B181F050053A829 /* CoolXuePlayer */ = {
 			isa = PBXGroup;
 			children = (
+				4D9EF3121B4858A00089DF29 /* index */,
+				4D3CDF4D1B1C808E005494A6 /* vedioList */,
+				4D9EF3141B4858EA0089DF29 /* albumList */,
+				4D9EF30F1B4858010089DF29 /* userInfo */,
+				4D9EF30E1B4857F60089DF29 /* history */,
+				4D9EF30D1B4857E10089DF29 /* search */,
 				4D31F7981B1C9DC600090517 /* header */,
 				4D5EC6651B42A48100EC70C2 /* footer */,
 				4D7C4C981B3272D70030FD2E /* category */,
 				4D2A828A1B2005E0004F1B7F /* http */,
 				4D4EB0981B1FE7D700AB1C60 /* login */,
 				4D413C1D1B1F386500828C56 /* vedioPlayer */,
-				4D3CDF4D1B1C808E005494A6 /* product */,
 				4D3CCE391B185DD6009323F0 /* SDWebImage */,
 				4D3CCD201B1843B0009323F0 /* Resoures */,
 				4D3CCE381B185C85009323F0 /* DVIPlayer-Bridging-Header.h */,
-				4D65055A1B18C28F00E0B5D3 /* tttViewController.swift */,
 				4D4EF56C1B181F050053A829 /* AppDelegate.swift */,
-				4D0279641B199CE2008A3977 /* DiyTableCellViewController.swift */,
 				4D4EF5701B181F050053A829 /* Main.storyboard */,
 				4D4EF5731B181F050053A829 /* Images.xcassets */,
 				4D4EF5751B181F050053A829 /* LaunchScreen.xib */,
@@ -501,6 +506,74 @@
 				4D7C4CA61B32C7D60030FD2E /* subCategoryAlbumListViewController.swift */,
 			);
 			name = controller;
+			sourceTree = "<group>";
+		};
+		4D9EF30D1B4857E10089DF29 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				4D02796A1B1A1968008A3977 /* SearchViewController.swift */,
+			);
+			name = search;
+			sourceTree = "<group>";
+		};
+		4D9EF30E1B4857F60089DF29 /* history */ = {
+			isa = PBXGroup;
+			children = (
+				4D413C171B1F24FF00828C56 /* HistoryViewController.swift */,
+			);
+			name = history;
+			sourceTree = "<group>";
+		};
+		4D9EF30F1B4858010089DF29 /* userInfo */ = {
+			isa = PBXGroup;
+			children = (
+				4D9EF3101B4858500089DF29 /* model */,
+				4D413C191B1F256700828C56 /* UserInfoViewController.swift */,
+				4D12DE231B31A06100EDB42D /* UserInfoCollectionReusableView.swift */,
+				4D12DE271B31AED600EDB42D /* UserInfoCollectionViewCell.swift */,
+			);
+			name = userInfo;
+			sourceTree = "<group>";
+		};
+		4D9EF3101B4858500089DF29 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4D12DE251B31A3E400EDB42D /* User.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		4D9EF3111B48587F0089DF29 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				4D413C1E1B1F389100828C56 /* VedioPlayerViewController.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		4D9EF3121B4858A00089DF29 /* index */ = {
+			isa = PBXGroup;
+			children = (
+				4D3CDF4F1B1C80AE005494A6 /* model */,
+				4D9EF3131B4858AA0089DF29 /* controller */,
+			);
+			name = index;
+			sourceTree = "<group>";
+		};
+		4D9EF3131B4858AA0089DF29 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				4D3CDF531B1C8BC5005494A6 /* ProductViewController.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		4D9EF3141B4858EA0089DF29 /* albumList */ = {
+			isa = PBXGroup;
+			children = (
+				4D3A48FF1B1F007E00BB1BF4 /* AlbumDetailViewController.swift */,
+			);
+			name = albumList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -587,16 +660,18 @@
 				4D4EF5721B181F050053A829 /* Main.storyboard in Resources */,
 				4D31F7971B1C91FA00090517 /* moviepics.plist in Resources */,
 				4D4178671B439EC9000895FD /* bg_paipian_cartoon.png in Resources */,
-				4D44C92C1B42DE3400A42A6A /* ProductTableCell.xib in Resources */,
 				4D41786A1B439EC9000895FD /* bg_paipian_varieties.png in Resources */,
 				4D4178691B439EC9000895FD /* bg_paipian_tv.png in Resources */,
 				4D3CCD8C1B1843B1009323F0 /* cache_press_p.png in Resources */,
+				4D9EF30C1B4828550089DF29 /* VedioDescTheAlbumTVCell.xib in Resources */,
 				4D3CCD8D1B1843B1009323F0 /* categoryNormal.png in Resources */,
 				4D3CDF4C1B1C8083005494A6 /* ProductHeadView.xib in Resources */,
 				4DD7C1661B29C26800620A65 /* LoadMoreFooterView.xib in Resources */,
 				4D3CCD8B1B1843B1009323F0 /* cache_p.png in Resources */,
 				4D64B3A51B457FE8004A125F /* defx.png in Resources */,
+				4D9EF3081B4828330089DF29 /* VedioListTabVCell.xib in Resources */,
 				4D4EF5771B181F050053A829 /* LaunchScreen.xib in Resources */,
+				4D9EF2FC1B47E8400089DF29 /* VedioDescTVCell.xib in Resources */,
 				4D4EF5741B181F050053A829 /* Images.xcassets in Resources */,
 				4D5EC6641B42879900EC70C2 /* searchresult_bg.png in Resources */,
 				4D41786C1B43E7A5000895FD /* albumCell_ugc_icon.png in Resources */,
@@ -632,6 +707,7 @@
 				4D3CCE671B185DD6009323F0 /* UIImage+WebP.m in Sources */,
 				4D3CCE6A1B185DD6009323F0 /* UIView+WebCacheOperation.m in Sources */,
 				4D3CCE5D1B185DD6009323F0 /* SDImageCache.m in Sources */,
+				4D9EF2F21B47CAFD0089DF29 /* VedioDescTVCell.swift in Sources */,
 				4D1CF90F1B20447400D60BA7 /* HTTPSecurity.swift in Sources */,
 				4D3CCE5B1B185DD6009323F0 /* MKAnnotationView+WebCache.m in Sources */,
 				4D3CCE5F1B185DD6009323F0 /* SDWebImageDecoder.m in Sources */,
@@ -641,12 +717,10 @@
 				4D1CF90E1B20447400D60BA7 /* HTTPUpload.swift in Sources */,
 				4D7C4CA51B32C2100030FD2E /* ShowSubCategoryInfoViewController.swift in Sources */,
 				4D4EB0A01B1FF41900AB1C60 /* RegisterViewController.swift in Sources */,
-				4D0279651B199CE2008A3977 /* DiyTableCellViewController.swift in Sources */,
 				4D02796B1B1A1968008A3977 /* SearchViewController.swift in Sources */,
 				4D12DE261B31A3E400EDB42D /* User.swift in Sources */,
 				4D5EC65A1B4237A600EC70C2 /* rootNavigationVC.swift in Sources */,
 				4D3CDF521B1C820D005494A6 /* ProductHeadView.swift in Sources */,
-				4D65055B1B18C28F00E0B5D3 /* tttViewController.swift in Sources */,
 				4D3A49001B1F007E00BB1BF4 /* AlbumDetailViewController.swift in Sources */,
 				4D3CCE611B185DD6009323F0 /* SDWebImageDownloaderOperation.m in Sources */,
 				4D1CF9071B20441C00D60BA7 /* HTTPRequestSerializer.swift in Sources */,
@@ -659,12 +733,14 @@
 				4D7C4CA31B329EC00030FD2E /* CategoryCollectionViewCell.swift in Sources */,
 				4D3CCE631B185DD6009323F0 /* SDWebImagePrefetcher.m in Sources */,
 				4D335BE51B1DDF87003735F6 /* ScrollContentView.swift in Sources */,
-				4D44C9301B42DEF300A42A6A /* ProductTabCellView.swift in Sources */,
+				4D9EF30B1B4828550089DF29 /* VedioDescTheAlbumTVCell.swift in Sources */,
+				4D9EF2F01B47C2CA0089DF29 /* VedioDescTV.swift in Sources */,
 				4D4EB09C1B1FE81200AB1C60 /* LoginViewController.swift in Sources */,
 				4D3CCE691B185DD6009323F0 /* UIImageView+WebCache.m in Sources */,
 				4D12DE281B31AED600EDB42D /* UserInfoCollectionViewCell.swift in Sources */,
 				4D3CCE5E1B185DD6009323F0 /* SDWebImageCompat.m in Sources */,
 				4D3CCE651B185DD6009323F0 /* UIImage+GIF.m in Sources */,
+				4D9EF3071B4828330089DF29 /* VedioListTabVCell.swift in Sources */,
 				4D1CF9091B20445300D60BA7 /* HTTPTask.swift in Sources */,
 				4D3CDF541B1C8BC5005494A6 /* ProductViewController.swift in Sources */,
 				4D4EF56D1B181F050053A829 /* AppDelegate.swift in Sources */,

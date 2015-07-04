@@ -16,6 +16,12 @@ class AlbumDetailViewController: UIViewController,UITableViewDataSource,UITableV
     var channelList:Array<Channel> = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        var nib = UINib(nibName: "VedioListTabVCell", bundle: nil)
+        self.productTableView.registerNib(nib, forCellReuseIdentifier: "VedioListTabVCellID")
+        
+        // 经过测试，实际表现及运行效率均相似，大👍
+        self.productTableView.estimatedRowHeight = 100
+        self.productTableView.rowHeight = UITableViewAutomaticDimension
         self.productTableView.delegate = self
         self.productTableView.dataSource = self
         self.getChannelData()
@@ -39,32 +45,30 @@ class AlbumDetailViewController: UIViewController,UITableViewDataSource,UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("CellId", forIndexPath: indexPath) as! UITableViewCell
-        var channel = self.channelList[indexPath.row]
-        if channel.name == nil {
-            return cell
-        }
-        cell.textLabel?.text = channel.name
+        var cell = tableView.dequeueReusableCellWithIdentifier("VedioListTabVCellID", forIndexPath: indexPath) as? VedioListTabVCell
+        var vedio = self.channelList[indexPath.row] as Channel
+        cell!.nameLabel.text = vedio.name
+        cell!.authorLabel.text = "作者："+vedio.author
+        cell!.palyTimesLabel.text = "播放次数：7878"
         var imgurl:NSURL = NSURL(string: "")!
-        if channel.defaultCover != nil {
-            imgurl = NSURL(string:channel.defaultCover)!
-        }else if channel.cover != nil {
-            imgurl = NSURL(string:channel.cover)!
+        if vedio.defaultCover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
+            imgurl = NSURL(string:vedio.defaultCover)!
+        }else if vedio.cover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
+            imgurl = NSURL(string:vedio.cover)!
         }
         //println("imgurl=\(imgurl)")
-        cell.imageView?.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "defx.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
+        cell!.vedioImage.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "defx.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
             //println("image pross=\(a/b)")
             }, completed: { (image:UIImage!, error:NSError!, cacheType:SDImageCacheType, imgurl:NSURL!) -> Void in
                 //println("cached finished")
         })
-        return cell
+        return cell!
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("xxxxxxListOfAlbumSegueId")
         var channel:Channel = self.channelList[indexPath.row]
-        //performSegueWithIdentifier(identifier: String?, sender: AnyObject?)
         self.performSegueWithIdentifier("ListOfAlbumSegueId", sender: channel)
         //self.navigationController?.pushViewController(LoginUITabBarController(), animated: false)
         //self.navigationController?.tabBarController = LoginUITabBarController()
