@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -56,17 +57,17 @@
             <subviews>
                 <view alpha="0.59999999999999964" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2V4-sm-4g6">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hpc-D9-MNH">
-                    <rect key="frame" x="5" y="14" width="100" height="100"/>
+                    <rect key="frame" x="10" y="9" width="110" height="110"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="kCH-yp-mde"/>
-                        <constraint firstAttribute="height" constant="100" id="nwz-y6-BPY"/>
+                        <constraint firstAttribute="width" constant="110" id="kCH-yp-mde"/>
+                        <constraint firstAttribute="height" constant="110" id="nwz-y6-BPY"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yve-NG-2Yh">
-                    <rect key="frame" x="115" y="24" width="195" height="80"/>
+                    <rect key="frame" x="130" y="24" width="180" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="nR7-om-MJu"/>
                     </constraints>
@@ -80,7 +81,7 @@
                 <constraint firstAttribute="centerY" secondItem="hpc-D9-MNH" secondAttribute="centerY" id="K6K-cs-FRB"/>
                 <constraint firstItem="2V4-sm-4g6" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" id="OmW-dt-9hM"/>
                 <constraint firstItem="2V4-sm-4g6" firstAttribute="top" secondItem="AVi-Ez-24P" secondAttribute="top" id="QFY-XF-orR"/>
-                <constraint firstItem="hpc-D9-MNH" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" constant="5" id="Ypb-iO-Lin"/>
+                <constraint firstItem="hpc-D9-MNH" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" constant="10" id="Ypb-iO-Lin"/>
                 <constraint firstAttribute="bottom" secondItem="2V4-sm-4g6" secondAttribute="bottom" id="dez-Ij-HG0"/>
                 <constraint firstAttribute="trailing" secondItem="Yve-NG-2Yh" secondAttribute="trailing" constant="10" id="hhy-jM-opX"/>
                 <constraint firstAttribute="trailing" secondItem="2V4-sm-4g6" secondAttribute="trailing" id="tiJ-3g-QZo"/>

@@ -12,16 +12,23 @@ class LoginUITabBarController: UITabBarController,UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "fnNavBackClicked")
         //self.selectedIndex = 0
         //println(self.viewControllers)
     }
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    func fnNavBackClicked(){
+        if LoginTool.isNeedUserLogin {
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        }else{
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
 
     /*
     // MARK: - Navigation

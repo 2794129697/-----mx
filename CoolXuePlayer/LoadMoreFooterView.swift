@@ -10,7 +10,7 @@
 import Foundation
 
 protocol LoadMoreFooterViewDelegate{
-    func footerRefreshTableData(Channel)
+    func footerRefreshTableData(Vedio)
 }
 
 class LoadMoreFooterView:UIView{
@@ -61,10 +61,10 @@ class LoadMoreFooterView:UIView{
                 "vedioUrl":"c",
                 ])
             
-            var newChannel:Channel = Channel(dictChannel: dict)
-//            self.delegate.channelList.append(newChannel)
+            var newVedio:Vedio = Vedio(dictVedio: dict)
+//            self.delegate.channelList.append(newVedio)
 //            self.delegate.productTableView.reloadData()
-            self.delegate.footerRefreshTableData(newChannel)
+            self.delegate.footerRefreshTableData(newVedio)
             
             self.btn.hidden = false
             self.moreView.hidden = true

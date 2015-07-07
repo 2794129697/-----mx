@@ -9,8 +9,8 @@
 import UIKit
 import AVFoundation
 
-class VedioPlayerViewController: UIViewController {
-    var channel:Channel?
+class VedioPlayerViewController: UIViewController,VedioDescTVDelegate {
+    var channel:Vedio?
     //当前播放时间
     @IBOutlet weak var currplayTimeLabel: UILabel!
     //总时间
@@ -36,22 +36,36 @@ class VedioPlayerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.descTBView.cuobj = self.channel!
-        //获取推荐专辑
-        self.descTBView.getRecommendAlbumData()
-        //获取相关视频
-        self.descTBView.getTheAlbumData()
-        
-        self.bnPlay.enabled = false
         //self.navigationController?.hidesBarsOnTap = true
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "fnNavBackClicked")
         IS_AUTOROTATE = true
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "fnNavBackClicked")
+        //其它页面刷新本页面的通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "ReceivedNotif:", name: "ReloadView", object: nil)
+        
         viewForPlayerLayer.clipsToBounds = true
         viewForPlayerLayer.layer.addSublayer(playerLayer);
+        self.descTBView.gotoViewDelegate = self
+        self.initVedio()
+    }
+    
+    func initVedio(){
+        //播放
         self.playByItem(self.channel!.vedioUrl)
         //self.playByItem("http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4")
-
+        //显示视频详情
+        self.descTBView.showVedioDetailInfo(self.channel!)
+    }
+    
+    func ReceivedNotif(obj:NSNotification){
+        var vedio:Vedio! = obj.object as! Vedio
+        if vedio != nil {
+            self.channel = vedio
+            self.initVedio()
+        }
+    }
+    
+    func turnToVedioListView(vedio: Vedio) {
+        self.performSegueWithIdentifier("ToVedioListVC", sender: vedio)
     }
     
     //页面上的元件重新布局后，会调用(目前还没有找到对某个元件的frame/bounds发生变化时的通知)
@@ -59,74 +73,20 @@ class VedioPlayerViewController: UIViewController {
         playerLayer.frame = viewForPlayerLayer.bounds
     }
     
-    @IBAction func bnShowOrHideBar(sender: UIButton) {
-        var orientation = UIDevice.currentDevice().orientation
-        if (orientation == UIDeviceOrientation.LandscapeLeft || orientation == UIDeviceOrientation.LandscapeRight){
-            if self.is_bar_show {
-                self.is_bar_show = false
-                self.navigationController?.setNavigationBarHidden(true, animated: true)
-                self.progressView.hidden = true
-            }else{
-                self.is_bar_show = true
-                self.navigationController?.setNavigationBarHidden(false, animated: true)
-                self.progressView.hidden = false
-            }
-        }
-    }
     func fnNavBackClicked(){
-        println("xx")
         if UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft {
             UIDevice.currentDevice().setValue(UIDeviceOrientation.LandscapeLeft.rawValue, forKey: "orientation")
             UIDevice.currentDevice().setValue(UIDeviceOrientation.Portrait.rawValue, forKey: "orientation")
         }else{
-            self.navigationController?.popToRootViewControllerAnimated(true)
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
-    
-    @IBAction func bnPlayClicked(sender: UIButton) {
-        if playerLayer.player != nil {
-            if playerLayer.player.status != AVPlayerStatus.ReadyToPlay {
-                return
-            }
-        }else{
-            return
-        }
-        if playerLayer.player != nil {
-            if sender.selected {
-                bnPlay.setImage(UIImage(named: "videoPlayNomal"), forState: UIControlState.Normal)
-                playerLayer.player.pause()
-            }else{
-                bnPlay.setImage(UIImage(named: "videoPauseNomal"), forState: UIControlState.Normal)
-                playerLayer.player.play()
-            }
-        }
-        sender.selected = !sender.selected
-    }
-    
-    @IBAction func playSliderValueChange(sender: UISlider) {
-        if playerLayer.player != nil && playerLayer.player.status == AVPlayerStatus.ReadyToPlay {
-            //拖动改变视频播放进度
-            
-            //计算出拖动的当前秒数
-            //NSInteger dragedSeconds = floorf(totalMovieDuration*movieProgressSlider.value);
-            var dragedSeconds = CMTimeGetSeconds(self.playerLayer.player.currentItem.duration) * Float64(sender.value)
-            //println("dragedSeconds:\(dragedSeconds)");
-            
-            //转换成CMTime才能给player来控制播放进度
-            var dragedCMTime:CMTime = CMTimeMakeWithSeconds(dragedSeconds,1)
-            //var dragedCMTime:CMTime = CMTimeMake(Int64(dragedSeconds), 1)
-            //[moviePlayeView.playerpause];
-            self.playerLayer.player.pause()
-            //[moviePlayeView.player seekToTime:dragedCMTime completionHandler:^(BOOL finish){
-            self.playerLayer.player.seekToTime(dragedCMTime)
-            //[moviePlayeView.playerplay];
-            self.playerLayer.player.play()
-        }
-    }
-    
+
     func playByItem(url:String){
         println("vedio_url=ln\(url)")
+        self.bnPlay.enabled = false
         //url = NSBundle.mainBundle().URLForResource("story", withExtension: "mp4")
+        self.releaseAVPlayer()
         currplayeritem = AVPlayerItem(URL: NSURL(string:url))
         myplayer = AVPlayer(playerItem: currplayeritem)
         playerLayer.player = myplayer
@@ -242,6 +202,61 @@ class VedioPlayerViewController: UIViewController {
             }
         }
     }
+    @IBAction func bnShowOrHideBar(sender: UIButton) {
+        var orientation = UIDevice.currentDevice().orientation
+        if (orientation == UIDeviceOrientation.LandscapeLeft || orientation == UIDeviceOrientation.LandscapeRight){
+            if self.is_bar_show {
+                self.is_bar_show = false
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                self.progressView.hidden = true
+            }else{
+                self.is_bar_show = true
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.progressView.hidden = false
+            }
+        }
+    }
+    
+    @IBAction func bnPlayClicked(sender: UIButton) {
+        if playerLayer.player != nil {
+            if playerLayer.player.status != AVPlayerStatus.ReadyToPlay {
+                return
+            }
+        }else{
+            return
+        }
+        if playerLayer.player != nil {
+            if sender.selected {
+                bnPlay.setImage(UIImage(named: "videoPlayNomal"), forState: UIControlState.Normal)
+                playerLayer.player.pause()
+            }else{
+                bnPlay.setImage(UIImage(named: "videoPauseNomal"), forState: UIControlState.Normal)
+                playerLayer.player.play()
+            }
+        }
+        sender.selected = !sender.selected
+    }
+    
+    @IBAction func playSliderValueChange(sender: UISlider) {
+        if playerLayer.player != nil && playerLayer.player.status == AVPlayerStatus.ReadyToPlay {
+            //拖动改变视频播放进度
+            
+            //计算出拖动的当前秒数
+            //NSInteger dragedSeconds = floorf(totalMovieDuration*movieProgressSlider.value);
+            var dragedSeconds = CMTimeGetSeconds(self.playerLayer.player.currentItem.duration) * Float64(sender.value)
+            //println("dragedSeconds:\(dragedSeconds)");
+            
+            //转换成CMTime才能给player来控制播放进度
+            var dragedCMTime:CMTime = CMTimeMakeWithSeconds(dragedSeconds,1)
+            //var dragedCMTime:CMTime = CMTimeMake(Int64(dragedSeconds), 1)
+            //[moviePlayeView.playerpause];
+            self.playerLayer.player.pause()
+            //[moviePlayeView.player seekToTime:dragedCMTime completionHandler:^(BOOL finish){
+            self.playerLayer.player.seekToTime(dragedCMTime)
+            //[moviePlayeView.playerplay];
+            self.playerLayer.player.play()
+        }
+    }
     
     override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         //println("willAnimateRotationToInterfaceOrientation")
@@ -255,7 +270,7 @@ class VedioPlayerViewController: UIViewController {
             self.bnShowOrHideBar(self.bnOp)
         }
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -266,15 +281,31 @@ class VedioPlayerViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        println("viewDidDisappear")
+    func releaseAVPlayer(){
         if playerLayer.player != nil {
             if playerLayer.player.status == AVPlayerStatus.ReadyToPlay {
                 playerLayer.player.pause()
             }
             playerLayer.player.currentItem.removeObserver(self, forKeyPath: "status")
             playerLayer.player.currentItem.removeObserver(self, forKeyPath: "loadedTimeRanges")
+            //移除时不确定是否注册了该观察者（目前没有找到判断的方法）
             //NSNotificationCenter.defaultCenter().removeObserver(self, forKeyPath: "AVPlayerItemDidPlayToEndTimeNotification")
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        self.releaseAVPlayer()
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier! == "ToVedioListVC" {
+            if sender?.isKindOfClass(Vedio) == true {
+                var adController:VedioListVC = segue.destinationViewController as! VedioListVC
+                adController.channel = sender as? Vedio
+            }
         }
     }
 }

@@ -9,11 +9,11 @@
 import UIKit
 
 class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate{
-    var currChannel:Channel?
+    var currVedio:Vedio?
     var mysearchBar:UISearchBar!
     //@IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var productTableView: UITableView!
-    var channelList:Array<Channel> = []
+    var channelList:Array<Vedio> = []
     override func viewDidLoad() {
         super.viewDidLoad()
         var nib = UINib(nibName: "VedioListTabVCell", bundle: nil)
@@ -28,11 +28,6 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
         mysearchBar = UISearchBar(frame: CGRectMake(0, 0, 320, 40))
         mysearchBar.delegate = self
         self.productTableView.tableHeaderView = mysearchBar
-        
-        
-        
-        //self.searchBar.delegate = self
-        // Do any additional setup after loading the view.
     }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -62,7 +57,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
                     var c_array = dict["data"] as! NSArray
                     if c_array.count > 0 {
                         for dict in c_array{
-                            var channel = Channel(dictChannel: dict as! NSDictionary)
+                            var channel = Vedio(dictVedio: dict as! NSDictionary)
                             self.channelList.append(channel)
                         }
                         self.productTableView.reloadData()
@@ -88,10 +83,11 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("VedioListTabVCellID", forIndexPath: indexPath) as? VedioListTabVCell
-        var vedio = self.channelList[indexPath.row] as Channel
+        var vedio = self.channelList[indexPath.row] as Vedio
         cell!.nameLabel.text = vedio.name
         cell!.authorLabel.text = "作者："+vedio.author
-        cell!.palyTimesLabel.text = "播放次数：7878"
+        cell!.palyTimesLabel.text = "播放次数：\(vedio.playTimes)"
+        cell!.playCostLabel.text = "爱苦逼：\(vedio.playCost)"
         var imgurl:NSURL = NSURL(string: "")!
         if vedio.defaultCover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
             imgurl = NSURL(string:vedio.defaultCover)!
@@ -109,8 +105,9 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.currChannel = self.channelList[indexPath.row]
-        var channel_url = "http://www.icoolxue.com/video/play/url/"+String(self.currChannel!.id)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.currVedio = self.channelList[indexPath.row]
+        var channel_url = "http://www.icoolxue.com/video/play/url/"+String(self.currVedio!.id)
         getVedioPlayUrl(channel_url)
     }
     
@@ -124,8 +121,8 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
                 var vedio_url = bdict["data"] as? String
                 if vedio_url != nil {
-                    self.currChannel?.vedioUrl = vedio_url
-                    self.performSegueWithIdentifier("VedioPlaySegueId", sender: self.currChannel)
+                    self.currVedio?.vedioUrl = vedio_url
+                    self.performSegueWithIdentifier("VedioPlaySegueId", sender: self.currVedio)
                 }else{
                     println("Failed to Get Url!!!!!!!!")
                     var alert:UIAlertView = UIAlertView(title: "提示", message: "获取视频播放地址失败！", delegate: self, cancelButtonTitle: "确定")
@@ -139,9 +136,9 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if sender?.isKindOfClass(Channel) == true {
+        if sender?.isKindOfClass(Vedio) == true {
             var adController:VedioPlayerViewController = segue.destinationViewController as! VedioPlayerViewController
-            adController.channel = sender as? Channel
+            adController.channel = sender as? Vedio
         }
     }
 }

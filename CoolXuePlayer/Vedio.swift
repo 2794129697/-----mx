@@ -1,5 +1,5 @@
 //
-//  Channel.swift
+//  Vedio.swift
 //  CoolXuePlayer
 //
 //  Created by lion-mac on 15/5/29.
@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class Channel:NSObject{
+class Vedio:NSObject{
     var affix:String! = ""
     var author:String! = ""
     var cover:String! = ""
@@ -19,23 +19,25 @@ class Channel:NSObject{
     var playCost:Int! = 0
     var tags:String! = ""
     var vedioUrl:String! = ""
+    var playTimes:Int! = 0
     
-    init(dictChannel:NSDictionary){
+    init(dictVedio:NSDictionary){
         super.init()
-        self.setChannel(dictChannel)
+        self.setVedio(dictVedio)
     }
     
-    func setChannel(dictChannel:NSDictionary){
-        var affix = dictChannel["affix"] as? String
-        var author = dictChannel["author"] as? String
-        var cover = dictChannel["cover"] as? String
-        var createTime = dictChannel["createTime"] as? String
-        var defaultCover = dictChannel["defaultCover"] as? String
-        var desc = dictChannel["description"] as? String
-        var id = dictChannel["id"] as? Int
-        var name = dictChannel["name"] as? String
-        var playCost = dictChannel["playCost"] as? Int
-        var tags = dictChannel["tags"] as? String
+    func setVedio(dictVedio:NSDictionary){
+        var affix = dictVedio["affix"] as? String
+        var author = dictVedio["author"] as? String
+        var cover = dictVedio["cover"] as? String
+        var createTime = dictVedio["createTime"] as? String
+        var defaultCover = dictVedio["defaultCover"] as? String
+        var desc = dictVedio["description"] as? String
+        var id = dictVedio["id"] as? Int
+        var name = dictVedio["name"] as? String
+        var playCost = dictVedio["playCost"] as? Int
+        var tags = dictVedio["tags"] as? String
+        var playTimes = dictVedio["playTimes"] as? Int
         
         self.affix = (affix != nil) ? affix : self.affix
         self.author = (author != nil) ? author : self.author
@@ -47,5 +49,6 @@ class Channel:NSObject{
         self.name = (name != nil) ? name : self.name
         self.playCost = (playCost != nil) ? playCost : self.playCost
         self.tags = (tags != nil) ? tags : self.tags
+        self.playTimes = (playTimes != nil) ? playTimes : self.playTimes
     }
 }

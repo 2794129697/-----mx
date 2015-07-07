@@ -8,19 +8,26 @@
 
 import UIKit
 
-class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,LoadMoreFooterViewDelegate{
-    func footerRefreshTableData(newChannel: Channel) {
-        self.channelList.append(newChannel)
+class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,LoadMoreFooterViewDelegate,HistoryTVCellDelegate{
+    func playVedio(vedio: Vedio) {
+        self.currVedio = vedio
+        var url = "http://www.icoolxue.com/video/play/url/"+String(self.currVedio!.id)
+        getVedioPlayUrl(url)
+    }
+    func footerRefreshTableData(newVedio: Vedio) {
+        self.albumList.append(newVedio)
         self.productTableView.reloadData()
     }
-    var currChannel:Channel?
+    var currVedio:Vedio?
     @IBOutlet weak var productTableView: UITableView!
-    var channelList:Array<Channel> = []
+    var albumList:Array<Vedio> = []
+    var vedioList:Array<Vedio> = []
+    var history_url = "http://www.icoolxue.com/video/log/my/1/10"
     override func viewDidLoad() {
         super.viewDidLoad()
         println("viewDidLoad")
-        var nib = UINib(nibName: "VedioListTabVCell", bundle: nil)
-        self.productTableView.registerNib(nib, forCellReuseIdentifier: "VedioListTabVCellID")
+        var nib = UINib(nibName: "HistoryTVCell", bundle: nil)
+        self.productTableView.registerNib(nib, forCellReuseIdentifier: "HistoryTVCellID")
         
         // 经过测试，实际表现及运行效率均相似，大👍
         self.productTableView.estimatedRowHeight = 100
@@ -37,8 +44,15 @@ class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     override func viewWillAppear(animated: Bool) {
         println("viewWillAppear")
-        var url = "http://www.icoolxue.com/video/log/my/1/10"
-        getHistoryData(url)
+        if LoginTool.isNeedUserLogin == true {
+            var alert:UIAlertView = UIAlertView(title: "提示", message: "亲，请登录！", delegate: self, cancelButtonTitle: "确定")
+            alert.show()
+            self.performSegueWithIdentifier("VedioViewToLogin", sender: nil)
+        }else if LoginTool.isLogin == true {
+            self.getHistoryData(self.history_url)
+        }else if LoginTool.isAutoLogin == false {
+            LoginTool.autoLogin()
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -51,13 +65,17 @@ class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             //println(bdict)
             var code:Int = bdict["code"] as! Int
             if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
+                self.albumList.removeAll(keepCapacity: true)
+                self.vedioList.removeAll(keepCapacity: true)
                 var dict = bdict["data"] as! NSDictionary
                 var c_array = dict["data"] as! NSArray
                 if c_array.count > 0 {
                     for dict in c_array{
-                        println(dict["video"])
-                        var channel = Channel(dictChannel: dict["video"] as! NSDictionary)
-                        self.channelList.append(channel)
+                        //println(dict["video"])
+                        var currAlbum = Vedio(dictVedio: dict["album"] as! NSDictionary)
+                        self.albumList.append(currAlbum)
+                        var currVedio = Vedio(dictVedio: dict["video"] as! NSDictionary)
+                        self.vedioList.append(currVedio)
                     }
                     self.productTableView.reloadData()
                 }
@@ -69,20 +87,22 @@ class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.channelList.count
+        return self.albumList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("VedioListTabVCellID", forIndexPath: indexPath) as? VedioListTabVCell
-        var vedio = self.channelList[indexPath.row] as Channel
-        cell!.nameLabel.text = vedio.name
-        cell!.authorLabel.text = "作者："+vedio.author
-        cell!.palyTimesLabel.text = "播放次数：7878"
+        var cell = tableView.dequeueReusableCellWithIdentifier("HistoryTVCellID", forIndexPath: indexPath) as? HistoryTVCell
+        cell?.delegate = self
+        cell!.vedio = self.vedioList[indexPath.row] as Vedio
+        var album = self.albumList[indexPath.row] as Vedio
+        cell!.nameLabel.text = album.name
+        cell!.authorLabel.text = "作者："+album.author
+        cell!.palyTimesLabel.text = "播放次数：\(album.playTimes)"
         var imgurl:NSURL = NSURL(string: "")!
-        if vedio.defaultCover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
-            imgurl = NSURL(string:vedio.defaultCover)!
-        }else if vedio.cover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
-            imgurl = NSURL(string:vedio.cover)!
+        if album.defaultCover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
+            imgurl = NSURL(string:album.defaultCover)!
+        }else if album.cover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
+            imgurl = NSURL(string:album.cover)!
         }
         //println("imgurl=\(imgurl)")
         cell!.vedioImage.sd_setImageWithURL(imgurl, placeholderImage: UIImage(named: "defx.png"), options: SDWebImageOptions.ContinueInBackground, progress: { (a:Int, b:Int) -> Void in
@@ -94,9 +114,9 @@ class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.currChannel = self.channelList[indexPath.row]
-        var channel_url = "http://www.icoolxue.com/video/play/url/"+String(self.currChannel!.id)
-        getVedioPlayUrl(channel_url)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        var vedio:Vedio = self.albumList[indexPath.row]
+        self.performSegueWithIdentifier("ToVedioListVC", sender: vedio)
     }
     
     func getVedioPlayUrl(path:String){
@@ -109,8 +129,8 @@ class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
                 var vedio_url = bdict["data"] as? String
                 if vedio_url != nil {
-                    self.currChannel?.vedioUrl = vedio_url
-                    self.performSegueWithIdentifier("VedioPlaySegueId", sender: self.currChannel)
+                    self.currVedio?.vedioUrl = vedio_url
+                    self.performSegueWithIdentifier("VedioPlaySegueId", sender: self.currVedio)
                 }else{
                     println("Failed to Get Url!!!!!!!!")
                     var alert:UIAlertView = UIAlertView(title: "提示", message: "获取视频播放地址失败！", delegate: self, cancelButtonTitle: "确定")
@@ -124,9 +144,16 @@ class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if sender?.isKindOfClass(Channel) == true {
-            var adController:VedioPlayerViewController = segue.destinationViewController as! VedioPlayerViewController
-            adController.channel = sender as? Channel
+        if segue.identifier == "VedioPlaySegueId" {
+            if sender?.isKindOfClass(Vedio) == true {
+                var adController:VedioPlayerViewController = segue.destinationViewController as! VedioPlayerViewController
+                adController.channel = sender as? Vedio
+            }
+        }else if segue.identifier == "ToVedioListVC" {
+            if sender?.isKindOfClass(Vedio) == true {
+                var adController:VedioListVC = segue.destinationViewController as! VedioListVC
+                adController.channel = sender as? Vedio
+            }
         }
     }
 }

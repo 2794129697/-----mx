@@ -8,8 +8,13 @@
 
 import UIKit
 
-class VedioDescTheAlbumTVCell: UITableViewCell {
+class IndexTVCell: UITableViewCell {
+    @IBOutlet weak var palyTimesLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var vedioImage: UIImageView!
 
+    @IBOutlet weak var playCostLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

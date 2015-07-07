@@ -10,9 +10,9 @@ import UIKit
 
 class ShowSubCategoryInfoViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     var subCategory:CategorySub?
-    var currChannel:Channel?
+    var currVedio:Vedio?
     @IBOutlet weak var productTableView: UITableView!
-    var channelList:Array<Channel> = []
+    var channelList:Array<Vedio> = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.productTableView.dataSource = self
@@ -38,7 +38,7 @@ class ShowSubCategoryInfoViewController: UIViewController,UITableViewDelegate,UI
                 if c_array.count > 0 {
                     for dict in c_array{
                         //println(dict["video"])
-                        var channel = Channel(dictChannel: dict as! NSDictionary)
+                        var channel = Vedio(dictVedio: dict as! NSDictionary)
                         self.channelList.append(channel)
                     }
                     self.productTableView.reloadData()
@@ -74,8 +74,9 @@ class ShowSubCategoryInfoViewController: UIViewController,UITableViewDelegate,UI
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.currChannel = self.channelList[indexPath.row]
-        var channel_url = "http://www.icoolxue.com/video/play/url/"+String(self.currChannel!.id)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.currVedio = self.channelList[indexPath.row]
+        var channel_url = "http://www.icoolxue.com/video/play/url/"+String(self.currVedio!.id)
         getVedioPlayUrl(channel_url)
     }
     
@@ -89,8 +90,8 @@ class ShowSubCategoryInfoViewController: UIViewController,UITableViewDelegate,UI
             if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
                 var vedio_url = bdict["data"] as? String
                 if vedio_url != nil {
-                    self.currChannel?.vedioUrl = vedio_url
-                    self.performSegueWithIdentifier("VedioPlaySegueId", sender: self.currChannel)
+                    self.currVedio?.vedioUrl = vedio_url
+                    self.performSegueWithIdentifier("VedioPlaySegueId", sender: self.currVedio)
                 }else{
                     println("Failed to Get Url!!!!!!!!")
                     var alert:UIAlertView = UIAlertView(title: "提示", message: "获取视频播放地址失败！", delegate: self, cancelButtonTitle: "确定")
@@ -104,9 +105,9 @@ class ShowSubCategoryInfoViewController: UIViewController,UITableViewDelegate,UI
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if sender?.isKindOfClass(Channel) == true {
+        if sender?.isKindOfClass(Vedio) == true {
             var adController:VedioPlayerViewController = segue.destinationViewController as! VedioPlayerViewController
-            adController.channel = sender as? Channel
+            adController.channel = sender as? Vedio
         }
     }
 }

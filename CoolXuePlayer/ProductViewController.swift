@@ -10,24 +10,14 @@ import UIKit
 
 class ProductViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,
     LoadMoreFooterViewDelegate,ProductHeadViewDelegate{
-    
-    func productHeadViewShowItem(channel: Channel) {
-        //self.performSegueWithIdentifier("AlbumDetailSegueId", sender: channel)
-        self.performSegueWithIdentifier("ListOfAlbumSegueId", sender: channel)
-    }
-    func footerRefreshTableData(newChannel: Channel) {
-        self.channelList.append(newChannel)
-        self.productTableView.reloadData()
-    }
-    func historyViewShowItem(channel: Array<Channel>!) {
-        self.performSegueWithIdentifier("HistorySugueId", sender: channel)
-        //self.navigationController?.pushViewController(HistoryViewController(), animated: true)
-    }
+
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var productTableView: UITableView!
-    var channelList:Array<Channel> = []
+    var channelList:Array<Vedio> = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        LoginTool.autoLogin()
+        println("LoginTool.isLogin=\(LoginTool.isLogin)")
         //self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         //self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         //self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "searchresult_bg.png"), forBarMetrics: UIBarMetrics.Default)
@@ -49,8 +39,8 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
 //        footerView.delegate = self
 //        self.productTableView.tableFooterView = footerView
         (self.productTableView.tableFooterView as! LoadMoreFooterView).delegate = self
-        var nib = UINib(nibName: "VedioListTabVCell", bundle: nil)
-        self.productTableView.registerNib(nib, forCellReuseIdentifier: "VedioListTabVCellID")
+        var nib = UINib(nibName: "IndexTVCell", bundle: nil)
+        self.productTableView.registerNib(nib, forCellReuseIdentifier: "IndexTVCellID")
         
         // 经过测试，实际表现及运行效率均相似，大👍
         self.productTableView.estimatedRowHeight = 100
@@ -59,31 +49,69 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.productTableView.delegate = self
         self.productTableView.dataSource = self
         
-        self.getChannelData()
+        self.getVedioListData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func productHeadViewShowItem(channel: Vedio) {
+        //self.performSegueWithIdentifier("AlbumDetailSegueId", sender: channel)
+        self.performSegueWithIdentifier("ToVedioListVC", sender: channel)
+    }
+    
+    func footerRefreshTableData(newVedio: Vedio) {
+        self.channelList.append(newVedio)
+        self.productTableView.reloadData()
+    }
+    
+    func historyViewShowItem(channel: Array<Vedio>!) {
+        self.performSegueWithIdentifier("ToHistoryVC", sender: channel)
+        //self.navigationController?.pushViewController(HistoryViewController(), animated: true)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.channelList.count
+        var number = 0
+        if section == 0 {
+            number = self.channelList.count
+        }else if section == 1 {
+            number = 0
+        }
+        return number
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        var height:CGFloat = 5
+        if section == 0 {
+            height = 30
+        }else if section == 1 {
+            height = 25
+        }
+        return height
+    }
+    
+//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return UIButton.buttonWithType(UIButtonType.ContactAdd) as? UIView
+//    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var title = ""
+        if section == 0 {
+            title = "推荐专辑"
+        }else if section == 1 {
+            title = "最热视频"
+        }
+        return title
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("VedioListTabVCellID", forIndexPath: indexPath) as? VedioListTabVCell
-        var vedio = self.channelList[indexPath.row] as Channel
+        var cell = tableView.dequeueReusableCellWithIdentifier("IndexTVCellID", forIndexPath: indexPath) as? IndexTVCell
+        var vedio = self.channelList[indexPath.row] as Vedio
         cell!.nameLabel.text = vedio.name
         cell!.authorLabel.text = "作者："+vedio.author
-        cell!.palyTimesLabel.text = "播放次数：7878"
+        cell!.palyTimesLabel.text = "播放次数：\(vedio.playTimes)"
+        cell!.playCostLabel.text = "爱苦逼：\(vedio.playCost)"
+        
         var imgurl:NSURL = NSURL(string: "")!
         if vedio.defaultCover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
             imgurl = NSURL(string:vedio.defaultCover)!
@@ -99,30 +127,13 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
         return cell!
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var channel:Channel = self.channelList[indexPath.row]
-        self.performSegueWithIdentifier("ListOfAlbumSegueId", sender: channel)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        var channel:Vedio = self.channelList[indexPath.row]
+        self.performSegueWithIdentifier("ToVedioListVC", sender: channel)
     }
     
-    func getChannelData(){
-//        var url = "http://www.icoolxue.com/album/recommend/10"
-//        HttpManagement.httpTask.GET(url, parameters: nil) { (response:HTTPResponse) -> Void in
-//            var data = response.responseObject as! NSData
-//            if response.statusCode == 200 {
-//                var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
-//                //println(bdict)
-//                var c_array = bdict["data"] as! NSArray
-//                if c_array.count > 0 {
-//                    for dict in c_array{
-//                        var channel = Channel(dictChannel: dict as! NSDictionary)
-//                        self.channelList.append(channel)
-//                    }
-//                    self.productTableView.reloadData()
-//                }
-//
-//            }
-//        }
+    func getVedioListData(){
         var url = "http://www.icoolxue.com/album/recommend/10"
         HttpManagement.requestttt(url, method: "GET",bodyParam: nil,headParam:nil) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
             var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
@@ -132,47 +143,50 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
                 var c_array = bdict["data"] as! NSArray
                 if c_array.count > 0 {
                     for dict in c_array{
-                        var channel = Channel(dictChannel: dict as! NSDictionary)
+                        var channel = Vedio(dictVedio: dict as! NSDictionary)
                         self.channelList.append(channel)
                     }
                     self.productTableView.reloadData()
                 }
             }
         }
-        
-//        var channel_url = "http://www.icoolxue.com/album/recommend/10"
-//        var url = NSURL(string: channel_url)
-//        var request = NSURLRequest(URL: url!)
-//        NSURLConnection.sendAsynchronousRequest(
-//            request, queue: NSOperationQueue.mainQueue()) { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
-//                println("responseerror=\(error)")
-//                var httpResponse = response as! NSHTTPURLResponse
-//                if httpResponse.statusCode == 200 {
-//                    var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
-//                    //println(bdict)
-//                    var c_array = bdict["data"] as! NSArray
-//                    if c_array.count > 0 {
-//                        for dict in c_array{
-//                            var channel = Channel(dictChannel: dict as! NSDictionary)
-//                            self.channelList.append(channel)
-//                        }
-//                        self.productTableView.reloadData()
-//                    }
-//                }
-//        }
+        /*
+        var hm = HttpManagement()
+        hm.requestttt2(url, method: "GET",bodyParam: nil,headParam:nil) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
+            var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
+            //println(bdict)
+            var code:Int = bdict["code"] as! Int
+            if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
+                var c_array = bdict["data"] as! NSArray
+                if c_array.count > 0 {
+                    for dict in c_array{
+                        var channel = Vedio(dictVedio: dict as! NSDictionary)
+                        self.channelList.append(channel)
+                    }
+                    self.productTableView.reloadData()
+                }
+            }
+        }
+        */
     }
 
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if sender?.isKindOfClass(Channel) == true {
-            if segue.identifier! == "ListOfAlbumSegueId" {
-                var adController:ListOfAlbumViewController = segue.destinationViewController as! ListOfAlbumViewController
-                adController.channel = sender as? Channel
+        if segue.identifier != nil {
+            if segue.identifier! == "ToVedioListVC" {
+                if sender?.isKindOfClass(Vedio) == true {
+                    var adController:VedioListVC = segue.destinationViewController as! VedioListVC
+                    adController.channel = sender as? Vedio
+                }
+            }else if segue.identifier! == "ToHistoryVC" {
+
             }
         }
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }

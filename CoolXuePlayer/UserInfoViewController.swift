@@ -8,8 +8,11 @@
 
 import UIKit
 
-class UserInfoViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+class UserInfoViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UserInfoHeadViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
+    func loginOrLoginOut() {
+        self.performSegueWithIdentifier("VedioViewToLogin", sender: nil)
+    }
     var items:Array<NSDictionary> = [
         ["name":"本地视频","info":"共0个"],
         ["name":"我的收藏","info":"共0个"],
@@ -52,8 +55,13 @@ class UserInfoViewController: UIViewController,UICollectionViewDataSource,UIColl
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         var reusableview:UICollectionReusableView?
         if (kind == UICollectionElementKindSectionHeader){
-            var headerView:UserInfoCollectionReusableView  = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "CollectionHeaderView", forIndexPath: indexPath) as! UserInfoCollectionReusableView
-            headerView.userNameLabel.text = "瑰丽呃"
+            var headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "CollectionHeaderView", forIndexPath: indexPath) as! UserInfoHeadView
+            headerView.delegate = self
+            if LoginTool.isNeedUserLogin {
+                headerView.userNameLabel.text = "点击登录"
+            }else{
+                headerView.userNameLabel.text = "瑰丽呃"
+            }
             reusableview = headerView;
         }
         
@@ -64,7 +72,7 @@ class UserInfoViewController: UIViewController,UICollectionViewDataSource,UIColl
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("")
+        println("xxx")
     }
     
     
@@ -73,15 +81,10 @@ class UserInfoViewController: UIViewController,UICollectionViewDataSource,UIColl
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
-
 }

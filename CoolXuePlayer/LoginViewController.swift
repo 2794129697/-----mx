@@ -10,10 +10,29 @@ import UIKit
 import Foundation
 
 class LoginViewController: UIViewController,UIAlertViewDelegate,UITextFieldDelegate{
-
     @IBOutlet weak var userIdTextField: UITextField!
     @IBOutlet weak var pwdTextField: UITextField!
     var alertView:UIAlertView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //self.tabBarController?.delegate = self
+        //self.navigationController?.navigationBar.delegate = self
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "fnNavBackClicked")
+    }
+    func navigationBar(navigationBar: UINavigationBar, didPopItem item: UINavigationItem) {
+        println("233qa")
+    }
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        println("xx")
+    }
+    func fnNavBackClicked(){
+        if LoginTool.isNeedUserLogin {
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        }else{
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
     
     func showAlertView(tag _tag:Int,title:String,message:String,delegate:UIAlertViewDelegate,cancelButtonTitle:String){
         if alertView == nil {
@@ -35,7 +54,7 @@ class LoginViewController: UIViewController,UIAlertViewDelegate,UITextFieldDeleg
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        println("buttonIndex=\(buttonIndex)")
+        //println("buttonIndex=\(buttonIndex)")
         if alertView.tag == 0 {
             
         }else if alertView.tag == 1 {
@@ -44,24 +63,34 @@ class LoginViewController: UIViewController,UIAlertViewDelegate,UITextFieldDeleg
     }
     @IBAction func loginBnClicked(sender: AnyObject) {
         var userid = self.userIdTextField.text
-        var pwd = self.pwdTextField.text
+        var upwd = self.pwdTextField.text
 //        if userid.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) <= 0 {
 //            self.showAlertView(tag: 0,title: "提示", message: "用户名不能为空！", delegate: self, cancelButtonTitle: "确定")
 //            return
 //        }
-//        if pwd.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) <= 0 {
+//        if upwd.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) <= 0 {
 //            self.showAlertView(tag: 0,title: "提示", message: "密码不能为空！", delegate: self, cancelButtonTitle: "确定")
 //            return
 //        }
+        userid = "2794129697@qq.com"
+        upwd = "123456"
         var url = "http://www.icoolxue.com/account/login"
-        var bodyParam:Dictionary = ["username":"2794129697@qq.com","password":"123456"]
+        var bodyParam:Dictionary = ["username":userid,"password":upwd]
         HttpManagement.requestttt(url, method: "POST",bodyParam: bodyParam,headParam:nil) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
             var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
             println(bdict)
             var code:Int = bdict["code"] as! Int
+            var userAccount:NSUserDefaults = NSUserDefaults.standardUserDefaults()
             if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
+                userAccount.setObject(true, forKey: "is_login")
+                userAccount.setObject(userid,forKey: "uid")
+                userAccount.setObject(upwd,forKey: "upwd")
+                LoginTool.isLogin = true
+                LoginTool.isNeedUserLogin = false
                 self.showAlertView(tag:1,title: "提示", message: "登录成功！", delegate: self, cancelButtonTitle: "确定")
             }else{
+                userAccount.removeObjectForKey("uid")
+                userAccount.removeObjectForKey("upwd")
                 self.showAlertView(tag:0,title: "提示", message: "登录失败！", delegate: self, cancelButtonTitle: "确定")
             }
         }
@@ -82,11 +111,7 @@ class LoginViewController: UIViewController,UIAlertViewDelegate,UITextFieldDeleg
 //            }
 //        }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

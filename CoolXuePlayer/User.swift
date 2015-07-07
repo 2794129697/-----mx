@@ -41,38 +41,38 @@ class User:NSObject{
     var used:Int?
     var username:String?
     
-    init(dictChannel:NSDictionary){
-        self.address = dictChannel["address"] as? String
-        self.admin = dictChannel["admin"] as? Bool
-        self.answerNum = dictChannel["answerNum"] as? Int
-        self.avatar = dictChannel["avatar"] as? String
-        self.blogNum = dictChannel["job"] as? Int
-        self.defaultAvatar = dictChannel["pay"] as? String
-        self.email = dictChannel["email"] as? String
-        self.firstName = dictChannel["firstName"] as? String
-        self.id = dictChannel["id"] as? Int
-        self.identify = dictChannel["identify"] as? String
-        self.income = dictChannel["income"] as? Int
-        self.ingot = dictChannel["ingot"] as? Int
-        self.job = dictChannel["job"] as? Int
-        self.key = dictChannel["key"] as? String
-        self.lastName = dictChannel["lastName"] as? String
-        self.lastTime = dictChannel["lastTime"] as? Int32
-        self.lvl = dictChannel["lvl"] as? Int
-        self.nickName = dictChannel["nickName"] as? String
-        self.otherUser = dictChannel["otherUser"] as? Bool
-        self.pay = dictChannel["pay"] as? Int
-        self.qq = dictChannel["qq"] as? String
-        self.questionNum = dictChannel["questionNum"] as? Int
-        self.redeem = dictChannel["redeem"] as? Int
-        self.redeemRatio = dictChannel["redeemRatio"] as? Float
-        self.redeemed = dictChannel["redeemed"] as? Int
-        self.regTime = dictChannel["regTime"] as? Int32
-        self.score = dictChannel["score"] as? Int
-        self.sex = dictChannel["sex"] as? String
-        self.signature = dictChannel["signature"] as? String
-        self.status = dictChannel["status"] as? Int
-        self.used = dictChannel["used"] as? Int
-        self.username = dictChannel["username"] as? String
+    init(dictUser:NSDictionary){
+        self.address = dictUser["address"] as? String
+        self.admin = dictUser["admin"] as? Bool
+        self.answerNum = dictUser["answerNum"] as? Int
+        self.avatar = dictUser["avatar"] as? String
+        self.blogNum = dictUser["job"] as? Int
+        self.defaultAvatar = dictUser["pay"] as? String
+        self.email = dictUser["email"] as? String
+        self.firstName = dictUser["firstName"] as? String
+        self.id = dictUser["id"] as? Int
+        self.identify = dictUser["identify"] as? String
+        self.income = dictUser["income"] as? Int
+        self.ingot = dictUser["ingot"] as? Int
+        self.job = dictUser["job"] as? Int
+        self.key = dictUser["key"] as? String
+        self.lastName = dictUser["lastName"] as? String
+        self.lastTime = dictUser["lastTime"] as? Int32
+        self.lvl = dictUser["lvl"] as? Int
+        self.nickName = dictUser["nickName"] as? String
+        self.otherUser = dictUser["otherUser"] as? Bool
+        self.pay = dictUser["pay"] as? Int
+        self.qq = dictUser["qq"] as? String
+        self.questionNum = dictUser["questionNum"] as? Int
+        self.redeem = dictUser["redeem"] as? Int
+        self.redeemRatio = dictUser["redeemRatio"] as? Float
+        self.redeemed = dictUser["redeemed"] as? Int
+        self.regTime = dictUser["regTime"] as? Int32
+        self.score = dictUser["score"] as? Int
+        self.sex = dictUser["sex"] as? String
+        self.signature = dictUser["signature"] as? String
+        self.status = dictUser["status"] as? Int
+        self.used = dictUser["used"] as? Int
+        self.username = dictUser["username"] as? String
     }
 }

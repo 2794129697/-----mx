@@ -12,8 +12,8 @@ import Foundation
 import UIKit
 
 protocol ProductHeadViewDelegate{
-    func productHeadViewShowItem(channel:Channel)
-    func historyViewShowItem(channel:Array<Channel>!)
+    func productHeadViewShowItem(channel:Vedio)
+    func historyViewShowItem(channel:Array<Vedio>!)
 }
 
 
@@ -24,7 +24,7 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
     @IBOutlet weak var bnFav: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    static var recommendList:Array<Channel>?
+    static var recommendList:Array<Vedio>?
     
     @IBAction func bnOfflineClicked(sender: UIButton) {
         
@@ -65,11 +65,11 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
             if HttpManagement.HttpResponseCodeCheck(code, viewController: viewCon){
                 var dict = bdict["data"] as! NSDictionary
                 var c_array = dict["data"] as! NSArray
-                var channelList:Array<Channel> = []
+                var channelList:Array<Vedio> = []
                 if c_array.count > 0 {
                     for dict in c_array{
                         //println(dict["video"])
-                        var channel = Channel(dictChannel: dict["video"] as! NSDictionary)
+                        var channel = Vedio(dictVedio: dict["video"] as! NSDictionary)
                         channelList.append(channel)
                     }
                     self.delegate?.historyViewShowItem(channelList)
@@ -113,7 +113,7 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
     func xdddgg(af:UITapGestureRecognizer){
         println("xdfsd")
     }
-    func loadImage(list:Array<Channel>){
+    func loadImage(list:Array<Vedio>){
         self.pageControl.numberOfPages = list.count
         //加载图片
         var imgViewY:CGFloat = 0
@@ -124,7 +124,7 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
         println(self.scrollView.bounds.height)
         
         for(var i:Int = 0;i<list.count;i++){
-            var movePo:Channel = list[i]
+            var movePo:Vedio = list[i]
             
             var imgurl = movePo.defaultCover
             if imgurl == nil {
@@ -162,10 +162,10 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
     
     func showInfo(sender:UIButton){
         println("dididi")
-        //var channel:Channel = sender.valueForKey("channelobj") as! Channel
+        //var channel:Vedio = sender.valueForKey("channelobj") as! Vedio
         //println(channel)
         var id:Int = sender.tag
-        var channel:Channel = ProductHeadView.recommendList![id]
+        var channel:Vedio = ProductHeadView.recommendList![id]
         println(channel.name)
         self.delegate?.productHeadViewShowItem(channel)
     }
@@ -201,7 +201,7 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
         //println("1111self.recommendList== nil is \(ProductHeadView.recommendList == nil)")
         if ProductHeadView.recommendList == nil {
             ProductHeadView.recommendList = []
-            var url = "http://www.icoolxue.com/album/recommend/8"
+            var url = "http://www.icoolxue.com/album/top/10"
             HttpManagement.requestttt(url, method: "GET",bodyParam: nil,headParam:nil) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
                 if repsone.statusCode == 200 {
                     var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
@@ -209,7 +209,7 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
                     var c_array = bdict["data"] as! NSArray
                     if c_array.count > 0 {
                         for dict in c_array{
-                            var channel = Channel(dictChannel: dict as! NSDictionary)
+                            var channel = Vedio(dictVedio: dict as! NSDictionary)
                             ProductHeadView.recommendList!.append(channel)
                         }
                         self.loadImage(ProductHeadView.recommendList!)
@@ -230,7 +230,7 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
 //                    var c_array = bdict["data"] as! NSArray
 //                    if c_array.count > 0 {
 //                        for dict in c_array{
-//                            var channel = Channel(dictChannel: dict as! NSDictionary)
+//                            var channel = Vedio(dictVedio: dict as! NSDictionary)
 //                            ProductHeadView.recommendList!.append(channel)
 //                        }
 //                        self.loadImage(ProductHeadView.recommendList!)

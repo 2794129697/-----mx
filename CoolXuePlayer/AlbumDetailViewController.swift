@@ -9,11 +9,11 @@
 import UIKit
 
 class AlbumDetailViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-    var channel:Channel?
+    var channel:Vedio?
 
     @IBOutlet weak var productTableView: UITableView!
     
-    var channelList:Array<Channel> = []
+    var channelList:Array<Vedio> = []
     override func viewDidLoad() {
         super.viewDidLoad()
         var nib = UINib(nibName: "VedioListTabVCell", bundle: nil)
@@ -24,7 +24,7 @@ class AlbumDetailViewController: UIViewController,UITableViewDataSource,UITableV
         self.productTableView.rowHeight = UITableViewAutomaticDimension
         self.productTableView.delegate = self
         self.productTableView.dataSource = self
-        self.getChannelData()
+        self.getAlbumListData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,10 +46,11 @@ class AlbumDetailViewController: UIViewController,UITableViewDataSource,UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("VedioListTabVCellID", forIndexPath: indexPath) as? VedioListTabVCell
-        var vedio = self.channelList[indexPath.row] as Channel
+        var vedio = self.channelList[indexPath.row] as Vedio
         cell!.nameLabel.text = vedio.name
         cell!.authorLabel.text = "作者："+vedio.author
-        cell!.palyTimesLabel.text = "播放次数：7878"
+        cell!.palyTimesLabel.text = "播放次数：\(vedio.playTimes)"
+        cell!.playCostLabel.text = "爱苦逼：\(vedio.playCost)"
         var imgurl:NSURL = NSURL(string: "")!
         if vedio.defaultCover.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) != 0 {
             imgurl = NSURL(string:vedio.defaultCover)!
@@ -67,14 +68,12 @@ class AlbumDetailViewController: UIViewController,UITableViewDataSource,UITableV
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("xxxxxxListOfAlbumSegueId")
-        var channel:Channel = self.channelList[indexPath.row]
-        self.performSegueWithIdentifier("ListOfAlbumSegueId", sender: channel)
-        //self.navigationController?.pushViewController(LoginUITabBarController(), animated: false)
-        //self.navigationController?.tabBarController = LoginUITabBarController()
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        var channel:Vedio = self.channelList[indexPath.row]
+        self.performSegueWithIdentifier("ToVedioListVC", sender: channel)
     }
     
-    func getChannelData(){
+    func getAlbumListData(){
         var url = "http://www.icoolxue.com/album/related/"+(self.channel!.affix)+"/10"
         HttpManagement.requestttt(url, method: "GET",bodyParam: nil,headParam:nil) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
             var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
@@ -84,7 +83,7 @@ class AlbumDetailViewController: UIViewController,UITableViewDataSource,UITableV
                 var c_array = bdict["data"] as! NSArray
                 if c_array.count > 0 {
                     for dict in c_array{
-                        var channel = Channel(dictChannel: dict as! NSDictionary)
+                        var channel = Vedio(dictVedio: dict as! NSDictionary)
                         self.channelList.append(channel)
                     }
                     self.productTableView.reloadData()
@@ -104,7 +103,7 @@ class AlbumDetailViewController: UIViewController,UITableViewDataSource,UITableV
 //                    var c_array = bdict["data"] as! NSArray
 //                    if c_array.count > 0 {
 //                        for dict in c_array{
-//                            var channel = Channel(dictChannel: dict as! NSDictionary)
+//                            var channel = Vedio(dictVedio: dict as! NSDictionary)
 //                            self.channelList.append(channel)
 //                        }
 //                        self.productTableView.reloadData()
@@ -114,9 +113,11 @@ class AlbumDetailViewController: UIViewController,UITableViewDataSource,UITableV
     }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if sender?.isKindOfClass(Channel) == true {
-            var adController:ListOfAlbumViewController = segue.destinationViewController as! ListOfAlbumViewController
-            adController.channel = sender! as? Channel
+        if segue.identifier == "ToVedioListVC" {
+            if sender?.isKindOfClass(Vedio) == true {
+                var adController:VedioListVC = segue.destinationViewController as! VedioListVC
+                adController.channel = sender! as? Vedio
+            }
         }
     }
 
