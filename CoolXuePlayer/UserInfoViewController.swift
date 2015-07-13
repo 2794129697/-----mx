@@ -9,21 +9,24 @@
 import UIKit
 
 class UserInfoViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UserInfoHeadViewDelegate {
+    var userInfo:User = User()
     @IBOutlet weak var collectionView: UICollectionView!
     func loginOrLoginOut() {
         self.performSegueWithIdentifier("VedioViewToLogin", sender: nil)
     }
     var items:Array<NSDictionary> = [
-        ["name":"本地视频","info":"共0个"],
-        ["name":"我的收藏","info":"共0个"],
+        //["name":"本地视频","info":"共0个"],
+        //["name":"我的收藏","info":"共0个"],
         ["name":"播放历史","info":"共0个"],
-        ["name":"设置","info":"系统设置"]
+        //["name":"设置","info":"系统设置"]
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        //self.getUserInfo("http://www.icoolxue.com/account/my")
+        if LoginTool.isLogin == true {
+            self.getUserInfo("http://www.icoolxue.com/account/my")
+        }
     }
     
     func getUserInfo(url:String){
@@ -33,6 +36,7 @@ class UserInfoViewController: UIViewController,UICollectionViewDataSource,UIColl
             var code:Int = bdict["code"] as! Int
             if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
                 var dict = bdict["data"] as! NSDictionary
+                self.userInfo = User(dictUser: dict)
                println(dict)
             }
         }
@@ -60,7 +64,8 @@ class UserInfoViewController: UIViewController,UICollectionViewDataSource,UIColl
             if LoginTool.isNeedUserLogin {
                 headerView.userNameLabel.text = "点击登录"
             }else{
-                headerView.userNameLabel.text = "瑰丽呃"
+                headerView.userNameLabel.text = self.userInfo.nickName
+                
             }
             reusableview = headerView;
         }
@@ -72,7 +77,7 @@ class UserInfoViewController: UIViewController,UICollectionViewDataSource,UIColl
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("xxx")
+        self.performSegueWithIdentifier("ToHistoryVC", sender: nil)
     }
     
     

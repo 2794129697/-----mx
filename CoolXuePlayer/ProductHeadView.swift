@@ -16,7 +16,6 @@ protocol ProductHeadViewDelegate{
     func historyViewShowItem(channel:Array<Vedio>!)
 }
 
-
 class ProductHeadView:UIView,UIScrollViewDelegate{
     var delegate:ProductHeadViewDelegate!
     @IBOutlet weak var bnHistory: UIButton!
@@ -24,7 +23,8 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
     @IBOutlet weak var bnFav: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    static var recommendList:Array<Vedio>?
+    static var topAlbumList:Array<Vedio>?
+    static var headViews:Array<ScrollContentView> = []
     
     @IBAction func bnOfflineClicked(sender: UIButton) {
         
@@ -35,8 +35,6 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
     }
 
     @IBAction func bnHistoryClicked(sender: UIButton) {
-//        var url = "http://www.icoolxue.com/video/log/my/1/10"
-//        self.getHistoryData(url)
         self.delegate?.historyViewShowItem(nil)
     }
     
@@ -54,29 +52,6 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
         }while !res.isKindOfClass(AppDelegate)
         return viewCon!
     }
-    
-    func getHistoryData(url:String){
-        HttpManagement.requestttt(url, method: "GET",bodyParam: nil,headParam:nil) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
-            var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
-            //println(bdict)
-            var code:Int = bdict["code"] as! Int
-             var viewCon:ProductViewController = self.getViewController()
-            println(viewCon)
-            if HttpManagement.HttpResponseCodeCheck(code, viewController: viewCon){
-                var dict = bdict["data"] as! NSDictionary
-                var c_array = dict["data"] as! NSArray
-                var channelList:Array<Vedio> = []
-                if c_array.count > 0 {
-                    for dict in c_array{
-                        //println(dict["video"])
-                        var channel = Vedio(dictVedio: dict["video"] as! NSDictionary)
-                        channelList.append(channel)
-                    }
-                    self.delegate?.historyViewShowItem(channelList)
-                }
-            }
-        }
-    }
 
     //用户拖动时一直会调用
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -89,7 +64,6 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
     //开始拖拽时调用
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         //println("scrollViewWillBeginDragging")
-
     }
     
     //拖拽结束时调用
@@ -108,11 +82,9 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
         scrollView.indicatorStyle = UIScrollViewIndicatorStyle.Default
         self.scrollView.delegate = self
         //获取数据
-        getRecommendData()
+        self.getTopAlbumData()
     }
-    func xdddgg(af:UITapGestureRecognizer){
-        println("xdfsd")
-    }
+
     func loadImage(list:Array<Vedio>){
         self.pageControl.numberOfPages = list.count
         //加载图片
@@ -120,8 +92,6 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
         var imgViewW:CGFloat = self.scrollView.frame.width
         var imgViewH:CGFloat = self.scrollView.frame.height
         var img_show_w:CGFloat = 124
-        println(self.scrollView.frame.height)
-        println(self.scrollView.bounds.height)
         
         for(var i:Int = 0;i<list.count;i++){
             var movePo:Vedio = list[i]
@@ -131,42 +101,50 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
                 imgurl = movePo.cover
             }
             
-            var xibView:ScrollContentView = ScrollContentView.scrollContentView
-            xibView.userInteractionEnabled = true
-            var uig = UITapGestureRecognizer(target: self, action: "xdddgg")
-            xibView.addGestureRecognizer(uig)
+            var xibView:ScrollContentView?
+            if ProductHeadView.headViews.count > 0 && i + 1 <= ProductHeadView.headViews.count {
+                xibView = ProductHeadView.headViews[i]
+            }
+            if xibView == nil {
+                xibView = ScrollContentView.scrollContentView
+                ProductHeadView.headViews.append(xibView!)
+                self.scrollView.addSubview(xibView!)
+            }
+            xibView!.userInteractionEnabled = true
+
             var imgViewX:CGFloat = imgViewW * CGFloat(i)
-            xibView.frame = CGRectMake(imgViewX, imgViewY,imgViewW, imgViewH)
-            xibView.imageView.sd_setImageWithURL(NSURL(string: imgurl), completed: { (image:UIImage!, error:NSError!, cacheType:SDImageCacheType, url:NSURL!) -> Void in
+            xibView!.frame = CGRectMake(imgViewX, imgViewY,imgViewW, imgViewH)
+            xibView!.imageView.sd_setImageWithURL(NSURL(string: imgurl), completed: { (image:UIImage!, error:NSError!, cacheType:SDImageCacheType, url:NSURL!) -> Void in
                         //println(image.size)
                     })
 //            //将图像变圆形
-//            xibView.imageView.layer.cornerRadius = 100/2
-//            xibView.imageView.clipsToBounds=true
+//            xibView!.imageView.layer.cornerRadius = 100/2
+//            xibView!.imageView.clipsToBounds=true
 
-            xibView.nameLabel.text = movePo.name
-            self.scrollView.addSubview(xibView)
+//            //图片模糊
+//            var blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+//            var blurView = UIVisualEffectView(effect: blurEffect)
+//            blurView.frame = xibView.imageView.bounds
+//            xibView!.imageView.addSubview(blurView)
+            
+            
+            xibView!.nameLabel.text = movePo.name
+            
             
             var bn:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
             //bn.setTitle("点击看看", forState: UIControlState.Normal)
-            bn.frame = xibView.frame
-            bn.addTarget(self, action: Selector("showInfo:"), forControlEvents: UIControlEvents.TouchUpInside)
-            //bn.setValue(movePo, forUndefinedKey: "channelobj")
-            //bn.setValue(movePo, forKey: "channelobj")
+            bn.frame = xibView!.frame
+            bn.addTarget(self, action: Selector("showAlbumInfo:"), forControlEvents: UIControlEvents.TouchUpInside)
             bn.tag = i
             self.scrollView.addSubview(bn)
-            
         }
         scrollView.contentSize = CGSize(width: imgViewW*CGFloat(list.count), height: imgViewH)
     }
     
-    func showInfo(sender:UIButton){
-        println("dididi")
-        //var channel:Vedio = sender.valueForKey("channelobj") as! Vedio
-        //println(channel)
+    func showAlbumInfo(sender:UIButton){
+        println("showAlbumInfo")
         var id:Int = sender.tag
-        var channel:Vedio = ProductHeadView.recommendList![id]
-        println(channel.name)
+        var channel:Vedio = ProductHeadView.topAlbumList![id]
         self.delegate?.productHeadViewShowItem(channel)
     }
     
@@ -197,10 +175,19 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
 //        }
 //    }
     
-    func getRecommendData(){
+    func getTopAlbumData(){
         //println("1111self.recommendList== nil is \(ProductHeadView.recommendList == nil)")
-        if ProductHeadView.recommendList == nil {
-            ProductHeadView.recommendList = []
+        if ProductHeadView.topAlbumList == nil {
+            ProductHeadView.topAlbumList = []
+            
+            var topAlbumList:Array<Vedio>! = self.loadListLocal("IndexTopAlbumList")
+            if topAlbumList != nil && topAlbumList.count > 0 {
+                ProductHeadView.topAlbumList = topAlbumList
+            }
+            if ProductHeadView.topAlbumList!.count > 0 {
+                self.loadImage(ProductHeadView.topAlbumList!)
+            }
+
             var url = "http://www.icoolxue.com/album/top/10"
             HttpManagement.requestttt(url, method: "GET",bodyParam: nil,headParam:nil) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
                 if repsone.statusCode == 200 {
@@ -208,39 +195,45 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
                     //println(bdict)
                     var c_array = bdict["data"] as! NSArray
                     if c_array.count > 0 {
+                        ProductHeadView.topAlbumList?.removeAll(keepCapacity: true)
                         for dict in c_array{
-                            var channel = Vedio(dictVedio: dict as! NSDictionary)
-                            ProductHeadView.recommendList!.append(channel)
+                            var album = Vedio(dictVedio: dict as! NSDictionary)
+                            ProductHeadView.topAlbumList!.append(album)
                         }
-                        self.loadImage(ProductHeadView.recommendList!)
+                        self.loadImage(ProductHeadView.topAlbumList!)
+                        //将文件保存到本地(暂时理解为加压保存，使用时需解压)
+                        var path = NSHomeDirectory()+"/Documents/IndexTopAlbumList"
+                        NSKeyedArchiver.archiveRootObject(data, toFile: path)
                     }
                 }
             }
-            
-//            var channel_url = "http://www.icoolxue.com/album/recommend/8"
-//            var url = NSURL(string: channel_url)
-//            var request = NSURLRequest(URL: url!)
-//            var mainQueue = NSOperationQueue.mainQueue()
-//            
-//            NSURLConnection.sendAsynchronousRequest(request,queue: mainQueue, completionHandler: { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
-//                var httpResponse = response as! NSHTTPURLResponse
-//                if httpResponse.statusCode == 200 {
-//                    var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
-//                    //println(bdict)
-//                    var c_array = bdict["data"] as! NSArray
-//                    if c_array.count > 0 {
-//                        for dict in c_array{
-//                            var channel = Vedio(dictVedio: dict as! NSDictionary)
-//                            ProductHeadView.recommendList!.append(channel)
-//                        }
-//                        self.loadImage(ProductHeadView.recommendList!)
-//                    }
-//                }
-//
-//            })
         }
     }
     
-    
-    
+    func loadListLocal(localFileName:String)->Array<Vedio>{
+        var list:Array<Vedio> = []
+        var path:String = NSHomeDirectory()+"/Documents/"+localFileName
+        println("localFilePath=\n\(path)")
+        //判断本地是否存在该文件
+        var isSongExists = NSFileManager.defaultManager().fileExistsAtPath(path)
+        println("isFileExists = \(isSongExists)\n")
+        
+        //read local file
+        if isSongExists{
+            var data : NSData! = NSData(contentsOfFile: path)!
+            //解压数据
+            data = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as! NSData
+            if data != nil {
+                var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
+                var c_array = bdict["data"] as! NSArray
+                if c_array.count > 0 {
+                    for dict in c_array{
+                        var channel = Vedio(dictVedio: dict as! NSDictionary)
+                        list.append(channel)
+                    }
+                }
+            }
+        }
+        return list
+    }
 }
