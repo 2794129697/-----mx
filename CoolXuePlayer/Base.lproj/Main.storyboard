@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -539,7 +538,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMq-ho-gc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4054" y="1706"/>
+            <point key="canvasLocation" x="-4164" y="1700"/>
         </scene>
         <!--个人中心-->
         <scene sceneID="XjV-3X-cSe">
@@ -553,113 +552,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cD9-4q-shx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="O2f-ic-dRO">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Oyf-uc-GtX">
-                                    <size key="itemSize" width="140" height="100"/>
-                                    <size key="headerReferenceSize" width="320" height="148"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionId" id="y9e-CE-243" customClass="UserInfoCollectionViewCell" customModule="CoolXuePlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eXW-B1-Adu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="本地视频" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ho3-4T-xqP">
-                                                            <rect key="frame" x="0.0" y="65" width="142" height="35"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cache_press_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="SaJ-1h-ugG">
-                                                            <rect key="frame" x="35" y="8" width="70" height="50"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MqM-aJ-KoF">
-                                                            <rect key="frame" x="29" y="54" width="83" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <outlet property="infoLabel" destination="MqM-aJ-KoF" id="OUb-Hr-I9I"/>
-                                            <outlet property="itemImageView" destination="SaJ-1h-ugG" id="Iod-Mg-TFs"/>
-                                            <outlet property="nameLabel" destination="ho3-4T-xqP" id="dCh-gG-pZ0"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionHeaderView" id="dfP-I1-1dE" customClass="UserInfoHeadView" customModule="CoolXuePlayer" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="148"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cache_p.png" translatesAutoresizingMaskIntoConstraints="NO" id="BjS-p7-1QC">
-                                            <rect key="frame" x="253" y="8" width="94" height="94"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="个人中心" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FnS-ha-vlD">
-                                            <rect key="frame" x="252" y="112" width="96" height="26"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcl-tj-Xtf">
-                                            <rect key="frame" x="184" y="8" width="232" height="132"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="232" id="9zh-rV-OBW"/>
-                                                <constraint firstAttribute="height" constant="132" id="I0w-oV-YIq"/>
-                                            </constraints>
-                                            <state key="normal">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="bnLoginClicked:" destination="dfP-I1-1dE" eventType="touchUpInside" id="7EL-ZM-YP1"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="gcl-tj-Xtf" secondAttribute="centerY" id="007-x3-Fmt"/>
-                                        <constraint firstAttribute="centerX" secondItem="gcl-tj-Xtf" secondAttribute="centerX" id="EB3-nP-Omq"/>
-                                        <constraint firstItem="BjS-p7-1QC" firstAttribute="top" secondItem="dfP-I1-1dE" secondAttribute="topMargin" id="I3W-8V-WMP"/>
-                                        <constraint firstItem="FnS-ha-vlD" firstAttribute="top" secondItem="BjS-p7-1QC" secondAttribute="bottom" constant="10" id="V0P-qM-lzH"/>
-                                        <constraint firstAttribute="centerX" secondItem="FnS-ha-vlD" secondAttribute="centerX" id="XHc-mE-Lwo"/>
-                                        <constraint firstAttribute="bottom" secondItem="FnS-ha-vlD" secondAttribute="bottom" constant="10" id="mRJ-61-CeI"/>
-                                        <constraint firstAttribute="centerX" secondItem="BjS-p7-1QC" secondAttribute="centerX" id="ymN-wR-ybO"/>
-                                    </constraints>
-                                    <connections>
-                                        <outlet property="userImageView" destination="BjS-p7-1QC" id="K2x-JW-Yrf"/>
-                                        <outlet property="userNameLabel" destination="FnS-ha-vlD" id="aIl-Dm-Gaw"/>
-                                    </connections>
-                                </collectionReusableView>
-                            </collectionView>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="cD9-4q-shx" firstAttribute="leading" secondItem="iiY-5o-t7E" secondAttribute="leading" id="IHW-1D-JXT"/>
-                            <constraint firstItem="SfJ-2W-gMD" firstAttribute="top" secondItem="cD9-4q-shx" secondAttribute="bottom" id="Ng9-Ea-PLO"/>
-                            <constraint firstAttribute="trailing" secondItem="cD9-4q-shx" secondAttribute="trailing" id="ifW-V5-XPr"/>
-                            <constraint firstItem="cD9-4q-shx" firstAttribute="top" secondItem="ifC-l0-Bea" secondAttribute="bottom" id="jPD-rx-1bS"/>
+                            <constraint firstItem="O2f-ic-dRO" firstAttribute="leading" secondItem="iiY-5o-t7E" secondAttribute="leading" id="HBj-KA-zxi"/>
+                            <constraint firstAttribute="trailing" secondItem="O2f-ic-dRO" secondAttribute="trailing" id="qmj-GT-8pW"/>
+                            <constraint firstItem="SfJ-2W-gMD" firstAttribute="top" secondItem="O2f-ic-dRO" secondAttribute="bottom" id="tkm-HJ-6CX"/>
+                            <constraint firstItem="O2f-ic-dRO" firstAttribute="top" secondItem="iiY-5o-t7E" secondAttribute="top" constant="64" id="y0N-Lh-5KR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="个人中心" id="cTI-DS-fWw"/>
                     <connections>
-                        <outlet property="collectionView" destination="cD9-4q-shx" id="6QV-1L-Q46"/>
+                        <outlet property="mTableView" destination="O2f-ic-dRO" id="ULC-KB-rga"/>
                         <segue destination="PRf-Ya-Rcr" kind="show" identifier="VedioViewToLogin" id="xaE-Sq-E5D"/>
                         <segue destination="g99-mO-Wdy" kind="show" identifier="ToHistoryVC" id="R9W-LN-wRQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8K-mv-l2C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3775" y="114"/>
+            <point key="canvasLocation" x="-3850" y="789"/>
         </scene>
         <!--分类浏览-->
         <scene sceneID="WsY-8d-VcJ">
@@ -763,7 +677,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZpR-S1-dZS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3775" y="790"/>
+            <point key="canvasLocation" x="-3841" y="92"/>
         </scene>
         <!--搜索-->
         <scene sceneID="u3d-v0-M8M">
@@ -975,7 +889,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uyh-yL-ywG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3277" y="1716"/>
+            <point key="canvasLocation" x="-2933" y="1706"/>
         </scene>
         <!--Root NavigationVC-->
         <scene sceneID="LqB-MQ-Da6">
@@ -1028,7 +942,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSq-HD-4gV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3021" y="797"/>
+            <point key="canvasLocation" x="-3013" y="951"/>
         </scene>
     </scenes>
     <resources>
@@ -1039,17 +953,15 @@
         <image name="bg_paipian_movie.png" width="26" height="14"/>
         <image name="bg_paipian_tv.png" width="26" height="14"/>
         <image name="bg_paipian_varieties.png" width="26" height="14"/>
-        <image name="cache_p.png" width="94" height="94"/>
-        <image name="cache_press_p.png" width="94" height="94"/>
         <image name="loginPress" width="64" height="47"/>
         <image name="registerPress" width="64" height="47"/>
         <image name="videoFullScreenNomal" width="70" height="70"/>
         <image name="videoPlayNomal" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="91l-uM-E5B"/>
         <segue reference="xaE-Sq-E5D"/>
         <segue reference="R9W-LN-wRQ"/>
-        <segue reference="pOQ-kQ-qf9"/>
-        <segue reference="pL8-KW-zlo"/>
+        <segue reference="gpC-0F-nDT"/>
     </inferredMetricsTieBreakers>
 </document>

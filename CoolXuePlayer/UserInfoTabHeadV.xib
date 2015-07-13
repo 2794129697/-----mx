@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UserInfoTabHeadV" customModule="CoolXuePlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="351" height="94"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Buu-VP-gbc">
+                    <rect key="frame" x="84" y="52" width="175" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJx-bI-VHh">
+                    <rect key="frame" x="84" y="25" width="175" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FL-AD-3NG">
+                    <rect key="frame" x="14" y="17" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="bPT-Q3-KeD"/>
+                        <constraint firstAttribute="width" constant="60" id="fGD-ec-Y5m"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="unLoginHead">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="bnUserHeadClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ekc-Z1-AAe"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPR-ng-GIh">
+                    <rect key="frame" x="289" y="35" width="32" height="23"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="8IU-wb-pbr"/>
+                    </constraints>
+                    <state key="normal" image="MYQY_login_emailicon.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="bnUserMessageClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="Pr7-yk-C6f"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Buu-VP-gbc" firstAttribute="leading" secondItem="4FL-AD-3NG" secondAttribute="trailing" constant="10" id="A6M-rn-fUq"/>
+                <constraint firstItem="BJx-bI-VHh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="JeF-mc-Oe5"/>
+                <constraint firstItem="BJx-bI-VHh" firstAttribute="leading" secondItem="4FL-AD-3NG" secondAttribute="trailing" constant="10" id="M1h-qm-DaY"/>
+                <constraint firstItem="ZPR-ng-GIh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="NOR-kn-2id"/>
+                <constraint firstAttribute="bottom" secondItem="ZPR-ng-GIh" secondAttribute="bottom" constant="32" id="WMB-UF-6DI"/>
+                <constraint firstItem="4FL-AD-3NG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="aRa-bi-MlC"/>
+                <constraint firstItem="ZPR-ng-GIh" firstAttribute="leading" secondItem="Buu-VP-gbc" secondAttribute="trailing" constant="30" id="cxc-yE-FUO"/>
+                <constraint firstItem="4FL-AD-3NG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="eLa-lp-AG4"/>
+                <constraint firstAttribute="bottom" secondItem="4FL-AD-3NG" secondAttribute="bottom" constant="17" id="fSH-uj-RIM"/>
+                <constraint firstItem="ZPR-ng-GIh" firstAttribute="leading" secondItem="BJx-bI-VHh" secondAttribute="trailing" constant="30" id="g7O-ND-MCH"/>
+                <constraint firstAttribute="centerY" secondItem="ZPR-ng-GIh" secondAttribute="centerY" id="jar-29-wil"/>
+                <constraint firstAttribute="trailing" secondItem="ZPR-ng-GIh" secondAttribute="trailing" constant="30" id="qdB-it-39m"/>
+                <constraint firstItem="Buu-VP-gbc" firstAttribute="top" secondItem="BJx-bI-VHh" secondAttribute="bottom" constant="10" id="w8C-3Q-TSA"/>
+                <constraint firstAttribute="bottom" secondItem="Buu-VP-gbc" secondAttribute="bottom" constant="17" id="wqy-vc-LG1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="wqy-vc-LG1"/>
+                    <exclude reference="NOR-kn-2id"/>
+                    <exclude reference="WMB-UF-6DI"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="bnUserHead" destination="4FL-AD-3NG" id="TgP-ya-hwP"/>
+                <outlet property="bnUserMessage" destination="ZPR-ng-GIh" id="0TY-EW-Cw4"/>
+                <outlet property="userNameLabel" destination="BJx-bI-VHh" id="rEK-pf-o08"/>
+                <outlet property="userScoreLabel" destination="Buu-VP-gbc" id="nSN-Zw-kQW"/>
+            </connections>
+            <point key="canvasLocation" x="236.5" y="-315"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="MYQY_login_emailicon.png" width="32" height="23"/>
+        <image name="unLoginHead" width="60" height="60"/>
+    </resources>
+</document>

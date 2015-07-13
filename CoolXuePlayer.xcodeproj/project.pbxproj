@@ -64,7 +64,6 @@
 		4D4EF5771B181F050053A829 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4EF5751B181F050053A829 /* LaunchScreen.xib */; };
 		4D4EF5831B181F050053A829 /* CoolXuePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EF5821B181F050053A829 /* CoolXuePlayerTests.swift */; };
 		4D531E181B5126E700CFC8C4 /* IJReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D531E171B5126E700CFC8C4 /* IJReachability.swift */; };
-		4D5D9DA11B4BC3D7009FD4A5 /* UserInfoHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D9DA01B4BC3D7009FD4A5 /* UserInfoHeadView.swift */; };
 		4D5EC65A1B4237A600EC70C2 /* rootNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5EC6591B4237A600EC70C2 /* rootNavigationVC.swift */; };
 		4D5EC6621B42841700EC70C2 /* iqiyiSearchLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D5EC6611B42841700EC70C2 /* iqiyiSearchLogo.png */; };
 		4D5EC6641B42879900EC70C2 /* searchresult_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D5EC6631B42879900EC70C2 /* searchresult_bg.png */; };
@@ -72,6 +71,7 @@
 		4D64B3A51B457FE8004A125F /* defx.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D64B3A41B457FE8004A125F /* defx.png */; };
 		4D65E1031B4BD9A500F67448 /* IndexTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65E1011B4BD9A500F67448 /* IndexTVCell.swift */; };
 		4D65E1041B4BD9A500F67448 /* IndexTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D65E1021B4BD9A500F67448 /* IndexTVCell.xib */; };
+		4D663E301B54075600147DA7 /* MYQY_login_emailicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D663E2F1B54075600147DA7 /* MYQY_login_emailicon.png */; };
 		4D7C4C971B32689B0030FD2E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C4C961B32689B0030FD2E /* CategoryViewController.swift */; };
 		4D7C4C9D1B3283DF0030FD2E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C4C9C1B3283DF0030FD2E /* Category.swift */; };
 		4D7C4CA11B3288F70030FD2E /* CategorySub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7C4CA01B3288F70030FD2E /* CategorySub.swift */; };
@@ -88,6 +88,10 @@
 		4DAE036F1B4AE07E002AE8EA /* LoginTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAE036E1B4AE07E002AE8EA /* LoginTool.swift */; };
 		4DD7C1661B29C26800620A65 /* LoadMoreFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DD7C1651B29C26800620A65 /* LoadMoreFooterView.xib */; };
 		4DD7C1681B29C3C200620A65 /* LoadMoreFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD7C1671B29C3C200620A65 /* LoadMoreFooterView.swift */; };
+		4DFAED011B53669600B49F15 /* UserInfoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFAECFF1B53669600B49F15 /* UserInfoTVCell.swift */; };
+		4DFAED021B53669600B49F15 /* UserInfoTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFAED001B53669600B49F15 /* UserInfoTVCell.xib */; };
+		4DFAED041B53B3E000B49F15 /* UserInfoTabHeadV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFAED031B53B3E000B49F15 /* UserInfoTabHeadV.swift */; };
+		4DFAED061B53B3FC00B49F15 /* UserInfoTabHeadV.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFAED051B53B3FC00B49F15 /* UserInfoTabHeadV.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,7 +164,7 @@
 		4D3CDF511B1C820D005494A6 /* ProductHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductHeadView.swift; sourceTree = "<group>"; };
 		4D3CDF531B1C8BC5005494A6 /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		4D413C171B1F24FF00828C56 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		4D413C191B1F256700828C56 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		4D413C191B1F256700828C56 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		4D413C1B1B1F2C4300828C56 /* VedioList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VedioList.swift; sourceTree = "<group>"; };
 		4D413C1E1B1F389100828C56 /* VedioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VedioPlayerViewController.swift; sourceTree = "<group>"; };
 		4D4178631B439EC9000895FD /* bg_paipian_cartoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_paipian_cartoon.png; sourceTree = "<group>"; };
@@ -181,7 +185,6 @@
 		4D4EF5811B181F050053A829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D4EF5821B181F050053A829 /* CoolXuePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolXuePlayerTests.swift; sourceTree = "<group>"; };
 		4D531E171B5126E700CFC8C4 /* IJReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IJReachability.swift; sourceTree = "<group>"; };
-		4D5D9DA01B4BC3D7009FD4A5 /* UserInfoHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoHeadView.swift; sourceTree = "<group>"; };
 		4D5EC6591B4237A600EC70C2 /* rootNavigationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rootNavigationVC.swift; sourceTree = "<group>"; };
 		4D5EC6611B42841700EC70C2 /* iqiyiSearchLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iqiyiSearchLogo.png; sourceTree = "<group>"; };
 		4D5EC6631B42879900EC70C2 /* searchresult_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchresult_bg.png; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 		4D64B3A41B457FE8004A125F /* defx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defx.png; sourceTree = "<group>"; };
 		4D65E1011B4BD9A500F67448 /* IndexTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexTVCell.swift; sourceTree = "<group>"; };
 		4D65E1021B4BD9A500F67448 /* IndexTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexTVCell.xib; sourceTree = "<group>"; };
+		4D663E2F1B54075600147DA7 /* MYQY_login_emailicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MYQY_login_emailicon.png; sourceTree = "<group>"; };
 		4D7C4C961B32689B0030FD2E /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		4D7C4C9C1B3283DF0030FD2E /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		4D7C4CA01B3288F70030FD2E /* CategorySub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySub.swift; sourceTree = "<group>"; };
@@ -205,6 +209,10 @@
 		4DAE036E1B4AE07E002AE8EA /* LoginTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTool.swift; sourceTree = "<group>"; };
 		4DD7C1651B29C26800620A65 /* LoadMoreFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreFooterView.xib; sourceTree = "<group>"; };
 		4DD7C1671B29C3C200620A65 /* LoadMoreFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreFooterView.swift; sourceTree = "<group>"; };
+		4DFAECFF1B53669600B49F15 /* UserInfoTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTVCell.swift; sourceTree = "<group>"; };
+		4DFAED001B53669600B49F15 /* UserInfoTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoTVCell.xib; sourceTree = "<group>"; };
+		4DFAED031B53B3E000B49F15 /* UserInfoTabHeadV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTabHeadV.swift; sourceTree = "<group>"; };
+		4DFAED051B53B3FC00B49F15 /* UserInfoTabHeadV.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoTabHeadV.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +301,7 @@
 		4D3CCD201B1843B0009323F0 /* Resoures */ = {
 			isa = PBXGroup;
 			children = (
+				4D663E2F1B54075600147DA7 /* MYQY_login_emailicon.png */,
 				4D64B3A41B457FE8004A125F /* defx.png */,
 				4D64B39E1B457B6C004A125F /* DailyNews_Default.png */,
 				4D41786B1B43E7A5000895FD /* albumCell_ugc_icon.png */,
@@ -540,7 +549,10 @@
 		4D9EF30F1B4858010089DF29 /* userInfo */ = {
 			isa = PBXGroup;
 			children = (
-				4D5D9DA01B4BC3D7009FD4A5 /* UserInfoHeadView.swift */,
+				4DFAECFF1B53669600B49F15 /* UserInfoTVCell.swift */,
+				4DFAED001B53669600B49F15 /* UserInfoTVCell.xib */,
+				4DFAED031B53B3E000B49F15 /* UserInfoTabHeadV.swift */,
+				4DFAED051B53B3FC00B49F15 /* UserInfoTabHeadV.xib */,
 				4D9EF3101B4858500089DF29 /* model */,
 				4D413C191B1F256700828C56 /* UserInfoViewController.swift */,
 				4D12DE271B31AED600EDB42D /* UserInfoCollectionViewCell.swift */,
@@ -661,8 +673,10 @@
 				4D4EF5721B181F050053A829 /* Main.storyboard in Resources */,
 				4D31F7971B1C91FA00090517 /* moviepics.plist in Resources */,
 				4D4178671B439EC9000895FD /* bg_paipian_cartoon.png in Resources */,
+				4D663E301B54075600147DA7 /* MYQY_login_emailicon.png in Resources */,
 				4D41786A1B439EC9000895FD /* bg_paipian_varieties.png in Resources */,
 				4D4178691B439EC9000895FD /* bg_paipian_tv.png in Resources */,
+				4DFAED061B53B3FC00B49F15 /* UserInfoTabHeadV.xib in Resources */,
 				4D3CCD8C1B1843B1009323F0 /* cache_press_p.png in Resources */,
 				4D9EF30C1B4828550089DF29 /* HistoryTVCell.xib in Resources */,
 				4D3CCD8D1B1843B1009323F0 /* categoryNormal.png in Resources */,
@@ -671,6 +685,7 @@
 				4D3CCD8B1B1843B1009323F0 /* cache_p.png in Resources */,
 				4D64B3A51B457FE8004A125F /* defx.png in Resources */,
 				4D9EF3081B4828330089DF29 /* VedioListTabVCell.xib in Resources */,
+				4DFAED021B53669600B49F15 /* UserInfoTVCell.xib in Resources */,
 				4D4EF5771B181F050053A829 /* LaunchScreen.xib in Resources */,
 				4D9EF2FC1B47E8400089DF29 /* VedioDescTVCell.xib in Resources */,
 				4D4EF5741B181F050053A829 /* Images.xcassets in Resources */,
@@ -711,6 +726,7 @@
 				4D9EF2F21B47CAFD0089DF29 /* VedioDescTVCell.swift in Sources */,
 				4D1CF90F1B20447400D60BA7 /* HTTPSecurity.swift in Sources */,
 				4D3CCE5B1B185DD6009323F0 /* MKAnnotationView+WebCache.m in Sources */,
+				4DFAED011B53669600B49F15 /* UserInfoTVCell.swift in Sources */,
 				4D3CCE5F1B185DD6009323F0 /* SDWebImageDecoder.m in Sources */,
 				4D2A828C1B200608004F1B7F /* HttpManagement.swift in Sources */,
 				4D413C1F1B1F389100828C56 /* VedioPlayerViewController.swift in Sources */,
@@ -727,9 +743,9 @@
 				4D3A49001B1F007E00BB1BF4 /* AlbumDetailViewController.swift in Sources */,
 				4D3CCE611B185DD6009323F0 /* SDWebImageDownloaderOperation.m in Sources */,
 				4D1CF9071B20441C00D60BA7 /* HTTPRequestSerializer.swift in Sources */,
+				4DFAED041B53B3E000B49F15 /* UserInfoTabHeadV.swift in Sources */,
 				4D413C1C1B1F2C4300828C56 /* VedioList.swift in Sources */,
 				4D22D11A1B52AE8E00FBE6D7 /* D3Notice.swift in Sources */,
-				4D5D9DA11B4BC3D7009FD4A5 /* UserInfoHeadView.swift in Sources */,
 				4D3CCDF61B184CFB009323F0 /* Vedio.swift in Sources */,
 				4DD7C1681B29C3C200620A65 /* LoadMoreFooterView.swift in Sources */,
 				4D3CCE641B185DD6009323F0 /* UIButton+WebCache.m in Sources */,
