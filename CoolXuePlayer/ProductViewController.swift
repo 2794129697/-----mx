@@ -59,7 +59,8 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
         if self.relatedAlbumList.count > 0 || self.newAlbumList.count > 0 {
             self.productTableView.reloadData()
         }
-        if IJReachability.isConnectedToNetwork() {
+        //有网络才请求数据
+        if NetWorkHelper.is_network_ok == true {
             println("Network Connection: Available")
             LoginTool.autoLogin()
             //推荐
@@ -68,71 +69,7 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
             self.getNewAlbumData()
         } else {
             println("Network Connection: Unavailable")
-            showNoticeText("网络不给力请重试！")
-        }
-        let statusType = IJReachability.isConnectedToNetworkOfType()
-        switch statusType {
-        case .WWAN:
-            println("Connection Type: Mobile\n")
-        case .WiFi:
-            println("Connection Type: WiFi\n")
-        case .NotConnected:
-            println("Connection Type: Not connected to the Internet\n")
-        }
-        println("LoginTool.isLogin=\(LoginTool.isLogin)\n")
-        self.checkNetWork()
-    }
-    var hostReachability:Reachability!
-    var internetReachability:Reachability!
-    var wifiReachability:Reachability!
-    func checkNetWork(){
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: kReachabilityChangedNotification, object: nil)
-        
-        self.hostReachability = Reachability(hostName: "www.apple.com")
-        self.hostReachability.startNotifier()
-        
-        self.internetReachability = Reachability.reachabilityForInternetConnection()
-        self.internetReachability.startNotifier()
-        
-        
-        self.wifiReachability = Reachability.reachabilityForLocalWiFi()
-        self.wifiReachability.startNotifier()
-
-    }
-    
-    func reachabilityChanged(note:NSNotification){
-        println("reachabilityChanged")
-        var curReach:Reachability = note.object as! Reachability
-        
-        var netStatus:NetworkStatus = curReach.currentReachabilityStatus()
-        var connectionRequired = curReach.connectionRequired()
-        var statusString = "";
-        println(netStatus.value)
-        if netStatus.value == 0 {
-            showNoticeText("没有可用网络！\(netStatus.value)")
-        }else{
-            showNoticeText("网络已连接！\(netStatus.value)")
-        }
-//        switch (netStatus)
-//        {
-//        case .NotReachable:
-//            statusString = "Access Not Available"+"Text field text for access is not available"
-//            /*
-//            Minor interface detail- connectionRequired may return YES even when the host is unreachable. We cover that up here...
-//            */
-//            connectionRequired = NO;
-//            break;
-//        case .ReachableViaWWAN:
-//            statusString = "Reachable WWAN"
-//            break;
-//            
-//        case .ReachableViaWiFi:
-//            statusString= "Reachable WiFi"
-//            break;
-//        }
-        
-        if (connectionRequired){
-            println("%@, Connection Required"+"Concatenation of status string with connection requirement")
+            D3Notice.showText("没有可用网络！",time:D3Notice.longTime,autoClear:true)
         }
     }
 
@@ -214,6 +151,7 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
         }
         return title
     }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("IndexTVCellID", forIndexPath: indexPath) as? IndexTVCell
         var vedio:Vedio?

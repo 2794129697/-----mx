@@ -24,7 +24,13 @@ class VedioListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
         self.productTableView.delegate = self
         self.productTableView.dataSource = self
-        self.getVedioListData()
+        //有网络才请求数据
+        if NetWorkHelper.is_network_ok == true {
+            self.getVedioListData()
+        } else {
+            println("Network Connection: Unavailable")
+            D3Notice.showText("没有可用网络！",time:D3Notice.longTime,autoClear:true)
+        }
     }
     
     override func didReceiveMemoryWarning() {

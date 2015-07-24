@@ -81,8 +81,11 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
         scrollView.showsVerticalScrollIndicator = false
         scrollView.indicatorStyle = UIScrollViewIndicatorStyle.Default
         self.scrollView.delegate = self
-        //获取数据
-        self.getTopAlbumData()
+        //有网络才请求数据
+        if NetWorkHelper.is_network_ok == true {
+            //获取最热专辑数据
+            self.getTopAlbumData()
+        }
     }
 
     func loadImage(list:Array<Vedio>){
@@ -127,9 +130,7 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
 //            blurView.frame = xibView.imageView.bounds
 //            xibView!.imageView.addSubview(blurView)
             
-            
             xibView!.nameLabel.text = movePo.name
-            
             
             var bn:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
             //bn.setTitle("点击看看", forState: UIControlState.Normal)
@@ -175,6 +176,7 @@ class ProductHeadView:UIView,UIScrollViewDelegate{
 //        }
 //    }
     
+    //获取最热专辑数据
     func getTopAlbumData(){
         //println("1111self.recommendList== nil is \(ProductHeadView.recommendList == nil)")
         if ProductHeadView.topAlbumList == nil {

@@ -24,7 +24,13 @@ class AlbumDetailViewController: UIViewController,UITableViewDataSource,UITableV
         self.productTableView.rowHeight = UITableViewAutomaticDimension
         self.productTableView.delegate = self
         self.productTableView.dataSource = self
-        self.getAlbumListData()
+        //有网络才请求数据
+        if NetWorkHelper.is_network_ok == true {
+            self.getAlbumListData()
+        } else {
+            println("Network Connection: Unavailable")
+            D3Notice.showText("没有可用网络！",time:D3Notice.longTime,autoClear:true)
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -23,76 +23,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="DLd-4q-HOB" customClass="ProductHeadView" customModule="CoolXuePlayer" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="192"/>
+                                    <rect key="frame" x="0.0" y="64" width="600" height="128"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KAq-Be-ozf">
-                                            <rect key="frame" x="0.0" y="128" width="600" height="64"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6K-sJ-kCa">
-                                                    <rect key="frame" x="255" y="10" width="90" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="9ks-EF-LbQ"/>
-                                                        <constraint firstAttribute="width" constant="90" id="d7e-Q3-KA9"/>
-                                                    </constraints>
-                                                    <state key="normal" image="Image2" backgroundImage="bg_paipian_movie.png"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGx-2Q-zRZ">
-                                                    <rect key="frame" x="500" y="10" width="90" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="98O-Yz-PRI"/>
-                                                        <constraint firstAttribute="height" constant="44" id="UHh-Yq-fmm"/>
-                                                    </constraints>
-                                                    <state key="normal" image="Image3" backgroundImage="bg_paipian_tv.png">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTt-Ts-OWZ">
-                                                    <rect key="frame" x="10" y="10" width="90" height="44"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="1M1-M5-j0j"/>
-                                                        <constraint firstAttribute="height" constant="44" id="jNf-yw-7am"/>
-                                                    </constraints>
-                                                    <state key="normal" image="Image4" backgroundImage="bg_paipian_varieties.png"/>
-                                                    <connections>
-                                                        <action selector="bnHistoryClicked:" destination="DLd-4q-HOB" eventType="touchUpInside" id="o41-Mb-H5K"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="A6K-sJ-kCa" secondAttribute="bottom" constant="5" id="2Sb-u6-mi1"/>
-                                                <constraint firstAttribute="centerX" secondItem="A6K-sJ-kCa" secondAttribute="centerX" id="5Fo-Ii-LeQ"/>
-                                                <constraint firstItem="uGx-2Q-zRZ" firstAttribute="top" secondItem="KAq-Be-ozf" secondAttribute="top" constant="5" id="6tH-fV-xef"/>
-                                                <constraint firstItem="A6K-sJ-kCa" firstAttribute="leading" secondItem="cTt-Ts-OWZ" secondAttribute="trailing" constant="186" id="Bqt-pz-fW4"/>
-                                                <constraint firstAttribute="centerY" secondItem="A6K-sJ-kCa" secondAttribute="centerY" id="Gbp-oa-iPt"/>
-                                                <constraint firstItem="A6K-sJ-kCa" firstAttribute="leading" secondItem="KAq-Be-ozf" secondAttribute="leading" constant="296" id="OoD-Dv-XXZ"/>
-                                                <constraint firstAttribute="bottom" secondItem="uGx-2Q-zRZ" secondAttribute="bottom" constant="5" id="QuK-LO-6wD"/>
-                                                <constraint firstItem="cTt-Ts-OWZ" firstAttribute="top" secondItem="KAq-Be-ozf" secondAttribute="top" constant="5" id="Qug-Md-O2k"/>
-                                                <constraint firstItem="A6K-sJ-kCa" firstAttribute="top" secondItem="KAq-Be-ozf" secondAttribute="top" constant="5" id="VbE-sX-iUP"/>
-                                                <constraint firstItem="uGx-2Q-zRZ" firstAttribute="leading" secondItem="A6K-sJ-kCa" secondAttribute="trailing" constant="102" id="fbx-7Z-VO1"/>
-                                                <constraint firstAttribute="centerY" secondItem="uGx-2Q-zRZ" secondAttribute="centerY" id="kAu-K3-CFe"/>
-                                                <constraint firstAttribute="centerY" secondItem="cTt-Ts-OWZ" secondAttribute="centerY" id="kbG-WY-qMP"/>
-                                                <constraint firstItem="uGx-2Q-zRZ" firstAttribute="leading" secondItem="A6K-sJ-kCa" secondAttribute="trailing" constant="102" id="liZ-Mz-VAP"/>
-                                                <constraint firstAttribute="bottom" secondItem="cTt-Ts-OWZ" secondAttribute="bottom" constant="5" id="py7-8r-eOe"/>
-                                                <constraint firstAttribute="trailing" secondItem="uGx-2Q-zRZ" secondAttribute="trailing" constant="10" id="s1L-si-TiX"/>
-                                                <constraint firstItem="cTt-Ts-OWZ" firstAttribute="leading" secondItem="KAq-Be-ozf" secondAttribute="leading" constant="10" id="zH5-hz-O5K"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="Qug-Md-O2k"/>
-                                                    <exclude reference="py7-8r-eOe"/>
-                                                    <exclude reference="2Sb-u6-mi1"/>
-                                                    <exclude reference="Bqt-pz-fW4"/>
-                                                    <exclude reference="OoD-Dv-XXZ"/>
-                                                    <exclude reference="VbE-sX-iUP"/>
-                                                    <exclude reference="6tH-fV-xef"/>
-                                                    <exclude reference="QuK-LO-6wD"/>
-                                                    <exclude reference="fbx-7Z-VO1"/>
-                                                    <exclude reference="liZ-Mz-VAP"/>
-                                                </mask>
-                                            </variation>
-                                        </view>
                                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpq-g3-ne1">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
                                             <constraints>
@@ -107,27 +40,19 @@
                                         </pageControl>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="KAq-Be-ozf" secondAttribute="bottom" id="0DS-dT-RDB"/>
                                         <constraint firstItem="fmL-Ek-kSv" firstAttribute="top" secondItem="DLd-4q-HOB" secondAttribute="top" constant="96" id="Lsg-xS-jEp"/>
                                         <constraint firstAttribute="bottom" secondItem="fmL-Ek-kSv" secondAttribute="bottom" constant="44" id="MLm-9W-jw1"/>
                                         <constraint firstAttribute="trailing" secondItem="fmL-Ek-kSv" secondAttribute="trailing" constant="10" id="QKL-hs-rnh"/>
                                         <constraint firstAttribute="trailing" secondItem="kpq-g3-ne1" secondAttribute="trailing" id="SLe-HE-crN"/>
-                                        <constraint firstItem="KAq-Be-ozf" firstAttribute="leading" secondItem="DLd-4q-HOB" secondAttribute="leading" id="b9Z-zu-478"/>
-                                        <constraint firstItem="KAq-Be-ozf" firstAttribute="top" secondItem="kpq-g3-ne1" secondAttribute="bottom" id="c34-x9-YDL"/>
-                                        <constraint firstItem="KAq-Be-ozf" firstAttribute="top" secondItem="fmL-Ek-kSv" secondAttribute="bottom" constant="4" id="czd-VC-KKc"/>
-                                        <constraint firstAttribute="trailing" secondItem="KAq-Be-ozf" secondAttribute="trailing" id="m2O-7I-u9c"/>
                                         <constraint firstItem="kpq-g3-ne1" firstAttribute="top" secondItem="DLd-4q-HOB" secondAttribute="top" id="rt1-oG-ALs"/>
                                         <constraint firstItem="kpq-g3-ne1" firstAttribute="leading" secondItem="DLd-4q-HOB" secondAttribute="leading" id="xT6-he-V0F"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="czd-VC-KKc"/>
                                             <exclude reference="MLm-9W-jw1"/>
                                         </mask>
                                     </variation>
                                     <connections>
-                                        <outlet property="bnFav" destination="uGx-2Q-zRZ" id="gLD-aP-zRZ"/>
-                                        <outlet property="bnOffline" destination="A6K-sJ-kCa" id="ZMN-RY-aPG"/>
                                         <outlet property="pageControl" destination="fmL-Ek-kSv" id="XvK-nT-i5I"/>
                                         <outlet property="scrollView" destination="kpq-g3-ne1" id="fxn-KK-ICm"/>
                                     </connections>
@@ -506,7 +431,7 @@
         <!--播放历史-->
         <scene sceneID="L6X-di-ln2">
             <objects>
-                <viewController id="g99-mO-Wdy" customClass="HistoryViewController" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="historyView" id="g99-mO-Wdy" customClass="HistoryViewController" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LGb-xq-taR"/>
                         <viewControllerLayoutGuide type="bottom" id="7ej-ML-3Zh"/>
@@ -543,7 +468,7 @@
         <!--个人中心-->
         <scene sceneID="XjV-3X-cSe">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="2Uf-Ew-xmP" customClass="UserInfoViewController" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="2Uf-Ew-xmP" customClass="UserCenterVC" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ifC-l0-Bea"/>
                         <viewControllerLayoutGuide type="bottom" id="SfJ-2W-gMD"/>
@@ -569,11 +494,115 @@
                         <outlet property="mTableView" destination="O2f-ic-dRO" id="ULC-KB-rga"/>
                         <segue destination="PRf-Ya-Rcr" kind="show" identifier="VedioViewToLogin" id="xaE-Sq-E5D"/>
                         <segue destination="g99-mO-Wdy" kind="show" identifier="ToHistoryVC" id="R9W-LN-wRQ"/>
+                        <segue destination="vFr-pZ-aVc" kind="show" identifier="ToAccountInfoVC" id="Dy0-V9-uEX"/>
+                        <segue destination="P65-IQ-gQX" kind="show" identifier="ToFeedbackVC" id="hGa-zd-CKS"/>
+                        <segue destination="euV-ay-K77" kind="show" identifier="ToFavoiteVC" id="GHN-Bb-8JP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8K-mv-l2C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3850" y="789"/>
+        </scene>
+        <!--我的反馈-->
+        <scene sceneID="gu9-tU-33e">
+            <objects>
+                <viewController storyboardIdentifier="feedbackView" id="P65-IQ-gQX" customClass="FeedbackVC" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qgu-yO-bT4"/>
+                        <viewControllerLayoutGuide type="bottom" id="E30-IN-L7J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ipC-cd-DID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ok0-5D-AMa">
+                                <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="我的反馈" id="0rb-DI-I2g">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bbx-2I-xxv">
+                            <connections>
+                                <segue destination="KtU-Di-YqU" kind="push" id="RFv-8W-wfk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="productTableView" destination="Ok0-5D-AMa" id="hG6-ef-XpV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="auA-Ub-7Vk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3027" y="453"/>
+        </scene>
+        <!--提问-->
+        <scene sceneID="9ah-QN-qFn">
+            <objects>
+                <viewController id="KtU-Di-YqU" customClass="FeedbackAddVC" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xzT-i5-b8v"/>
+                        <viewControllerLayoutGuide type="bottom" id="hQ0-WP-xbC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="veF-Qb-MS5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RWg-Bf-Yal">
+                                <rect key="frame" x="45" y="101" width="500" height="300"/>
+                                <color key="backgroundColor" red="0.81568627449999997" green="0.81568627449999997" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLT-xa-rod">
+                                <rect key="frame" x="242" y="477" width="46" height="30"/>
+                                <state key="normal" title="提交">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="bnSubmitFeedback:" destination="KtU-Di-YqU" eventType="touchUpInside" id="8ei-oQ-5J8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="提问" id="OOK-Og-avk"/>
+                    <connections>
+                        <outlet property="contentTextView" destination="RWg-Bf-Yal" id="CkX-1W-NkT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b59-rA-KZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2233" y="453"/>
+        </scene>
+        <!--我的收藏-->
+        <scene sceneID="shU-26-aNb">
+            <objects>
+                <viewController storyboardIdentifier="favoriteView" id="euV-ay-K77" customClass="FavoriteVC" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6PV-0S-VhK"/>
+                        <viewControllerLayoutGuide type="bottom" id="XkM-Yx-WRu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y8t-Uh-JgL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dot-7W-hEo">
+                                <rect key="frame" x="0.0" y="59" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="我的收藏" id="Wm2-Ec-H1N"/>
+                    <connections>
+                        <outlet property="productTableView" destination="dot-7W-hEo" id="3q7-hm-lw2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5wK-Fv-boM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3027" y="1137"/>
         </scene>
         <!--分类浏览-->
         <scene sceneID="WsY-8d-VcJ">
@@ -678,6 +707,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZpR-S1-dZS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3841" y="92"/>
+        </scene>
+        <!--我的账号-->
+        <scene sceneID="os0-yA-eab">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QdD-1Y-86q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vFr-pZ-aVc" customClass="AccountInfoVC" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mKm-pA-sq3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vbk-GK-Ogx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="y9z-qI-vBd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="aue-vW-HnI">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vbk-GK-Ogx" firstAttribute="top" secondItem="aue-vW-HnI" secondAttribute="bottom" id="ELJ-CZ-8zR"/>
+                            <constraint firstItem="aue-vW-HnI" firstAttribute="top" secondItem="mKm-pA-sq3" secondAttribute="bottom" id="dML-c0-65W"/>
+                            <constraint firstItem="aue-vW-HnI" firstAttribute="leading" secondItem="y9z-qI-vBd" secondAttribute="leading" id="pWI-rR-Via"/>
+                            <constraint firstAttribute="trailing" secondItem="aue-vW-HnI" secondAttribute="trailing" id="z7e-EE-DTU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="我的账号" id="X9x-NJ-gmB"/>
+                    <connections>
+                        <outlet property="mTableView" destination="aue-vW-HnI" id="Dox-Q2-OeF"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-3027" y="-235"/>
         </scene>
         <!--搜索-->
         <scene sceneID="u3d-v0-M8M">
@@ -858,6 +921,21 @@
                                     <action selector="loginBnClicked:" destination="xYc-7Q-0dr" eventType="touchUpInside" id="W8F-cT-o39"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXl-VL-e33">
+                                <rect key="frame" x="122" y="307" width="145" height="40"/>
+                                <state key="normal" image="sns_login_qq">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="bnQQLoginClicked:" destination="xYc-7Q-0dr" eventType="touchUpInside" id="EEr-23-YhQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="使用其他方式登录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u62-cG-GPb">
+                                <rect key="frame" x="122" y="275" width="238" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -874,7 +952,7 @@
         <!--LoginUI Tab Bar Controller-->
         <scene sceneID="lch-BK-Gxz">
             <objects>
-                <tabBarController id="PRf-Ya-Rcr" customClass="LoginUITabBarController" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="loginTab" id="PRf-Ya-Rcr" customClass="LoginUITabBarController" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="jb6-Ub-VcC"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="3LZ-B8-AF9">
@@ -889,7 +967,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uyh-yL-ywG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2933" y="1706"/>
+            <point key="canvasLocation" x="-3361" y="1860"/>
         </scene>
         <!--Root NavigationVC-->
         <scene sceneID="LqB-MQ-Da6">
@@ -942,26 +1020,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSq-HD-4gV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3013" y="951"/>
+            <point key="canvasLocation" x="-4729" y="102"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Image2" width="22" height="22"/>
-        <image name="Image3" width="22" height="22"/>
-        <image name="Image4" width="22" height="22"/>
         <image name="albumCell_ugc_icon.png" width="24" height="24"/>
-        <image name="bg_paipian_movie.png" width="26" height="14"/>
-        <image name="bg_paipian_tv.png" width="26" height="14"/>
-        <image name="bg_paipian_varieties.png" width="26" height="14"/>
         <image name="loginPress" width="64" height="47"/>
         <image name="registerPress" width="64" height="47"/>
+        <image name="sns_login_qq" width="145" height="40"/>
         <image name="videoFullScreenNomal" width="70" height="70"/>
         <image name="videoPlayNomal" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="91l-uM-E5B"/>
-        <segue reference="xaE-Sq-E5D"/>
         <segue reference="R9W-LN-wRQ"/>
+        <segue reference="y3h-n8-YH2"/>
         <segue reference="gpC-0F-nDT"/>
+        <segue reference="uiz-UD-gk0"/>
     </inferredMetricsTieBreakers>
 </document>

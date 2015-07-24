@@ -100,6 +100,7 @@ class D3Notice: NSObject {
         clear()
         let frame = CGRectMake(0, 0, 78, 78)
         let mainView = UIView(frame: frame)
+        mainView.tag = self.waitTag
         mainView.layer.cornerRadius = 12
         mainView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.8)
         

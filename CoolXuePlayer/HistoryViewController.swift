@@ -25,7 +25,6 @@ class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var history_url = "http://www.icoolxue.com/video/log/my/1/10"
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("viewDidLoad")
         var nib = UINib(nibName: "HistoryTVCell", bundle: nil)
         self.productTableView.registerNib(nib, forCellReuseIdentifier: "HistoryTVCellID")
         
@@ -43,15 +42,19 @@ class HistoryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
+        //super.viewWillAppear(animated)
         println("viewWillAppear")
-        if LoginTool.isNeedUserLogin == true {
-            var alert:UIAlertView = UIAlertView(title: "提示", message: "亲，请登录！", delegate: self, cancelButtonTitle: "确定")
-            alert.show()
-            self.performSegueWithIdentifier("VedioViewToLogin", sender: nil)
-        }else if LoginTool.isLogin == true {
+//        if LoginTool.isNeedUserLogin == true {
+//            var alert:UIAlertView = UIAlertView(title: "提示", message: "亲，请登录！", delegate: self, cancelButtonTitle: "确定")
+//            alert.show()
+//            self.performSegueWithIdentifier("VedioViewToLogin", sender: nil)
+//        }else if LoginTool.isLogin == true {
+//            self.getHistoryData(self.history_url)
+//        }else if LoginTool.isAutoLogin == false {
+//            LoginTool.autoLogin()
+//        }
+        if LoginTool.isLogin == true {
             self.getHistoryData(self.history_url)
-        }else if LoginTool.isAutoLogin == false {
-            LoginTool.autoLogin()
         }
     }
     override func didReceiveMemoryWarning() {

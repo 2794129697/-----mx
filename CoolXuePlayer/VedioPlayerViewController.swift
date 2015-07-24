@@ -83,11 +83,14 @@ class VedioPlayerViewController: UIViewController,VedioDescTVDelegate {
     }
 
     func playByItem(url:String){
-        println("vedio_url=ln\(url)")
+        println("vedio_url=\n\(url)")
+        D3Notice.wait(D3Notice.longTime,autoClear: false)
         self.bnPlay.enabled = false
         //url = NSBundle.mainBundle().URLForResource("story", withExtension: "mp4")
         self.releaseAVPlayer()
-        currplayeritem = AVPlayerItem(URL: NSURL(string:url))
+        var nurl = NSURL(string:url)
+        nurl?.setResourceValues(["referer":"http://www.icoolxue.com"], error: nil)
+        currplayeritem = AVPlayerItem(URL: nurl)
         myplayer = AVPlayer(playerItem: currplayeritem)
         playerLayer.player = myplayer
         //myplayer?.volume = 0
@@ -133,6 +136,7 @@ class VedioPlayerViewController: UIViewController,VedioDescTVDelegate {
             if tempplayerItem.status == AVPlayerItemStatus.ReadyToPlay {
                 println("play")
                 playerLayer.player.play()
+                D3Notice.clearWait()
                 self.bnPlay.enabled = true
                 bnPlay.setImage(UIImage(named: "videoPauseNomal"), forState: UIControlState.Normal)
                 //播放结束
@@ -152,6 +156,8 @@ class VedioPlayerViewController: UIViewController,VedioDescTVDelegate {
                 })
             } else if tempplayerItem.status == AVPlayerItemStatus.Failed {
                 println("AVPlayerStatusFailed")
+                D3Notice.clearWait()
+                self.showNoticeText("视频播放失败！")
             }
         }
     }
@@ -286,8 +292,8 @@ class VedioPlayerViewController: UIViewController,VedioDescTVDelegate {
             if playerLayer.player.status == AVPlayerStatus.ReadyToPlay {
                 playerLayer.player.pause()
             }
-            playerLayer.player.currentItem.removeObserver(self, forKeyPath: "status")
-            playerLayer.player.currentItem.removeObserver(self, forKeyPath: "loadedTimeRanges")
+            self.currplayeritem!.removeObserver(self, forKeyPath: "status")
+            self.currplayeritem!.removeObserver(self, forKeyPath: "loadedTimeRanges")
             //移除时不确定是否注册了该观察者（目前没有找到判断的方法）
             //NSNotificationCenter.defaultCenter().removeObserver(self, forKeyPath: "AVPlayerItemDidPlayToEndTimeNotification")
         }

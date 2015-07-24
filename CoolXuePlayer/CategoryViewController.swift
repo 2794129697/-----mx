@@ -20,7 +20,13 @@ class CategoryViewController: UIViewController,UITableViewDataSource,UITableView
         self.ACategoryTableView.showsVerticalScrollIndicator = false
         self.BCategoryCollectionView.dataSource = self
         self.BCategoryCollectionView.delegate = self
-        self.getCategoryData()
+        //有网络才请求数据
+        if NetWorkHelper.is_network_ok == true {
+            self.getCategoryData()
+        } else {
+            println("Network Connection: Unavailable")
+            D3Notice.showText("没有可用网络！",time:D3Notice.longTime,autoClear:true)
+        }
     }
     
     func getCategoryData(){

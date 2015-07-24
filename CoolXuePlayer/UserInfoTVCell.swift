@@ -9,8 +9,7 @@
 import UIKit
 
 class UserInfoTVCell: UITableViewCell {
-
-
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     override func awakeFromNib() {

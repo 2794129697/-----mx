@@ -10,11 +10,10 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        //监测设备网络变化
+        NetWorkHelper.registerNetWorkMonitor()
 //        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //        self.window?.backgroundColor = UIColor.blueColor()
 //        self.window?.makeKeyAndVisible()
@@ -42,7 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return TencentOAuth.HandleOpenURL(url)
+    }
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        return TencentOAuth.HandleOpenURL(url)
+    }
 }
 

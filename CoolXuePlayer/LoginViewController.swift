@@ -10,30 +10,16 @@ import UIKit
 import Foundation
 
 class LoginViewController: UIViewController,UIAlertViewDelegate,UITextFieldDelegate{
+    var qqLogin:QQLogin!
+    var qqUserInfo:QQUserInfo!
     @IBOutlet weak var userIdTextField: UITextField!
     @IBOutlet weak var pwdTextField: UITextField!
     var alertView:UIAlertView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.tabBarController?.delegate = self
-        //self.navigationController?.navigationBar.delegate = self
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "fnNavBackClicked")
     }
-    func navigationBar(navigationBar: UINavigationBar, didPopItem item: UINavigationItem) {
-        println("233qa")
-    }
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        println("xx")
-    }
-    func fnNavBackClicked(){
-        if LoginTool.isNeedUserLogin {
-            self.navigationController?.popToRootViewControllerAnimated(true)
-        }else{
-            self.navigationController?.popViewControllerAnimated(true)
-        }
-    }
-    
+
     func showAlertView(tag _tag:Int,title:String,message:String,delegate:UIAlertViewDelegate,cancelButtonTitle:String){
         if alertView == nil {
             alertView = UIAlertView()
@@ -110,6 +96,73 @@ class LoginViewController: UIViewController,UIAlertViewDelegate,UITextFieldDeleg
 //                
 //            }
 //        }
+    }
+    
+    //QQ登录
+    @IBAction func bnQQLoginClicked(sender: UIButton) {
+        if self.qqLogin == nil {
+            self.qqLogin = QQLogin()
+        }
+        println("accessToken=====>\(self.qqLogin.tencentOAuth.accessToken)")
+        println("expirationDate=====>\(self.qqLogin.tencentOAuth.expirationDate)")
+        println("authorizeState=====>\(TencentOAuth.authorizeState)")
+        println("authMode=====>\(self.qqLogin.tencentOAuth.authMode)")
+        //qq授权
+        self.qqLogin.authorize(self.qqAuthorizeCallBack)
+    }
+    
+    //授权回调
+    func qqAuthorizeCallBack(cancelled:Bool,loginSucceed:Bool){
+        println("\nqqAuthorizeCallBack")
+        if loginSucceed {
+            if self.qqLogin.tencentOAuth.accessToken != nil{
+                D3Notice.showText("登录成功",time:D3Notice.longTime,autoClear:true)
+                println("accessToken=\(self.qqLogin.tencentOAuth.accessToken)")//D49FC381ECFDEDA8B72DC8776BC44974
+                println("openId=\(self.qqLogin.tencentOAuth.openId)")//FD70E2CF311CCE980467453A4A26FAF4
+                println("expirationDate=\(self.qqLogin.tencentOAuth.expirationDate)")//2015-08-13 07:03:49 +0000
+                //自己服务登录
+                self.qqServerLogin(self.qqLogin.tencentOAuth.openId,accessToken: self.qqLogin.tencentOAuth.accessToken)
+                self.qqLogin.getUserInfo(self.qqGetUserInfoResponseCallBack)
+            }else{
+                println("登录不成功 没有获取accesstoken");
+            }
+        }else if cancelled {
+            println("QQ用户取消登录")
+            D3Notice.showText("取消登录",time:D3Notice.longTime,autoClear:true)
+        }else{
+            println("QQ登录失败")
+            D3Notice.showText("登录失败",time:D3Notice.longTime,autoClear:true)
+        }
+    }
+    
+    //获取QQ用户信息回调
+    func qqGetUserInfoResponseCallBack(response: APIResponse!){
+        println("\ngetUserInfoResponseCallBack")
+        self.qqUserInfo = QQUserInfo(dictQQUser: response.jsonResponse)
+        println("self.qqUserInfo.nickname=\(self.qqUserInfo.nickname)")
+    }
+    
+    func qqServerLogin(openId:String,accessToken:String){
+        var url = "http://www.icoolxue.com/qq/login"
+        var bodyParam:Dictionary = ["openId":openId,"accessToken":accessToken]
+        HttpManagement.requestttt(url, method: "POST",bodyParam: bodyParam,headParam:nil) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
+            var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
+            println(bdict)
+            var code:Int = bdict["code"] as! Int
+            var userAccount:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
+//                userAccount.setObject(true, forKey: "is_login")
+//                userAccount.setObject(userid,forKey: "uid")
+//                userAccount.setObject(upwd,forKey: "upwd")
+                LoginTool.isLogin = true
+                LoginTool.isNeedUserLogin = false
+                self.showAlertView(tag:1,title: "提示", message: "登录成功！", delegate: self, cancelButtonTitle: "确定")
+            }else{
+//                userAccount.removeObjectForKey("uid")
+//                userAccount.removeObjectForKey("upwd")
+                self.showAlertView(tag:0,title: "提示", message: "登录失败！", delegate: self, cancelButtonTitle: "确定")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
