@@ -301,6 +301,7 @@ class VedioPlayerViewController: UIViewController,VedioDescTVDelegate {
     
     override func viewDidDisappear(animated: Bool) {
         self.releaseAVPlayer()
+        D3Notice.clearWait()
     }
     
     // MARK: - Navigation

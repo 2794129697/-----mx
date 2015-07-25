@@ -15,6 +15,8 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
     @IBOutlet weak var productTableView: UITableView!
     var relatedAlbumList:Array<Vedio> = []
     var newAlbumList:Array<Vedio> = []
+    var cache_relatedAlbum_path = "/Documents/IndexRelatedAlbumList"
+    var cache_newAlbum_path = "/Documents/IndexNewAlbumList"
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
@@ -47,58 +49,33 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
         
         self.productTableView.delegate = self
         self.productTableView.dataSource = self
-
-        var relatedAlbumList:Array<Vedio>! = self.loadListLocal("IndexRelatedAlbumList")
+        
+        var relatedAlbumList:Array<Vedio>! = DataHelper.getVideoList(DataHelper.ReadDate(self.cache_relatedAlbum_path)) as! Array<Vedio>
+        
+        //var relatedAlbumList:Array<Vedio>! = self.loadListLocal("IndexRelatedAlbumList")
         if relatedAlbumList != nil && relatedAlbumList.count > 0 {
             self.relatedAlbumList = relatedAlbumList
         }
-        var newAlbumList:Array<Vedio>! = self.loadListLocal("IndexNewAlbumList")
+        var newAlbumList:Array<Vedio>! = DataHelper.getVideoList(DataHelper.ReadDate(self.cache_newAlbum_path)) as! Array<Vedio>
+        
+        //var newAlbumList:Array<Vedio>! = self.loadListLocal("IndexNewAlbumList")
         if newAlbumList != nil && newAlbumList.count > 0 {
             self.newAlbumList = newAlbumList
-        }
-        if self.relatedAlbumList.count > 0 || self.newAlbumList.count > 0 {
-            self.productTableView.reloadData()
         }
         //有网络才请求数据
         if NetWorkHelper.is_network_ok == true {
             println("Network Connection: Available")
             LoginTool.autoLogin()
             //推荐
-            self.getRelatedAlbumData()
+            //self.getRelatedAlbumData()
             //最新
-            self.getNewAlbumData()
+            //self.getNewAlbumData()
         } else {
             println("Network Connection: Unavailable")
             D3Notice.showText("没有可用网络！",time:D3Notice.longTime,autoClear:true)
         }
     }
 
-    func loadListLocal(localFileName:String)->Array<Vedio>{
-         var list:Array<Vedio> = []
-        var path:String = NSHomeDirectory()+"/Documents/"+localFileName
-        println("localFilePath=\n\(path)")
-        //判断本地是否存在该文件
-        var isSongExists = NSFileManager.defaultManager().fileExistsAtPath(path)
-        println("isFileExists = \(isSongExists)\n")
-        
-        //read local file
-        if isSongExists{
-            var data : NSData! = NSData(contentsOfFile: path)!
-            //解压数据
-            data = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as! NSData
-            if data != nil {
-                var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
-                var c_array = bdict["data"] as! NSArray
-                if c_array.count > 0 {
-                    for dict in c_array{
-                        var channel = Vedio(dictVedio: dict as! NSDictionary)
-                        list.append(channel)
-                    }
-                }
-            }
-        }
-        return list
-    }
     func productHeadViewShowItem(channel: Vedio) {
         //self.performSegueWithIdentifier("AlbumDetailSegueId", sender: channel)
         self.performSegueWithIdentifier("ToVedioListVC", sender: channel)
@@ -196,41 +173,16 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
         var url = "http://www.icoolxue.com/album/recommend/10"
         HttpManagement.requestttt(url, method: "GET",bodyParam: nil,headParam:nil) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
             var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
-            //println(bdict)
             var code:Int = bdict["code"] as! Int
             if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
-                var c_array = bdict["data"] as! NSArray
-                if c_array.count > 0 {
-                    self.relatedAlbumList.removeAll(keepCapacity: true)
-                    for dict in c_array{
-                        var channel = Vedio(dictVedio: dict as! NSDictionary)
-                        self.relatedAlbumList.append(channel)
-                    }
+                self.relatedAlbumList = DataHelper.getVideoList(bdict) as! Array<Vedio>
+                if self.relatedAlbumList.count > 0 {
                     self.productTableView.reloadData()
-                    //将文件保存到本地(暂时理解为加压保存，使用时需解压)
-                    var path = NSHomeDirectory()+"/Documents/IndexRelatedAlbumList"
-                    NSKeyedArchiver.archiveRootObject(data, toFile: path)
+                    //将文件保存到本地
+                    DataHelper.CacheData(self.cache_relatedAlbum_path, data: data)
                 }
             }
         }
-        /*
-        var hm = HttpManagement()
-        hm.requestttt2(url, method: "GET",bodyParam: nil,headParam:nil) { (repsone:NSHTTPURLResponse,data:NSData) -> Void in
-            var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
-            //println(bdict)
-            var code:Int = bdict["code"] as! Int
-            if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
-                var c_array = bdict["data"] as! NSArray
-                if c_array.count > 0 {
-                    for dict in c_array{
-                        var channel = Vedio(dictVedio: dict as! NSDictionary)
-                        self.relatedAlbumList.append(channel)
-                    }
-                    self.productTableView.reloadData()
-                }
-            }
-        }
-        */
     }
     
     func getNewAlbumData(){
@@ -240,17 +192,11 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
             //println(bdict)
             var code:Int = bdict["code"] as! Int
             if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
-                var c_array = bdict["data"] as! NSArray
-                if c_array.count > 0 {
-                    self.newAlbumList.removeAll(keepCapacity: true)
-                    for dict in c_array{
-                        var channel = Vedio(dictVedio: dict as! NSDictionary)
-                        self.newAlbumList.append(channel)
-                    }
+                self.newAlbumList = DataHelper.getVideoList(bdict) as! Array<Vedio>
+                if self.newAlbumList.count > 0 {
                     self.productTableView.reloadData()
-                    //将文件保存到本地(暂时理解为加压保存，使用时需解压)
-                    var path = NSHomeDirectory()+"/Documents/IndexNewAlbumList"
-                    NSKeyedArchiver.archiveRootObject(data, toFile: path)
+                    //将文件保存到本地
+                    DataHelper.CacheData(self.cache_newAlbum_path, data: data)
                 }
             }
         }
@@ -270,6 +216,7 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
             }
         }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
