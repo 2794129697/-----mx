@@ -61,11 +61,11 @@ public class NetWorkHelper:NSObject{
         if netStatus.value == 0 {
             NetWorkHelper.is_network_ok = false
             println("没有可用网络！\(netStatus.value)")
-            D3Notice.showText("没有可用网络！\(netStatus.value)",time:D3Notice.longTime,autoClear:true)
+            D3Notice.showText("没有可用网络！",time:D3Notice.longTime,autoClear:true)
         }else{
             NetWorkHelper.is_network_ok = true
             println("网络已连接！\(netStatus.value)")
-            D3Notice.showText("网络已连接！\(netStatus.value)",time:D3Notice.longTime,autoClear:true)
+            //D3Notice.showText("网络已连接！\(netStatus.value)",time:D3Notice.longTime,autoClear:true)
         }
         switch netStatus.value
         {

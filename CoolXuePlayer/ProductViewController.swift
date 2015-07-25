@@ -50,26 +50,18 @@ class ProductViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.productTableView.delegate = self
         self.productTableView.dataSource = self
         
-        var relatedAlbumList:Array<Vedio>! = DataHelper.getVideoList(DataHelper.ReadDate(self.cache_relatedAlbum_path)) as! Array<Vedio>
+        //读取本地缓存
+        self.relatedAlbumList = DataHelper.getVideoList(DataHelper.ReadDate(self.cache_relatedAlbum_path)) as! Array<Vedio>
+        self.newAlbumList = DataHelper.getVideoList(DataHelper.ReadDate(self.cache_newAlbum_path)) as! Array<Vedio>
         
-        //var relatedAlbumList:Array<Vedio>! = self.loadListLocal("IndexRelatedAlbumList")
-        if relatedAlbumList != nil && relatedAlbumList.count > 0 {
-            self.relatedAlbumList = relatedAlbumList
-        }
-        var newAlbumList:Array<Vedio>! = DataHelper.getVideoList(DataHelper.ReadDate(self.cache_newAlbum_path)) as! Array<Vedio>
-        
-        //var newAlbumList:Array<Vedio>! = self.loadListLocal("IndexNewAlbumList")
-        if newAlbumList != nil && newAlbumList.count > 0 {
-            self.newAlbumList = newAlbumList
-        }
         //有网络才请求数据
         if NetWorkHelper.is_network_ok == true {
             println("Network Connection: Available")
             LoginTool.autoLogin()
             //推荐
-            //self.getRelatedAlbumData()
+            self.getRelatedAlbumData()
             //最新
-            //self.getNewAlbumData()
+            self.getNewAlbumData()
         } else {
             println("Network Connection: Unavailable")
             D3Notice.showText("没有可用网络！",time:D3Notice.longTime,autoClear:true)

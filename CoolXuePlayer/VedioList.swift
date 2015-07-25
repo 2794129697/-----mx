@@ -32,12 +32,7 @@ class VedioListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             D3Notice.showText("没有可用网络！",time:D3Notice.longTime,autoClear:true)
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
@@ -91,28 +86,6 @@ class VedioListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 }
             }
         }
-        
-        
-//        var channel_url = "http://www.icoolxue.com/album/video/list/"+String(self.channel!.id)
-//        var url = NSURL(string: channel_url)
-//        var request = NSURLRequest(URL: url!)
-//        NSURLConnection.sendAsynchronousRequest(
-//            request, queue: NSOperationQueue.mainQueue()) { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
-//                println("responseerror=\(error)")
-//                var httpResponse = response as! NSHTTPURLResponse
-//                if httpResponse.statusCode == 200 {
-//                    var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
-//                    //println(bdict)
-//                    var c_array = bdict["data"] as! NSArray
-//                    if c_array.count > 0 {
-//                        for dict in c_array{
-//                            var channel = Vedio(dictVedio: dict as! NSDictionary)
-//                            self.channelList.append(channel)
-//                        }
-//                        self.productTableView.reloadData()
-//                    }
-//                }
-//        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -142,33 +115,6 @@ class VedioListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 }
             }
         }
-        
-        //        var url = NSURL(string: path)
-        //        var request = NSMutableURLRequest (URL: url!)
-        //        request.setValue("www.icoolxue.com", forHTTPHeaderField: "referer")
-        //        NSURLConnection.sendAsynchronousRequest(
-        //            request, queue: NSOperationQueue.mainQueue()) { (response:NSURLResponse!, data:NSData!, error:NSError!) -> Void in
-        //                //println("responseerror=\(error)")
-        //                var httpResponse = response as! NSHTTPURLResponse
-        //                var str = NSString(data: data, encoding:NSUTF8StringEncoding)
-        //                println("str =\(str)")
-        //                println()
-        //                if httpResponse.statusCode == 200 {
-        //                    var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
-        //                    var code:Int = bdict["code"] as! Int
-        //                    if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
-        //                        var vedio_url = bdict["data"] as? String
-        //                        if vedio_url != nil {
-        //                            self.currVedio?.vedioUrl = vedio_url
-        //                            self.performSegueWithIdentifier("VedioPlaySegueId", sender: self.currVedio)
-        //                        }else{
-        //                            println("Failed to Get Url!!!!!!!!")
-        //                            var alert:UIAlertView = UIAlertView(title: "提示", message: "获取视频播放地址失败！", delegate: self, cancelButtonTitle: "确定")
-        //                            alert.show()
-        //                        }
-        //                    }
-        //                }
-        //        }
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -180,4 +126,10 @@ class VedioListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }
         }
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
 }

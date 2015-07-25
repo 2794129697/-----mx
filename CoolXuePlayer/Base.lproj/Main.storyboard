@@ -711,7 +711,6 @@
         <!--我的账号-->
         <scene sceneID="os0-yA-eab">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QdD-1Y-86q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="vFr-pZ-aVc" customClass="AccountInfoVC" customModule="CoolXuePlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mKm-pA-sq3"/>
@@ -723,7 +722,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="aue-vW-HnI">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -739,6 +738,7 @@
                         <outlet property="mTableView" destination="aue-vW-HnI" id="Dox-Q2-OeF"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QdD-1Y-86q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3027" y="-235"/>
         </scene>
@@ -1032,9 +1032,9 @@
         <image name="videoPlayNomal" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="R9W-LN-wRQ"/>
-        <segue reference="y3h-n8-YH2"/>
+        <segue reference="CE7-DJ-huZ"/>
+        <segue reference="91l-uM-E5B"/>
+        <segue reference="MPV-jz-stX"/>
         <segue reference="gpC-0F-nDT"/>
-        <segue reference="uiz-UD-gk0"/>
     </inferredMetricsTieBreakers>
 </document>

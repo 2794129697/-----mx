@@ -81,6 +81,8 @@
 		4D882C6D1B6122A900E0FC60 /* FeedbackAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D882C6C1B6122A900E0FC60 /* FeedbackAddVC.swift */; };
 		4D882C701B612D4E00E0FC60 /* FeedbackTabVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D882C6E1B612D4E00E0FC60 /* FeedbackTabVCell.swift */; };
 		4D882C711B612D4E00E0FC60 /* FeedbackTabVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D882C6F1B612D4E00E0FC60 /* FeedbackTabVCell.xib */; };
+		4D89585A1B63500400426521 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8958591B63500400426521 /* DataHelper.swift */; };
+		4D89585C1B63605E00426521 /* ScrollContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D89585B1B63605E00426521 /* ScrollContentView.xib */; };
 		4D9EF2F01B47C2CA0089DF29 /* VedioDescTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EF2EF1B47C2CA0089DF29 /* VedioDescTV.swift */; };
 		4D9EF2F21B47CAFD0089DF29 /* VedioDescTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9EF2F11B47CAFD0089DF29 /* VedioDescTVCell.swift */; };
 		4D9EF2FC1B47E8400089DF29 /* VedioDescTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D9EF2FB1B47E8400089DF29 /* VedioDescTVCell.xib */; };
@@ -226,6 +228,8 @@
 		4D882C6C1B6122A900E0FC60 /* FeedbackAddVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackAddVC.swift; sourceTree = "<group>"; };
 		4D882C6E1B612D4E00E0FC60 /* FeedbackTabVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackTabVCell.swift; sourceTree = "<group>"; };
 		4D882C6F1B612D4E00E0FC60 /* FeedbackTabVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackTabVCell.xib; sourceTree = "<group>"; };
+		4D8958591B63500400426521 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
+		4D89585B1B63605E00426521 /* ScrollContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScrollContentView.xib; sourceTree = "<group>"; };
 		4D9EF2EF1B47C2CA0089DF29 /* VedioDescTV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VedioDescTV.swift; sourceTree = "<group>"; };
 		4D9EF2F11B47CAFD0089DF29 /* VedioDescTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VedioDescTVCell.swift; sourceTree = "<group>"; };
 		4D9EF2FB1B47E8400089DF29 /* VedioDescTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VedioDescTVCell.xib; sourceTree = "<group>"; };
@@ -359,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				4D3CDF4B1B1C8083005494A6 /* ProductHeadView.xib */,
+				4D89585B1B63605E00426521 /* ScrollContentView.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 		4D4EF5691B181F050053A829 /* CoolXuePlayer */ = {
 			isa = PBXGroup;
 			children = (
+				4D8958581B634FDD00426521 /* cache */,
 				4D2F0CE21B623F5A00041365 /* network */,
 				4D22D1201B52B48F00FBE6D7 /* Reachability */,
 				4D22D1181B52AE7200FBE6D7 /* D3Notice */,
@@ -586,6 +592,14 @@
 				4D7C4C9C1B3283DF0030FD2E /* Category.swift */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		4D8958581B634FDD00426521 /* cache */ = {
+			isa = PBXGroup;
+			children = (
+				4D8958591B63500400426521 /* DataHelper.swift */,
+			);
+			name = cache;
 			sourceTree = "<group>";
 		};
 		4D9EF30D1B4857E10089DF29 /* search */ = {
@@ -800,6 +814,7 @@
 				4D4178691B439EC9000895FD /* bg_paipian_tv.png in Resources */,
 				4DFAED061B53B3FC00B49F15 /* UserInfoTabHeadV.xib in Resources */,
 				4D3CCD8C1B1843B1009323F0 /* cache_press_p.png in Resources */,
+				4D89585C1B63605E00426521 /* ScrollContentView.xib in Resources */,
 				4D9EF30C1B4828550089DF29 /* HistoryTVCell.xib in Resources */,
 				4D3CCD8D1B1843B1009323F0 /* categoryNormal.png in Resources */,
 				4D3CDF4C1B1C8083005494A6 /* ProductHeadView.xib in Resources */,
@@ -899,6 +914,7 @@
 				4D65E1031B4BD9A500F67448 /* IndexTVCell.swift in Sources */,
 				4D1CF9091B20445300D60BA7 /* HTTPTask.swift in Sources */,
 				4D3CDF541B1C8BC5005494A6 /* ProductViewController.swift in Sources */,
+				4D89585A1B63500400426521 /* DataHelper.swift in Sources */,
 				4D4EF56D1B181F050053A829 /* AppDelegate.swift in Sources */,
 				4D882C701B612D4E00E0FC60 /* FeedbackTabVCell.swift in Sources */,
 				4D4EB09E1B1FEE4200AB1C60 /* LoginUITabBarController.swift in Sources */,

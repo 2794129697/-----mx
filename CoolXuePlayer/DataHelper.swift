@@ -16,7 +16,7 @@ public class DataHelper{
     }
     //读取
     public class func ReadDate(cache_file_path:String)->NSDictionary{
-        var dict:NSDictionary!
+        var dict:NSDictionary! = NSDictionary()
         var path:String = NSHomeDirectory()+cache_file_path
         println("localFilePath=\n\(path)")
         //判断本地是否存在该文件
@@ -26,7 +26,7 @@ public class DataHelper{
         if is_exists{
             var data : NSData! = NSData(contentsOfFile: path)!
             //解压数据
-            data = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as! NSData
+            data = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? NSData
             if data != nil {
                 dict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
             }
@@ -35,13 +35,26 @@ public class DataHelper{
     }
     public class func getVideoList(dict:NSDictionary)->Array<AnyObject>{
         var list:Array<Vedio>! = []
-        var c_array = dict["data"] as! NSArray
-        if c_array.count > 0 {
+        var c_array:NSArray! = dict["data"] as? NSArray
+        if c_array != nil && c_array.count > 0 {
             for dict in c_array{
-                var channel = Vedio(dictVedio: dict as! NSDictionary)
-                list.append(channel)
+                var vedioModel = Vedio(dictVedio: dict as! NSDictionary)
+                list.append(vedioModel)
             }
         }
         return list
     }
+    
+    public class func getVideoCategoryList(dict:NSDictionary)->Array<AnyObject>{
+        var list:Array<Category>! = []
+        var c_array:NSArray! = dict["data"] as? NSArray
+        if c_array != nil && c_array.count > 0 {
+            for dict in c_array{
+                var categoryModel = Category(dict: dict as! NSDictionary)
+                list.append(categoryModel)
+            }
+        }
+        return list
+    }
+
 }

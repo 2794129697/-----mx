@@ -13,6 +13,7 @@ class CategoryViewController: UIViewController,UITableViewDataSource,UITableView
     @IBOutlet weak var BCategoryCollectionView: UICollectionView!
     var aCategoryList:Array<Category> = []
     var currACategoryList:Array<CategorySub> = []
+    var cache_category_path = "/Documents/videoCategory"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.ACategoryTableView.dataSource = self
@@ -20,6 +21,15 @@ class CategoryViewController: UIViewController,UITableViewDataSource,UITableView
         self.ACategoryTableView.showsVerticalScrollIndicator = false
         self.BCategoryCollectionView.dataSource = self
         self.BCategoryCollectionView.delegate = self
+        
+        //读取本地缓存
+        self.aCategoryList = DataHelper.getVideoCategoryList(DataHelper.ReadDate(self.cache_category_path)) as! Array<Category>
+        if self.aCategoryList.count > 0 && self.currACategoryList.count == 0 {
+            self.currACategoryList = self.aCategoryList[0].subCategoryList!
+            //选中第一个行
+            self.ACategoryTableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: UITableViewScrollPosition.Bottom)
+        }
+
         //有网络才请求数据
         if NetWorkHelper.is_network_ok == true {
             self.getCategoryData()
@@ -35,31 +45,24 @@ class CategoryViewController: UIViewController,UITableViewDataSource,UITableView
 //            var str = NSString(data: data, encoding: NSUTF8StringEncoding)
 //            println(str)
             var bdict:NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as!NSDictionary
-            // println(bdict)
             var code:Int = bdict["code"] as! Int
             if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
-                var c_array = bdict["data"] as! NSArray
-                if c_array.count > 0 {
-                    for dict in c_array{
-                        var category = Category(dict: dict as! NSDictionary)
-                        self.aCategoryList.append(category)
-                        if self.currACategoryList.count == 0 {
-                            self.currACategoryList = category.subCategoryList!
-                        }
+                self.aCategoryList = DataHelper.getVideoCategoryList(bdict) as! Array<Category>
+                if self.aCategoryList.count > 0 {
+                    if self.currACategoryList.count == 0 {
+                        self.currACategoryList = self.aCategoryList[0].subCategoryList!
                     }
                     self.ACategoryTableView.reloadData()
+                    //选中第一个行(table加载后才能调用)
                     self.ACategoryTableView.selectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: true, scrollPosition: UITableViewScrollPosition.Bottom)
                     self.BCategoryCollectionView.reloadData()
+                    //将文件保存到本地
+                    DataHelper.CacheData(self.cache_category_path, data: data)
                 }
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -122,5 +125,10 @@ class CategoryViewController: UIViewController,UITableViewDataSource,UITableView
             adController.subCategory = sender as? CategorySub
         }
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
 }

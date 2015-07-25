@@ -51,48 +51,5 @@
             </connections>
             <point key="canvasLocation" x="-84" y="402"/>
         </view>
-        <view contentMode="scaleToFill" id="AVi-Ez-24P" customClass="ScrollContentView" customModule="CoolXuePlayer" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <view alpha="0.59999999999999964" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2V4-sm-4g6">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hpc-D9-MNH">
-                    <rect key="frame" x="10" y="9" width="110" height="110"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="110" id="kCH-yp-mde"/>
-                        <constraint firstAttribute="height" constant="110" id="nwz-y6-BPY"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yve-NG-2Yh">
-                    <rect key="frame" x="130" y="24" width="180" height="80"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="80" id="nR7-om-MJu"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <constraints>
-                <constraint firstItem="Yve-NG-2Yh" firstAttribute="leading" secondItem="hpc-D9-MNH" secondAttribute="trailing" constant="10" id="BKO-7x-Ba1"/>
-                <constraint firstAttribute="centerY" secondItem="hpc-D9-MNH" secondAttribute="centerY" id="K6K-cs-FRB"/>
-                <constraint firstItem="2V4-sm-4g6" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" id="OmW-dt-9hM"/>
-                <constraint firstItem="2V4-sm-4g6" firstAttribute="top" secondItem="AVi-Ez-24P" secondAttribute="top" id="QFY-XF-orR"/>
-                <constraint firstItem="hpc-D9-MNH" firstAttribute="leading" secondItem="AVi-Ez-24P" secondAttribute="leading" constant="10" id="Ypb-iO-Lin"/>
-                <constraint firstAttribute="bottom" secondItem="2V4-sm-4g6" secondAttribute="bottom" id="dez-Ij-HG0"/>
-                <constraint firstAttribute="trailing" secondItem="Yve-NG-2Yh" secondAttribute="trailing" constant="10" id="hhy-jM-opX"/>
-                <constraint firstAttribute="trailing" secondItem="2V4-sm-4g6" secondAttribute="trailing" id="tiJ-3g-QZo"/>
-                <constraint firstAttribute="centerY" secondItem="Yve-NG-2Yh" secondAttribute="centerY" id="ygM-Wy-zQa"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="imageView" destination="hpc-D9-MNH" id="5gh-fe-pRH"/>
-                <outlet property="nameLabel" destination="Yve-NG-2Yh" id="TlA-Pf-EkV"/>
-            </connections>
-            <point key="canvasLocation" x="-89" y="606"/>
-        </view>
     </objects>
 </document>
