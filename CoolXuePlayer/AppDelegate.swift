@@ -7,9 +7,11 @@
 //
 
 import UIKit
-
+var tencentkAppKey = ""
+var weibokAppKey = "2516814566"
+var weibSecret = "860051ae2ceefa4034902dfd681a8b8f"
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,WeiboSDKDelegate {
     var window: UIWindow?
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //监测设备网络变化
@@ -17,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //        self.window?.backgroundColor = UIColor.blueColor()
 //        self.window?.makeKeyAndVisible()
+        WeiboSDK.enableDebugMode(true);
+        WeiboSDK.registerApp(weibokAppKey);
         return true
     }
 
@@ -42,10 +46,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        return TencentOAuth.HandleOpenURL(url)
+        var result = false
+        if LoginTool.loginType == .QQ {
+            result = TencentOAuth.HandleOpenURL(url)
+        }else if LoginTool.loginType == .Sina {
+            result = WeiboSDK.handleOpenURL(url, delegate:self)
+        }
+        return result
     }
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-        return TencentOAuth.HandleOpenURL(url)
+        var result = false
+        if LoginTool.loginType == .QQ {
+            result = TencentOAuth.HandleOpenURL(url)
+        }else if LoginTool.loginType == .Sina {
+            result = WeiboSDK.handleOpenURL(url, delegate:self)
+        }
+        return result
+    }
+    
+    func didReceiveWeiboRequest(request: WBBaseRequest!) {
+        
+    }
+    func didReceiveWeiboResponse(response: WBBaseResponse!) {
+        if (response.isKindOfClass(WBSendMessageToWeiboResponse)) {
+            var message = "响应状态:\(response.statusCode.rawValue)\n响应UserInfo数据:\(response.userInfo)\n原请求UserInfo数据:\(response.requestUserInfo)"
+            var alert = UIAlertView(title: "发送结果", message: message, delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        } else if (response.isKindOfClass(WBAuthorizeResponse)) {
+            var message = "响应状态: \(response.statusCode.rawValue)\nresponse.userId: \((response as! WBAuthorizeResponse).userID)\nresponse.accessToken: \((response as! WBAuthorizeResponse).accessToken)\n响应UserInfo数据: \(response.userInfo)\n原请求UserInfo数据: \(response.requestUserInfo)"
+            var alert = UIAlertView(title: "认证结果", message: message, delegate: nil, cancelButtonTitle: "确定")
+            alert.show()
+        }
     }
 }
 

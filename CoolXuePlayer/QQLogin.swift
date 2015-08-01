@@ -20,7 +20,7 @@ class QQLogin: NSObject,TencentSessionDelegate {
         if self.tencentOAuth == nil {
             //101155101可以测试
             //100482224
-            self.tencentOAuth = TencentOAuth(appId: "101155101", andDelegate: self)
+            self.tencentOAuth = TencentOAuth(appId: "100482224", andDelegate: self)
         }
     }
     var qqOAuthPermissions = ["get_user_info"]

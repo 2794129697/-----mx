@@ -7,10 +7,14 @@
 //
 
 import UIKit
+enum LoginType{
+    case None,QQ,Sina
+}
 class LoginTool: NSObject {
     static var isLogin:Bool = false
     static var isAutoLogin:Bool = false
     static var isNeedUserLogin:Bool = false
+    static var loginType:LoginType = .None
     static func autoLogin(){
         var userAccount:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         var is_login:Bool? = userAccount.objectForKey("is_login") as? Bool

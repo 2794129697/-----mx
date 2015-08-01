@@ -5,3 +5,4 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "Reachability/Reachability.h"
 #import "TencentOpenAPI/TencentOAuth.h"
+#import "WeiboSDK.h"

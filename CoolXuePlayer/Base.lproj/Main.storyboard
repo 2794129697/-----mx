@@ -921,7 +921,7 @@
                                     <action selector="loginBnClicked:" destination="xYc-7Q-0dr" eventType="touchUpInside" id="W8F-cT-o39"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXl-VL-e33">
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXl-VL-e33">
                                 <rect key="frame" x="122" y="307" width="145" height="40"/>
                                 <state key="normal" image="sns_login_qq">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -936,6 +936,15 @@
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHp-QN-S4S">
+                                <rect key="frame" x="122" y="365" width="145" height="40"/>
+                                <state key="normal" backgroundImage="sns_login_weibo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="bnSinaLoginClicked:" destination="xYc-7Q-0dr" eventType="touchUpInside" id="tZq-Z5-mXy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1028,6 +1037,7 @@
         <image name="loginPress" width="64" height="47"/>
         <image name="registerPress" width="64" height="47"/>
         <image name="sns_login_qq" width="145" height="40"/>
+        <image name="sns_login_weibo" width="173" height="32"/>
         <image name="videoFullScreenNomal" width="70" height="70"/>
         <image name="videoPlayNomal" width="64" height="64"/>
     </resources>

@@ -48,6 +48,7 @@ class LoginViewController: UIViewController,UIAlertViewDelegate,UITextFieldDeleg
         }
     }
     @IBAction func loginBnClicked(sender: AnyObject) {
+        LoginTool.loginType = LoginType.None
         var userid = self.userIdTextField.text
         var upwd = self.pwdTextField.text
 //        if userid.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) <= 0 {
@@ -103,6 +104,7 @@ class LoginViewController: UIViewController,UIAlertViewDelegate,UITextFieldDeleg
         if self.qqLogin == nil {
             self.qqLogin = QQLogin()
         }
+        LoginTool.loginType = LoginType.QQ
         println("accessToken=====>\(self.qqLogin.tencentOAuth.accessToken)")
         println("expirationDate=====>\(self.qqLogin.tencentOAuth.expirationDate)")
         println("authorizeState=====>\(TencentOAuth.authorizeState)")
@@ -151,20 +153,29 @@ class LoginViewController: UIViewController,UIAlertViewDelegate,UITextFieldDeleg
             var code:Int = bdict["code"] as! Int
             var userAccount:NSUserDefaults = NSUserDefaults.standardUserDefaults()
             if HttpManagement.HttpResponseCodeCheck(code, viewController: self){
-//                userAccount.setObject(true, forKey: "is_login")
-//                userAccount.setObject(userid,forKey: "uid")
-//                userAccount.setObject(upwd,forKey: "upwd")
+                userAccount.setObject(true, forKey: "is_login")
+                userAccount.setObject(self.qqLogin.tencentOAuth.openId,forKey: "openId")
+                userAccount.setObject(self.qqLogin.tencentOAuth.accessToken,forKey: "accessToken")
                 LoginTool.isLogin = true
                 LoginTool.isNeedUserLogin = false
                 self.showAlertView(tag:1,title: "提示", message: "登录成功！", delegate: self, cancelButtonTitle: "确定")
             }else{
-//                userAccount.removeObjectForKey("uid")
-//                userAccount.removeObjectForKey("upwd")
+                userAccount.removeObjectForKey("openId")
+                userAccount.removeObjectForKey("accessToken")
                 self.showAlertView(tag:0,title: "提示", message: "登录失败！", delegate: self, cancelButtonTitle: "确定")
             }
         }
     }
+    //新浪微博登录
 
+    @IBAction func bnSinaLoginClicked(sender: AnyObject) {
+        LoginTool.loginType = LoginType.Sina
+        var request: WBAuthorizeRequest! = WBAuthorizeRequest.request() as! WBAuthorizeRequest
+        request.redirectURI = "https://api.weibo.com/oauth2/default.html"
+        request.scope = "all"
+        
+        WeiboSDK.sendRequest(request)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
